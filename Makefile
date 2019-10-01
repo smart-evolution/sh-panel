@@ -65,14 +65,17 @@ version:
 	git tag --delete $(V)
 	git tag $(V)
 
-.PHONY: build-image
-build-image:
-	docker build --no-cache --tag oszura/sh-panel --file=Dockerfile .
+.PHONY: build-images
+build-images:
+	docker build --tag oszura/shpanel --file=./docker/Dockerfile-shpanel .
+	docker build --tag oszura/shpanel-mongodb --file=./docker/Dockerfile-mongodb .
 
-.PHONY: build-image-soft
-build-image-soft:
-	docker build --tag oszura/sh-panel --file=Dockerfile .
+.PHONY: build-images-nocache
+build-images-nocache:
+	docker build --no-cache --tag oszura/shpanel --file=./docker/Dockerfile-shpanel .
+	docker build --no-cache --tag oszura/shpanel-mongodb --file=./docker/Dockerfile-shpanel-mongodb .
 
-.PHONY: run-container
-run-container:
+.PHONY: run-containers
+run-containers:
+	docker-compose up
 	docker run -it -p 3223:3223 -v $(PWD):/root/go/src/github.com/smart-evolution/shpanel oszura/sh-panel
