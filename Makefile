@@ -68,7 +68,7 @@ version:
 .PHONY: build-images
 build-images:
 	docker build --tag oszura/shpanel --file=./docker/Dockerfile-shpanel .
-	docker build --tag oszura/shpanel-mongodb --file=./docker/Dockerfile-mongodb .
+	docker build --tag oszura/shpanel-mongodb --file=./docker/Dockerfile-shpanel-mongodb .
 
 .PHONY: build-images-nocache
 build-images-nocache:
@@ -77,5 +77,5 @@ build-images-nocache:
 
 .PHONY: run-containers
 run-containers:
-	docker-compose up
+	cd docker && docker-compose --verbose up
 	docker run -it -p 3223:3223 -v $(PWD):/root/go/src/github.com/smart-evolution/shpanel oszura/sh-panel
