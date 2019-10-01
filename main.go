@@ -50,4 +50,3 @@ func main() {
 	ws := New("3223")
 	ws.RunService()
 }
-
