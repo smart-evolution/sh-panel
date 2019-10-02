@@ -78,4 +78,7 @@ build-images-nocache:
 .PHONY: run-containers
 run-containers:
 	cd docker && docker-compose --verbose up
-	docker run -it -p 3223:3223 -v $(PWD):/root/go/src/github.com/smart-evolution/shpanel oszura/sh-panel
+
+.PHONY: run-container
+run-container:
+        docker run -it -p 3223:3223 -v /home/oszura/go/src/github.com/smart-evolution/shpanel:/root/go/src/github.com/smart-evolution/shpanel oszura/shpanel

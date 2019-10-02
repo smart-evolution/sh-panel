@@ -1,6 +1,6 @@
 version: "3"
 services:
   mongodb:
-    image: oszura/sh-panel-mongodb
+    image: oszura/shpanel-mongodb
     ports:
       - "27017:27017"
