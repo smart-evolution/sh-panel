@@ -4,7 +4,9 @@ import (
 	"errors"
 	"github.com/coda-it/gowebserver"
 	"github.com/smart-evolution/shpanel/controllers"
+	"github.com/smart-evolution/shpanel/datasources/persistence"
 	"github.com/smart-evolution/shpanel/utils"
+	"os"
 )
 
 // WebServer - adapter for gowebserver instance
@@ -20,7 +22,7 @@ func getServerAddress(port string) (string, error) {
 }
 
 // New - creates new WebServer instance
-func New(port string) *WebServer {
+func New(port string, p *persistence.Persistance) *WebServer {
 	addr, err := getServerAddress(port)
 
 	if err != nil {
@@ -35,6 +37,10 @@ func New(port string) *WebServer {
 
 	server := gowebserver.New(serverOptions, controllers.NotFound)
 	server.Router.AddRoute("/", controllers.CtrDashboard)
+	server.Router.AddRoute("/login/register", controllers.Register)
+	server.Router.AddRoute("/login/logout", controllers.AuthenticateLogout)
+	server.Router.AddRoute("/login", controllers.Authenticate)
+	server.AddDataSource("persistence", p)
 
 	return &WebServer{
 		server: server,
@@ -47,6 +53,11 @@ func (ws *WebServer) RunService() {
 }
 
 func main() {
-	ws := New("3223")
+	p := persistence.New(
+		os.Getenv("SH_PANEL_MONGO_URI"),
+		os.Getenv("SH_PANEL_MONGO_DB"),
+	)
+
+	ws := New(os.Getenv("SH_PANEL_PORT"), p)
 	ws.RunService()
 }
