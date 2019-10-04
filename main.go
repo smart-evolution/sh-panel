@@ -9,6 +9,8 @@ import (
 	"os"
 )
 
+//go:generate bash ./scripts/version.sh ./scripts/version_tpl.txt ./version.go
+
 // WebServer - adapter for gowebserver instance
 type WebServer struct {
 	server *gowebserver.WebServer
