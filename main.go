@@ -4,9 +4,9 @@ import (
 	"errors"
 	"github.com/coda-it/gowebserver"
 	"github.com/smart-evolution/shpanel/controllers"
+	"github.com/smart-evolution/shpanel/controllers/api"
 	"github.com/smart-evolution/shpanel/datasources/persistence"
 	"github.com/smart-evolution/shpanel/utils"
-	"github.com/smart-evolution/shpanel/controllers/api"
 	"os"
 )
 
