@@ -4,6 +4,7 @@ import (
 	"errors"
 	"github.com/coda-it/gowebserver"
 	"github.com/smart-evolution/shpanel/controllers"
+	"github.com/smart-evolution/shpanel/controllers/api"
 	"github.com/smart-evolution/shpanel/datasources/persistence"
 	"github.com/smart-evolution/shpanel/utils"
 	"os"
@@ -42,6 +43,7 @@ func New(port string, p *persistence.Persistance) *WebServer {
 	server.Router.AddRoute("/login/register", controllers.Register)
 	server.Router.AddRoute("/login/logout", controllers.AuthenticateLogout)
 	server.Router.AddRoute("/login", controllers.Authenticate)
+	server.Router.AddRoute("/api/user", api.CtrUser)
 	server.AddDataSource("persistence", p)
 
 	return &WebServer{
