@@ -28,6 +28,15 @@ export function* onCreateWebSocketClient({
   agent: agentTypes.Agent,
 }): Iterable<any> {
   const host = yield select(userSelectors.getAPIServerURL);
+
+  if (typeof host !== 'string') {
+    alertsActions.addAlert(
+      'API server host is not correct ',
+      alertsConstants.ALERT_TYPE_ERROR
+    );
+    return;
+  }
+
   const client: WebSocket = new WebSocket(`ws://${host}/sapi`);
   yield put(actions.addWebSocketClient(agent, client));
 

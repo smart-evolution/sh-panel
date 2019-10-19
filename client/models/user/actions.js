@@ -1,11 +1,12 @@
 // @flow
-import * as actionTypes from "./actionTypes";
+import * as actionTypes from './actionTypes';
+import * as types from './types';
 
 export const fetchUser = () => ({
   type: actionTypes.FETCH_USER,
 });
 
-export const loadUser = (user) => ({
+export const loadUser = (user: types.User) => ({
   type: actionTypes.LOAD_USER,
   user,
 });

@@ -6,10 +6,7 @@ const defaultState = {
   user: null,
 };
 
-export default function reducers(
-  state: Object = defaultState,
-  action: Object
-) {
+export default function reducers(state: Object = defaultState, action: Object) {
   const { user, error } = action;
 
   switch (action.type) {

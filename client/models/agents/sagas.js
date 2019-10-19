@@ -1,22 +1,22 @@
 import _ from 'lodash';
 import { delay } from 'redux-saga';
 import { put, call, select } from 'redux-saga/effects';
-import * as actions from './actions';
-import * as selectors from './selectors';
 import * as userSelectors from 'client/models/user/selectors';
 import * as userQueries from 'client/models/user/queries';
 import * as alertsActions from '../alerts/actions';
 import * as alertsConstants from '../alerts/constants';
+import * as actions from './actions';
+import * as selectors from './selectors';
 
 export function callFetchAgents(host, auth, period) {
   const headers = new Headers();
-  headers.set('Authorization', 'Basic ' + auth);
+  headers.set('Authorization', `Basic ${auth}`);
 
   const request = new Request(`${host}/api/agents?period=${period}`, {
     headers,
     method: 'GET',
     mode: 'cors',
-    protocol:'http:',
+    protocol: 'http:',
     credentials: 'include',
   });
 

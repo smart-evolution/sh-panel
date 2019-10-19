@@ -12,7 +12,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   mount: () => {
-    console.log('AA-01');
     dispatch(actions.mount());
   },
 });

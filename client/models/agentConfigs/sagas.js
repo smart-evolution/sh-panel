@@ -8,9 +8,28 @@ import * as userSelectors from 'client/models/user/selectors';
 import * as actions from './actions';
 import * as types from './types';
 import * as constants from './constants';
+import * as userQueries from '../user/queries';
 
-function callFetchAgentConfigs(host, agentID: agentTypes.AgentID) {
-  return fetch(`${host}/${constants.AGENT_CONFIG_ENDPOINT}/${agentID}`)
+function callFetchAgentConfigs(
+  host: string,
+  auth: string,
+  agentID: agentTypes.AgentID
+) {
+  const headers = new Headers();
+  headers.set('Authorization', `Basic ${auth}`);
+
+  const request = new Request(
+    `${host}${constants.AGENT_CONFIG_ENDPOINT}/${agentID}`,
+    {
+      headers,
+      method: 'GET',
+      mode: 'cors',
+      protocol: 'http:',
+      credentials: 'include',
+    }
+  );
+
+  return fetch(request)
     .then(response => {
       if (!response.ok) {
         throw new Error(`Fetching data error: ${response.statusText}`);
@@ -30,8 +49,22 @@ export function* onFetchAgentConfigs({
 }: {
   agentID: string,
 }): Iterable<any> {
-  const { host } = yield select(userSelectors.getAPIServerURL);
-  const data = yield call(callFetchAgentConfigs, host, agentID);
+  const host = yield select(userSelectors.getAPIServerURL);
+  const username = yield select(userSelectors.getUsername);
+  const password = yield select(userSelectors.getPassword);
+
+  if (typeof username !== 'string' || typeof password !== 'string') {
+    yield put(
+      alertsActions.addAlert(
+        'User data are not correct',
+        alertsConstants.ALERT_TYPE_ERROR
+      )
+    );
+    return;
+  }
+
+  const auth = userQueries.getUserAuth(username, password);
+  const data = yield call(callFetchAgentConfigs, host, auth, agentID);
 
   if (data !== undefined) {
     const agentConfigs = data._embedded.configs || [];
