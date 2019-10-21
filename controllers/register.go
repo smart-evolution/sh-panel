@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"github.com/coda-it/gowebserver/router"
 	"github.com/coda-it/gowebserver/session"
 	"github.com/coda-it/gowebserver/store"
@@ -9,6 +10,9 @@ import (
 	"github.com/smart-evolution/shpanel/utils"
 	"gopkg.in/mgo.v2/bson"
 	"net/http"
+	"net/url"
+	"os"
+	"strings"
 )
 
 // Register - handle register page and register user process
@@ -30,19 +34,42 @@ func Register(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm 
 
 		c := p.GetCollection("users")
 
+		apiServer := r.PostFormValue("api-server")
+		username := r.PostFormValue("username")
+		password := r.PostFormValue("password")
+
 		newUser = &user.User{
 			ID:          bson.NewObjectId(),
-			Username:    r.PostFormValue("username"),
-			Password:    utils.HashString(r.PostFormValue("password")),
-			APIServerIP: r.PostFormValue("api-server"),
+			Username:    username,
+			Password:    password,
+			APIServerIP: apiServer,
 		}
 
 		err := c.Insert(newUser)
 		if err != nil {
-			utils.Log(err)
+			fmt.Println(err)
+			utils.Log("Error registering user '" + username + "'")
+			return
+		}
+		utils.Log("Registered user '" + username + "'")
+
+		utils.Log("Registering user in API server " + apiServer)
+		form := url.Values{}
+		form.Add("username", username)
+		form.Add("password", password)
+
+		rApi, err := http.NewRequest("POST", "http://"+apiServer+":"+os.Getenv("SH_API_PORT")+"/login/register", strings.NewReader(form.Encode()))
+
+		if err != nil {
+			utils.Log("Error constructing register request to '" + apiServer + "' for the user '" + username + "'")
 		}
 
-		utils.Log("Registered user", newUser)
+		clientApi := http.Client{}
+		_, err = clientApi.Do(rApi)
+		if err != nil {
+			fmt.Println(err)
+			utils.Log("Error registering user in API server " + apiServer)
+		}
 
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 	default:

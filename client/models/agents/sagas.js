@@ -95,18 +95,33 @@ export function* onToggleAlerts() {
   }
 }
 
-function callAlerts() {
-  return fetch('/api/alerts')
+function callAlerts(host, auth) {
+  const headers = new Headers();
+  headers.set('Authorization', `Basic ${auth}`);
+
+  const request = new Request(`${host}/api/alerts`, {
+    headers,
+    method: 'GET',
+    mode: 'cors',
+    protocol: 'http:',
+    credentials: 'include',
+  });
+
+  return fetch(request)
     .then(response => response.json())
     .catch(() => 'Toggling alerts failed');
 }
 
 export function* onFetchAlerts() {
-  const data = yield call(callAlerts);
+  const host = yield select(userSelectors.getAPIServerURL);
+  const username = yield select(userSelectors.getUsername);
+  const password = yield select(userSelectors.getPassword);
+  const auth = userQueries.getUserAuth(username, password);
+
+  const data = yield call(callAlerts, host, auth);
 
   if (_.isObject(data)) {
     const isAlerts = data.isAlerts === 'true';
-
     yield put(actions.setAlerts(isAlerts));
   } else {
     yield put(
@@ -135,17 +150,31 @@ export function* onToggleType2({ agentID }) {
   }
 }
 
-function callSniffAgents(host) {
-  return fetch(`${host}/api/sniffagents`, { method: 'POST' })
+function callSniffAgents(host, auth) {
+  const headers = new Headers();
+  headers.set('Authorization', `Basic ${auth}`);
+
+  const request = new Request(`${host}/api/sniffagents`, {
+    headers,
+    method: 'POST',
+    mode: 'cors',
+    protocol: 'http:',
+    credentials: 'include',
+  });
+
+  return fetch(request, { method: 'POST' })
     .then(response => response.json())
     .catch(() => 'Toggling alerts failed');
 }
 
 export function* onSniffAgents() {
   yield put(actions.fetchAgents());
-
   const host = yield select(userSelectors.getAPIServerURL);
-  const data = yield call(callSniffAgents, host);
+  const username = yield select(userSelectors.getUsername);
+  const password = yield select(userSelectors.getPassword);
+  const auth = userQueries.getUserAuth(username, password);
+
+  const data = yield call(callSniffAgents, host, auth);
 
   if (!_.isEmpty(data)) {
     yield put(

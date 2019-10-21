@@ -14,6 +14,7 @@ export function* onApplicationMount(): Iterable<any> {
   yield put(userActions.fetchUser());
   yield take([userActionTypes.LOAD_USER]);
   yield fork(agentsSagas.subscribeOnFetchAgents);
+  yield fork(agentsSagas.onFetchAlerts);
 
   yield all([put(agentActions.fetchAgents())]);
   yield take([agentActionTypes.LOAD_AGENTS]);

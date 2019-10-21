@@ -1,5 +1,5 @@
 // @flow
-import { fork, takeEvery } from 'redux-saga/effects';
+import { takeEvery } from 'redux-saga/effects';
 import * as applicationSagas from './modules/Application/sagas';
 import * as applicationActionTypes from './modules/Application/actionTypes';
 import * as agentsSagas from './models/agents/sagas';
@@ -17,7 +17,6 @@ function* root(): Iterable<any> {
       applicationActionTypes.MOUNT,
       applicationSagas.onApplicationMount
     ),
-    fork(agentsSagas.onFetchAlerts),
     takeEvery(agentsActionTypes.SNIFF_AGENTS, agentsSagas.onSniffAgents),
     takeEvery(
       agentConfigsActionTypes.FETCH_AGENT_CONFIGS,
