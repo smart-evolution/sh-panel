@@ -65,14 +65,27 @@ version:
 	git tag --delete $(V)
 	git tag $(V)
 
-.PHONY: build-image
-build-image:
-	docker build --tag oszura/shpanel --file=./docker/Dockerfile-shpanel .
+.PHONY: build-image-dev
+build-image-dev:
+	docker build --tag oszura/shpanel-dev --file=./docker/dev/Dockerfile .
 
-.PHONY: build-images-nocache
-build-images-nocache:
-	docker build --no-cache --tag oszura/shpanel --file=./docker/Dockerfile-shpanel .
-	docker build --no-cache --tag oszura/shpanel-mongodb --file=./docker/Dockerfile-shpanel-mongodb .
+.PHONY: build-image-dev-nocache
+build-image-dev-nocache:
+	docker build --no-cache --tag oszura/shpanel-dev --file=./docker/dev/Dockerfile .
+
+.PHONY: build-image-prod
+build-image-prod:
+    mkdir -p ./docker/prod/bin/views
+    mkdir -p ./docker/prod/bin/public
+    cp ./shpanel ./docker/prod/bin
+    cp -r ./views ./docker/prod/views
+    cp -r ./public ./docker/prod/public
+	docker build --tag oszura/shpanel-prod --file=./docker/prod/Dockerfile .
+	rm -r ./docker/prod/bin
+
+.PHONY: build-image-prod-nocache
+build-image-prod-nocache:
+	docker build --no-cache --tag oszura/shpanel-prod --file=./docker/prod/Dockerfile .
 
 .PHONY: compose-up
 compose-up:
