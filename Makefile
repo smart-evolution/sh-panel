@@ -75,13 +75,7 @@ build-image-dev-nocache:
 
 .PHONY: build-image-prod
 build-image-prod:
-	mkdir -p ./docker/prod/bin/views
-	mkdir -p ./docker/prod/bin/public
-	cp ./shpanel ./docker/prod/bin
-	cp -r ./views ./docker/prod/bin
-	cp -r ./public ./docker/prod/bin
 	docker build --tag oszura/shpanel-prod --file=./docker/prod/Dockerfile .
-	rm -r ./docker/prod/bin
 
 .PHONY: build-image-prod-nocache
 build-image-prod-nocache:
