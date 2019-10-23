@@ -39,6 +39,8 @@ func New(port string, p *persistence.Persistance) *WebServer {
 	}
 
 	server := gowebserver.New(serverOptions, controllers.NotFound)
+	server.Router.AddRoute("/agent/{agent}", controllers.CtrDashboard)
+	server.Router.AddRoute("/agent/{agent}/edit", controllers.CtrAgentEdit)
 	server.Router.AddRoute("/", controllers.CtrDashboard)
 	server.Router.AddRoute("/login/register", controllers.Register)
 	server.Router.AddRoute("/login/logout", controllers.AuthenticateLogout)

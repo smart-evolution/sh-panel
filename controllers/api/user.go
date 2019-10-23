@@ -32,13 +32,5 @@ func CtrUser(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm s
 		return
 	}
 
-	data := struct {
-		Username    string
-		APIServerIP string
-	}{
-		user.Username,
-		user.APIServerIP,
-	}
-
-	json.NewEncoder(w).Encode(helpers.ServeHal(data, embedded, links))
+	json.NewEncoder(w).Encode(helpers.ServeHal(user, embedded, links))
 }

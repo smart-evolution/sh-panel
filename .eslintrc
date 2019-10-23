@@ -15,7 +15,10 @@
     "fetch": true,
     "WebSocket": true,
     "cy": true,
-    "Cypress": true
+    "Cypress": true,
+    "Headers": true,
+    "Request": true,
+    "btoa": true
   },
   "env": {
     "jest": true
