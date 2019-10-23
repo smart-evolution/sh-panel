@@ -58,14 +58,14 @@ func Register(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm 
 		form.Add("username", username)
 		form.Add("password", password)
 
-		rApi, err := http.NewRequest("POST", "http://"+apiServer+":"+os.Getenv("SH_API_PORT")+"/login/register", strings.NewReader(form.Encode()))
+		rAPI, err := http.NewRequest("POST", "http://"+apiServer+":"+os.Getenv("SH_API_PORT")+"/login/register", strings.NewReader(form.Encode()))
 
 		if err != nil {
 			utils.Log("Error constructing register request to '" + apiServer + "' for the user '" + username + "'")
 		}
 
-		clientApi := http.Client{}
-		_, err = clientApi.Do(rApi)
+		clientAPI := http.Client{}
+		_, err = clientAPI.Do(rAPI)
 		if err != nil {
 			fmt.Println(err)
 			utils.Log("Error registering user in API server " + apiServer)
