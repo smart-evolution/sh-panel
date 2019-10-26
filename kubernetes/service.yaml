@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sh-panel
+spec:
+  externalIPs:
+    - 192.168.2.117
+  ports:
+    - port: 3223
+      protocol: TCP
+      targetPort: 3223
+      nodePort: 33223
+  selector:
+    app: smarthome
+  type: NodePort

@@ -3,7 +3,8 @@ GOLINT=golint
 GOFMT=gofmt
 MAKE=make
 NPM=npm
-mode=prod
+IMAGE_NAME="oszura/sh-panel"
+ENV=prod
 
 .DEFAULT_GOAL := all
 
@@ -21,7 +22,7 @@ all:
 .PHONY: build-frontend
 build-frontend:
 	$(NPM) rebuild node-sass
-	$(NPM) run build:$(mode)
+	$(NPM) run build:$(ENV)
 
 .PHONY: build-backend
 build-backend:
@@ -65,21 +66,9 @@ version:
 	git tag --delete $(V)
 	git tag $(V)
 
-.PHONY: build-image-dev
-build-image-dev:
-	docker build --tag oszura/shpanel-dev --file=./docker/dev/Dockerfile .
-
-.PHONY: build-image-dev-nocache
-build-image-dev-nocache:
-	docker build --no-cache --tag oszura/shpanel-dev --file=./docker/dev/Dockerfile .
-
-.PHONY: build-image-prod
-build-image-prod:
-	docker build --tag oszura/shpanel-prod --file=./docker/prod/Dockerfile .
-
-.PHONY: build-image-prod-nocache
-build-image-prod-nocache:
-	docker build --no-cache --tag oszura/shpanel-prod --file=./docker/prod/Dockerfile .
+.PHONY: image
+image:
+	docker build --tag $(IMAGE_NAME) --file=./docker/$(ENV)/Dockerfile .
 
 .PHONY: compose-up
 compose-up:
