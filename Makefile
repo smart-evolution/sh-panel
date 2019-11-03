@@ -6,6 +6,10 @@ NPM=npm
 IMAGE_NAME="oszura/sh-panel"
 ENV=prod
 
+SH_MONGO_URI=mongodb://172.18.0.2:27017
+SH_MONGO_DB=shpanel
+SH_PANEL_PORT=3223
+
 .DEFAULT_GOAL := all
 
 .PHONY: install
@@ -53,6 +57,36 @@ fix:
 	$(NPM) run csslint:fix
 	$(GOFMT) -w .
 
+.PHONY: run
+run:
+	SH_MONGO_URI=$(SH_MONGO_URI) \
+	SH_MONGO_DB=$(SH_MONGO_DB) \
+	SH_PANEL_PORT=$(SH_PANEL_PORT) \
+	./shpanel
+
+### Containerization
+.PHONY: image
+image:
+	docker build --tag $(IMAGE_NAME) --file=./docker/sh-api/$(ENV)/Dockerfile .
+
+.PHONY: compose-up
+compose-up:
+	cd docker/sh-panel/dev && docker-compose --verbose up
+
+.PHONY: run-container
+run-container:
+	docker run --network=docker_default -it -v $(shell pwd):/root/go/src/github.com/smart-evolution/shpanel \
+	    -e SH_MONGO_URI=$(SH_MONGO_URI) \
+	    -e SH_MONGO_DB=$(SH_MONGO_DB) \
+	    -e SH_PANEL_PORT=$(SH_PANEL_PORT) oszura/shpanel
+
+### Deployment
+.PHONY: deploy
+deploy:
+	kubectl apply -f ./kubernetes/deployment.yaml
+	kubectl apply -f ./kubernetes/services.yaml
+
+### Utilities
 .PHONY: version
 version:
 	git tag $(V)
@@ -65,18 +99,3 @@ version:
 	git commit --allow-empty -m "Build $(V)"
 	git tag --delete $(V)
 	git tag $(V)
-
-.PHONY: image
-image:
-	docker build --tag $(IMAGE_NAME) --file=./docker/$(ENV)/Dockerfile .
-
-.PHONY: compose-up
-compose-up:
-	cd docker && docker-compose --verbose up
-
-.PHONY: run-container
-run-container:
-	docker run --network=docker_default -it -v $(shell pwd):/root/go/src/github.com/smart-evolution/shpanel \
-	    -e SH_MONGO_URI=mongodb://172.18.0.2:27017 \
-	    -e SH_MONGO_DB=shpanel \
-	    -e SH_PANEL_PORT=3223 oszura/shpanel
