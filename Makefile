@@ -67,7 +67,7 @@ run:
 ### Containerization
 .PHONY: image
 image:
-	docker build --tag $(IMAGE_NAME) --file=./docker/sh-panel/$(ENV)/Dockerfile .
+	docker build --tag $(IMAGE_NAME)-$(ENV) --file=./docker/sh-panel/$(ENV)/Dockerfile .
 
 .PHONY: compose-up
 compose-up:
