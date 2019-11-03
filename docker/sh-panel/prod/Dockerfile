@@ -1,5 +1,10 @@
 FROM debian:buster
 
+# Set env variables
+ENV SH_MONGO_URI=mongodb://172.18.0.2:27017 \
+SH_MONGO_DB=shpanel \
+SH_PANEL_PORT=3223
+
 RUN mkdir -p /root/scripts
 RUN mkdir -p /root/go/src/github.com/smart-evolution/shpanel/public
 RUN mkdir -p /root/go/src/github.com/smart-evolution/shpanel/views
