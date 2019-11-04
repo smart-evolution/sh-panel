@@ -3,15 +3,13 @@ kind: Service
 metadata:
   name: sh-panel
 spec:
-  nodeSelector:
-    dedicated: master
   externalIPs:
     - 192.168.2.117
   ports:
     - port: 3223
       protocol: TCP
       targetPort: 3223
-      nodePort: 33223
+      nodePort: 30223
   selector:
-    app: smarthome
+    app: sh-panel
   type: NodePort
