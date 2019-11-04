@@ -1,24 +1,25 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: smarthome
+  name: sh-panel
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: smarthome
+      app: sh-panel
   template:
     metadata:
       labels:
-        app: smarthome
+        app: sh-panel
     spec:
+      nodeName: debian
       containers:
         - image: oszura/sh-panel-prod
-          imagePullPolicy: Always
-          name: sh-panel-prod
-        - image:  mongo:latest
-          imagePullPolicy: Always
-          name: sh-panel-prod-mongodb
+          imagePullPolicy: IfNotPresent
+          name: sh-panel
+        - image: mongo:latest
+          imagePullPolicy: IfNotPresent
+          name: sh-mongodb
           volumeMounts:
             - mountPath: /data/db
               name: mongo-db

@@ -6,8 +6,8 @@ NPM=npm
 IMAGE_NAME="oszura/sh-panel"
 ENV=prod
 
-SH_MONGO_URI=mongodb://172.18.0.2:27017
-SH_MONGO_DB=shpanel
+SH_PANEL_MONGO_URI=mongodb://localhost:27017
+SH_PANEL_MONGO_DB=shpanel
 SH_PANEL_PORT=3223
 
 .DEFAULT_GOAL := all
