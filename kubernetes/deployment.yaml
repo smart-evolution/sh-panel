@@ -12,7 +12,7 @@ spec:
       labels:
         app: sh-panel
     spec:
-      nodeName: debian
+      nodeName: raspberrypi
       containers:
         - image: oszura/sh-panel-prod
           imagePullPolicy: IfNotPresent
