@@ -3,7 +3,7 @@ GOLINT=golint
 GOFMT=gofmt
 MAKE=make
 NPM=npm
-IMAGE_NAME="oszura/sh-panel"
+IMAGE_NAME=oszura/sh-panel
 ENV=prod
 
 SH_PANEL_MONGO_URI=mongodb://localhost:27017
