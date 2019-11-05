@@ -36,7 +36,7 @@ func Register(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm 
 
 		apiServer := r.PostFormValue("api-server")
 		username := r.PostFormValue("username")
-		password := r.PostFormValue("password")
+		password := utils.HashString(r.PostFormValue("password"))
 
 		newUser = &user.User{
 			ID:          bson.NewObjectId(),
