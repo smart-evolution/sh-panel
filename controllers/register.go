@@ -58,7 +58,7 @@ func Register(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm 
 		form.Add("username", username)
 		form.Add("password", password)
 
-		registerURL := "http://"+apiServer+":"+os.Getenv("SH_API_PORT")+"/login/register"
+		registerURL := "http://"+apiServer+":"+os.Getenv("SH_API_SRV_PORT")+"/login/register"
 		rAPI, err := http.NewRequest("POST", registerURL, strings.NewReader(form.Encode()))
 
 		if err != nil {

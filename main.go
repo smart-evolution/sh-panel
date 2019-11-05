@@ -62,13 +62,13 @@ func main() {
 	SH_PANEL_MONGO_URI := os.Getenv("SH_PANEL_MONGO_URI")
 	SH_PANEL_MONGO_DB := os.Getenv("SH_PANEL_MONGO_DB")
 	SH_HTTP_PORT := os.Getenv("SH_HTTP_PORT")
-	SH_API_PORT := os.Getenv("SH_API_PORT")
+	SH_API_SRV_PORT := os.Getenv("SH_API_SRV_PORT")
 
 	utils.Log("Staring sh-panel with the following ENV variables")
 	utils.Log("SH_PANEL_MONGO_URI = " + SH_PANEL_MONGO_URI)
 	utils.Log("SH_PANEL_MONGO_DB = " + SH_PANEL_MONGO_DB)
 	utils.Log("SH_HTTP_PORT = " + SH_HTTP_PORT)
-	utils.Log("SH_API_PORT = " + SH_API_PORT)
+	utils.Log("SH_API_SRV_PORT = " + SH_API_SRV_PORT)
 
 	p := persistence.New(
 		SH_PANEL_MONGO_URI,
