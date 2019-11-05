@@ -19,7 +19,7 @@ type WebServer struct {
 
 func getServerAddress(port string) (string, error) {
 	if port == "" {
-		return "", errors.New("SH_PANEL_PORT is not set")
+		return "", errors.New("SH_HTTP_PORT is not set")
 	}
 	return ":" + port, nil
 }
@@ -61,13 +61,13 @@ func (ws *WebServer) RunService() {
 func main() {
 	SH_PANEL_MONGO_URI := os.Getenv("SH_PANEL_MONGO_URI")
 	SH_PANEL_MONGO_DB := os.Getenv("SH_PANEL_MONGO_DB")
-	SH_PANEL_PORT := os.Getenv("SH_PANEL_PORT")
+	SH_HTTP_PORT := os.Getenv("SH_HTTP_PORT")
 	SH_API_PORT := os.Getenv("SH_API_PORT")
 
 	utils.Log("Staring sh-panel with the following ENV variables")
 	utils.Log("SH_PANEL_MONGO_URI = " + SH_PANEL_MONGO_URI)
 	utils.Log("SH_PANEL_MONGO_DB = " + SH_PANEL_MONGO_DB)
-	utils.Log("SH_PANEL_PORT = " + SH_PANEL_PORT)
+	utils.Log("SH_HTTP_PORT = " + SH_HTTP_PORT)
 	utils.Log("SH_API_PORT = " + SH_API_PORT)
 
 	p := persistence.New(
@@ -75,6 +75,6 @@ func main() {
 		SH_PANEL_MONGO_DB,
 	)
 
-	ws := New(SH_PANEL_PORT, p)
+	ws := New(SH_HTTP_PORT, p)
 	ws.RunService()
 }

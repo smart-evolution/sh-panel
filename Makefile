@@ -8,7 +8,7 @@ ENV=prod
 
 SH_PANEL_MONGO_URI=mongodb://localhost:27017
 SH_PANEL_MONGO_DB=shpanel
-SH_PANEL_PORT=3223
+SH_HTTP_PORT=3223
 SH_API_PORT=3222
 
 .DEFAULT_GOAL := all
@@ -63,7 +63,7 @@ run:
 	SH_MONGO_URI=$(SH_MONGO_URI) \
 	SH_MONGO_DB=$(SH_MONGO_DB) \
 	SH_API_PORT=$(SH_API_PORT) \
-	SH_PANEL_PORT=$(SH_PANEL_PORT) \
+	SH_HTTP_PORT=$(SH_HTTP_PORT) \
 	./shpanel
 
 ### Containerization
@@ -81,7 +81,7 @@ run-container:
 	    -e SH_MONGO_URI=$(SH_MONGO_URI) \
 	    -e SH_MONGO_DB=$(SH_MONGO_DB) \
 	    -e SH_API_PORT=$(SH_API_PORT) \
-	    -e SH_PANEL_PORT=$(SH_PANEL_PORT) oszura/shpanel
+	    -e SH_HTTP_PORT=$(SH_HTTP_PORT) oszura/shpanel
 
 ### Deployment
 .PHONY: deploy
