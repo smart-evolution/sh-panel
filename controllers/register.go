@@ -36,7 +36,7 @@ func Register(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm 
 
 		apiServer := r.PostFormValue("api-server")
 		username := r.PostFormValue("username")
-		password := r.PostFormValue("password")
+		password := utils.HashString(r.PostFormValue("password"))
 
 		newUser = &user.User{
 			ID:          bson.NewObjectId(),
@@ -58,7 +58,8 @@ func Register(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm 
 		form.Add("username", username)
 		form.Add("password", password)
 
-		rAPI, err := http.NewRequest("POST", "http://"+apiServer+":"+os.Getenv("SH_API_PORT")+"/login/register", strings.NewReader(form.Encode()))
+		registerURL := "http://" + apiServer + ":" + os.Getenv("SH_API_SRV_PORT") + "/login/register"
+		rAPI, err := http.NewRequest("POST", registerURL, strings.NewReader(form.Encode()))
 
 		if err != nil {
 			utils.Log("Error constructing register request to '" + apiServer + "' for the user '" + username + "'")
@@ -68,7 +69,7 @@ func Register(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm 
 		_, err = clientAPI.Do(rAPI)
 		if err != nil {
 			fmt.Println(err)
-			utils.Log("Error registering user in API server " + apiServer)
+			utils.Log("Error registering user in endpoint " + registerURL)
 		}
 
 		http.Redirect(w, r, "/", http.StatusSeeOther)

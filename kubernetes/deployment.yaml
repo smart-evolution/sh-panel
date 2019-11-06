@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sh-panel
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sh-panel
+  template:
+    metadata:
+      labels:
+        app: sh-panel
+    spec:
+      nodeName: debian
+      containers:
+        - image: oszura/sh-panel-prod:v0.0.2
+          imagePullPolicy: IfNotPresent
+          name: sh-panel
+        - image: mongo:latest
+          imagePullPolicy: IfNotPresent
+          name: sh-mongodb
+          volumeMounts:
+            - mountPath: /data/db
+              name: mongo-db
+      volumes:
+        - name: mongo-db
+          hostPath:
+            path: /data/db-backup
+            type: Directory

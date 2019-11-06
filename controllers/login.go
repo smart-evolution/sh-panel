@@ -48,6 +48,7 @@ func Authenticate(w http.ResponseWriter, r *http.Request, opt router.UrlOptions,
 			authenticatedUser, err := authenticateUser(user, password, p)
 
 			if err == nil {
+				utils.Log("Logged in as user", user)
 				t := time.Now()
 				timeStr := t.Format(time.RFC850)
 				cookieValue := utils.CreateSessionID(user, password, timeStr)
@@ -63,6 +64,7 @@ func Authenticate(w http.ResponseWriter, r *http.Request, opt router.UrlOptions,
 				http.SetCookie(w, &cookie)
 				http.Redirect(w, r, "/", http.StatusSeeOther)
 			} else {
+				utils.Log(err)
 				http.Redirect(w, r, "/login?err", http.StatusSeeOther)
 			}
 		}
@@ -84,11 +86,7 @@ func authenticateUser(username string, password string, persistance persistence.
 	}).One(&user)
 
 	if err != nil {
-		utils.Log("User not found err=", err)
-		return user, errors.New("User not found")
+		return user, errors.New("User '" + username + "' not found")
 	}
-
-	utils.Log("Logged in as user", user)
-
 	return user, nil
 }

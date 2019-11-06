@@ -3,7 +3,13 @@ GOLINT=golint
 GOFMT=gofmt
 MAKE=make
 NPM=npm
-mode=prod
+IMAGE_NAME=oszura/sh-panel
+ENV=prod
+
+SH_PANEL_MONGO_URI=mongodb://localhost:27017
+SH_PANEL_MONGO_DB=shpanel
+SH_HTTP_PORT=3223
+SH_API_SRV_PORT=3222
 
 .DEFAULT_GOAL := all
 
@@ -21,7 +27,7 @@ all:
 .PHONY: build-frontend
 build-frontend:
 	$(NPM) rebuild node-sass
-	$(NPM) run build:$(mode)
+	$(NPM) run build:$(ENV)
 
 .PHONY: build-backend
 build-backend:
@@ -52,6 +58,38 @@ fix:
 	$(NPM) run csslint:fix
 	$(GOFMT) -w .
 
+.PHONY: run
+run:
+	SH_MONGO_URI=$(SH_MONGO_URI) \
+	SH_MONGO_DB=$(SH_MONGO_DB) \
+	SH_API_SRV_PORT=$(SH_API_SRV_PORT) \
+	SH_HTTP_PORT=$(SH_HTTP_PORT) \
+	./shpanel
+
+### Containerization
+.PHONY: image
+image:
+	docker build --tag $(IMAGE_NAME)-$(ENV):$(V) --file=./docker/sh-panel/$(ENV)/Dockerfile .
+
+.PHONY: compose-up
+compose-up:
+	cd docker/sh-panel/dev && docker-compose --verbose up
+
+.PHONY: run-container
+run-container:
+	docker run --network=docker_default -it -v $(shell pwd):/root/go/src/github.com/smart-evolution/shpanel \
+	    -e SH_MONGO_URI=$(SH_MONGO_URI) \
+	    -e SH_MONGO_DB=$(SH_MONGO_DB) \
+	    -e SH_API_SRV_PORT=$(SH_API_SRV_PORT) \
+	    -e SH_HTTP_PORT=$(SH_HTTP_PORT) oszura/shpanel
+
+### Deployment
+.PHONY: deploy
+deploy:
+	kubectl apply -f ./kubernetes/deployment.yaml
+	kubectl apply -f ./kubernetes/service.yaml
+
+### Utilities
 .PHONY: version
 version:
 	git tag $(V)
@@ -64,24 +102,3 @@ version:
 	git commit --allow-empty -m "Build $(V)"
 	git tag --delete $(V)
 	git tag $(V)
-
-.PHONY: build-images
-build-images:
-	docker build --tag oszura/shpanel --file=./docker/Dockerfile-shpanel .
-	docker build --tag oszura/shpanel-mongodb --file=./docker/Dockerfile-shpanel-mongodb .
-
-.PHONY: build-images-nocache
-build-images-nocache:
-	docker build --no-cache --tag oszura/shpanel --file=./docker/Dockerfile-shpanel .
-	docker build --no-cache --tag oszura/shpanel-mongodb --file=./docker/Dockerfile-shpanel-mongodb .
-
-.PHONY: compose-up
-compose-up:
-	cd docker && docker-compose --verbose up
-
-.PHONY: run-container
-run-container:
-	docker run --network=docker_default -it -v $(PWD):/root/go/src/github.com/smart-evolution/shpanel \
-	    -e SH_MONGO_URI=mongodb://172.18.0.2:27017 \
-	    -e SH_MONGO_DB=shpanel \
-	    -e SH_PANEL_PORT=3223 oszura/shpanel
