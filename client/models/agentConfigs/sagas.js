@@ -54,12 +54,7 @@ export function* onFetchAgentConfigs({
   const password = yield select(userSelectors.getPassword);
 
   if (typeof username !== 'string' || typeof password !== 'string') {
-    yield put(
-      alertsActions.addAlert(
-        'User data are not correct',
-        alertsConstants.ALERT_TYPE_ERROR
-      )
-    );
+    console.error('username or password is not a string');
     return;
   }
 
@@ -67,16 +62,24 @@ export function* onFetchAgentConfigs({
   const data = yield call(callFetchAgentConfigs, host, auth, agentID);
 
   if (data !== undefined) {
-    const agentConfigs = data._embedded.configs || [];
+    const agentConfigs = data?._embedded?.configs || [];
     yield put(actions.loadAgentConfigs(agentConfigs));
-  } else {
-    yield put(
-      alertsActions.addAlert(
-        'Fetching agent config failed',
-        alertsConstants.ALERT_TYPE_ERROR
-      )
-    );
+    return;
   }
+
+  if (typeof data === 'string') {
+    yield put(alertsActions.addAlert(data, alertsConstants.ALERT_TYPE_ERROR));
+    yield put(actions.fetchAgentConfigError(data));
+    return;
+  }
+
+  yield put(actions.fetchAgentConfigError('Fetching agent config failed'));
+  yield put(
+    alertsActions.addAlert(
+      'Fetching agent config failed',
+      alertsConstants.ALERT_TYPE_ERROR
+    )
+  );
 }
 
 function callCommitAgentConfig(

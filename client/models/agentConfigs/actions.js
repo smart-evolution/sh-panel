@@ -7,6 +7,11 @@ export const fetchAgentConfig = () => ({
   type: actionTypes.FETCH_AGENT_CONFIGS,
 });
 
+export const fetchAgentConfigError = (error: string) => ({
+  type: actionTypes.FETCH_AGENT_CONFIGS_ERROR,
+  error,
+});
+
 export const commitAgentConfig = (
   agentID: agentTypes.AgentID,
   config: types.AgentConfig

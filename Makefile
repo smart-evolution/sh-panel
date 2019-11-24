@@ -60,8 +60,8 @@ fix:
 
 .PHONY: run
 run:
-	SH_MONGO_URI=$(SH_MONGO_URI) \
-	SH_MONGO_DB=$(SH_MONGO_DB) \
+	SH_PANEL_MONGO_URI=$(SH_PANEL_MONGO_URI) \
+	SH_PANEL_MONGO_DB=$(SH_PANEL_MONGO_DB) \
 	SH_API_SRV_PORT=$(SH_API_SRV_PORT) \
 	SH_HTTP_PORT=$(SH_HTTP_PORT) \
 	./shpanel
@@ -78,8 +78,8 @@ compose-up:
 .PHONY: run-container
 run-container:
 	docker run --network=docker_default -it -v $(shell pwd):/root/go/src/github.com/smart-evolution/shpanel \
-	    -e SH_MONGO_URI=$(SH_MONGO_URI) \
-	    -e SH_MONGO_DB=$(SH_MONGO_DB) \
+	    -e SH_PANEL_MONGO_URI=$(SH_PANEL_MONGO_URI) \
+	    -e SH_PANEL_MONGO_DB=$(SH_PANEL_MONGO_DB) \
 	    -e SH_API_SRV_PORT=$(SH_API_SRV_PORT) \
 	    -e SH_HTTP_PORT=$(SH_HTTP_PORT) oszura/shpanel
 
