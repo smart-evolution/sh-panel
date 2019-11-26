@@ -1,5 +1,4 @@
 // @flow
-import _ from 'lodash';
 import { delay } from 'redux-saga';
 import { put, call, select } from 'redux-saga/effects';
 import * as userSelectors from 'client/models/user/selectors';
@@ -71,14 +70,15 @@ export function* onFetchAgents(): Iterable<any> {
   const auth = userQueries.getUserAuth(username, password);
   const period = yield select(selectors.getPeriod);
 
-  if (typeof period !== 'string') {
+  if (typeof period !== 'number') {
     console.error('period is not a string');
     return;
   }
 
   const data = yield call(callFetchAgentsWithTimeout, host, auth, period);
+  const agents = data?._embedded?.agents;
 
-  if (_.isEmpty(data)) {
+  if (agents instanceof Array && agents.length === 0) {
     yield put(actions.fetchAgentsError('Fetched agents data is empty'));
     yield put(
       alertsActions.addAlert(
@@ -89,8 +89,7 @@ export function* onFetchAgents(): Iterable<any> {
     return;
   }
 
-  const agents = data?._embedded?.agents;
-  if (agents instanceof Array) {
+  if (agents instanceof Array && agents.length > 0) {
     yield put(actions.loadAgents(agents));
     return;
   }
@@ -101,9 +100,10 @@ export function* onFetchAgents(): Iterable<any> {
     return;
   }
 
+  yield put(actions.fetchAgentsError('Fetching agents data failed'));
   yield put(
     alertsActions.addAlert(
-      `Error occurred while fetching agents data - retrying`,
+      `Fetching agents data failed`,
       alertsConstants.ALERT_TYPE_ERROR
     )
   );
@@ -252,6 +252,54 @@ export function* onSniffAgents(): Iterable<any> {
   yield put(
     alertsActions.addAlert(
       'Agent sniffing failed',
+      alertsConstants.ALERT_TYPE_ERROR
+    )
+  );
+}
+
+function callAddAgent(host, auth) {
+  const headers = new Headers();
+  headers.set('Authorization', `Basic ${auth}`);
+
+  const request = new Request(`${host}/api/add-agent`, {
+    headers,
+    method: 'POST',
+    mode: 'cors',
+    protocol: 'http:',
+    credentials: 'include',
+  });
+
+  return fetch(request, { method: 'POST' })
+    .then(response => response.json())
+    .catch(() => 'Adding agent failed');
+}
+
+export function* onAddAgent(): Iterable<any> {
+  const host = yield select(userSelectors.getAPIServerURL);
+  const username = yield select(userSelectors.getUsername);
+  const password = yield select(userSelectors.getPassword);
+  const auth = userQueries.getUserAuth(username, password);
+
+  if (typeof username !== 'string' || typeof password !== 'string') {
+    console.error('username or password is not a string');
+    return;
+  }
+
+  const data = yield call(callAddAgent, host, auth);
+
+  if (data !== undefined && data !== null) {
+    yield put(
+      alertsActions.addAlert(
+        'Adding agent succeeded',
+        alertsConstants.ALERT_TYPE_INFO
+      )
+    );
+    return;
+  }
+
+  yield put(
+    alertsActions.addAlert(
+      'Adding agent failed',
       alertsConstants.ALERT_TYPE_ERROR
     )
   );

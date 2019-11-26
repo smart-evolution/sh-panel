@@ -1,6 +1,7 @@
 // @flow
-import React from 'react';
+import React, { useState } from 'react';
 import Switch from 'client/components/Switch';
+import AddAgent from './AddAgent';
 
 type Props = {
   isAlerts: boolean,
@@ -10,7 +11,7 @@ type Props = {
 };
 
 const ControlPanel = (props: Props) => {
-  const { isAlerts, onToggle, sendAlert, sniffAgents } = props;
+  const { isAlerts, addAgent, onToggle, sendAlert, sniffAgents } = props;
 
   return (
     <div className="control-panel">
@@ -19,6 +20,9 @@ const ControlPanel = (props: Props) => {
         <div className="control-panel__control">
           Sniff agents
           <button className="control-panel__send-alert" onClick={sniffAgents} />
+        </div>
+        <div className="control-panel__control">
+          <AddAgent />
         </div>
         <div className="control-panel__control">
           Alerts

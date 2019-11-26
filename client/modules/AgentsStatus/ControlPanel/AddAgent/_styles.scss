@@ -1,0 +1,12 @@
+.add-agent {
+  &__input {
+    margin-left: 15px;
+  }
+
+  &__button {
+    @extend .c-btn;
+    @extend .c-btn--accept;
+
+    margin-left: 15px;
+  }
+}

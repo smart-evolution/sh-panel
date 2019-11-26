@@ -42,6 +42,11 @@ export const sniffAgents = () => ({
   type: actionTypes.SNIFF_AGENTS,
 });
 
+export const addAgent = (agentIP: string) => ({
+  type: actionTypes.ADD_AGENT,
+  agentIP,
+});
+
 export const changePeriod = (period: number) => ({
   type: actionTypes.CHANGE_PERIOD,
   period,
