@@ -1,3 +1,4 @@
+// @flow
 import _ from 'lodash';
 import { delay } from 'redux-saga';
 import { put, call, select } from 'redux-saga/effects';
@@ -7,8 +8,10 @@ import * as alertsActions from '../alerts/actions';
 import * as alertsConstants from '../alerts/constants';
 import * as actions from './actions';
 import * as selectors from './selectors';
+import * as constants from './constants';
+import * as types from './types';
 
-export function callFetchAgents(host, auth, period) {
+export function callFetchAgents(host: string, auth: string, period: string) {
   const headers = new Headers();
   headers.set('Authorization', `Basic ${auth}`);
 
@@ -39,32 +42,77 @@ export function callFetchAgents(host, auth, period) {
     .catch(e => e);
 }
 
-export function* onFetchAgents() {
+export function callFetchAgentsWithTimeout(
+  host: string,
+  auth: string,
+  period: string
+) {
+  const timer = new Promise((resolve, reject) =>
+    setTimeout(
+      () => reject('Fetching agents data timed out'),
+      constants.FETCH_TIMEOUT
+    )
+  ).catch(e => e);
+  const agentFetch = callFetchAgents(host, auth, period);
+
+  return Promise.race([agentFetch, timer]);
+}
+
+export function* onFetchAgents(): Iterable<any> {
   const host = yield select(userSelectors.getAPIServerURL);
   const username = yield select(userSelectors.getUsername);
   const password = yield select(userSelectors.getPassword);
+
+  if (typeof username !== 'string' || typeof password !== 'string') {
+    console.error('username or password is not a string');
+    return;
+  }
+
   const auth = userQueries.getUserAuth(username, password);
   const period = yield select(selectors.getPeriod);
-  const data = yield call(callFetchAgents, host, auth, period);
+
+  if (typeof period !== 'string') {
+    console.error('period is not a string');
+    return;
+  }
+
+  const data = yield call(callFetchAgentsWithTimeout, host, auth, period);
 
   if (_.isEmpty(data)) {
-    yield put(actions.fetchAgentsError('Fetched data empty'));
+    yield put(actions.fetchAgentsError('Fetched agents data is empty'));
+    yield put(
+      alertsActions.addAlert(
+        'Fetched agents data is empty',
+        alertsConstants.ALERT_TYPE_ERROR
+      )
+    );
     return;
   }
 
   const agents = data?._embedded?.agents;
-
-  if (_.isArray(agents)) {
+  if (agents instanceof Array) {
     yield put(actions.loadAgents(agents));
-  } else {
-    yield put(actions.fetchAgentsError('Fetched data is not array of agents'));
+    return;
   }
+
+  if (typeof data === 'string') {
+    yield put(alertsActions.addAlert(data, alertsConstants.ALERT_TYPE_ERROR));
+    yield put(actions.fetchAgentsError(data));
+    return;
+  }
+
+  yield put(
+    alertsActions.addAlert(
+      `Error occurred while fetching agents data - retrying`,
+      alertsConstants.ALERT_TYPE_ERROR
+    )
+  );
 }
 
-export function* subscribeOnFetchAgents() {
+export function* subscribeOnFetchAgents(): Iterable<any> {
   while (true) {
     yield onFetchAgents();
-    yield delay(5000);
+    yield delay(constants.FETCH_INTERVAL);
   }
 }
 
@@ -74,7 +122,7 @@ function callSendAlert() {
     .catch(() => 'Send alert failed');
 }
 
-export function* onSendAlert() {
+export function* onSendAlert(): Iterable<any> {
   yield call(callSendAlert);
 }
 
@@ -84,18 +132,17 @@ function callToggleAlerts(host) {
     .catch(() => 'Toggling alerts failed');
 }
 
-export function* onToggleAlerts() {
+export function* onToggleAlerts(): Iterable<any> {
   const host = yield select(userSelectors.getAPIServerURL);
   const data = yield call(callToggleAlerts, host);
 
-  if (_.isObject(data)) {
+  if (typeof data === 'object') {
     const isAlerts = data.isAlerts === 'true';
-
     yield put(actions.setAlerts(isAlerts));
   }
 }
 
-function callAlerts(host, auth) {
+function callAlerts(host: string, auth: string) {
   const headers = new Headers();
   headers.set('Authorization', `Basic ${auth}`);
 
@@ -112,15 +159,21 @@ function callAlerts(host, auth) {
     .catch(() => 'Toggling alerts failed');
 }
 
-export function* onFetchAlerts() {
+export function* onFetchAlerts(): Iterable<any> {
   const host = yield select(userSelectors.getAPIServerURL);
   const username = yield select(userSelectors.getUsername);
   const password = yield select(userSelectors.getPassword);
+
+  if (typeof username !== 'string' || typeof password !== 'string') {
+    console.error('username or password is not a string');
+    return;
+  }
+
   const auth = userQueries.getUserAuth(username, password);
 
   const data = yield call(callAlerts, host, auth);
 
-  if (_.isObject(data)) {
+  if (typeof data === 'object') {
     const isAlerts = data.isAlerts === 'true';
     yield put(actions.setAlerts(isAlerts));
   } else {
@@ -139,11 +192,15 @@ function callToggleType2(host, agentID) {
     .catch(() => 'Toggling Type2 failed');
 }
 
-export function* onToggleType2({ agentID }) {
+export function* onToggleType2({
+  agentID,
+}: {
+  agentID: types.AgentID,
+}): Iterable<any> {
   const host = yield select(userSelectors.getAPIServerURL);
   const data = yield call(callToggleType2, host, agentID);
 
-  if (_.isObject(data)) {
+  if (typeof data === 'object') {
     const isAlerts = data.isAlerts === 'true';
 
     yield put(actions.setAlerts(isAlerts));
@@ -167,16 +224,22 @@ function callSniffAgents(host, auth) {
     .catch(() => 'Toggling alerts failed');
 }
 
-export function* onSniffAgents() {
+export function* onSniffAgents(): Iterable<any> {
   yield put(actions.fetchAgents());
   const host = yield select(userSelectors.getAPIServerURL);
   const username = yield select(userSelectors.getUsername);
   const password = yield select(userSelectors.getPassword);
+
+  if (typeof username !== 'string' || typeof password !== 'string') {
+    console.error('username or password is not a string');
+    return;
+  }
+
   const auth = userQueries.getUserAuth(username, password);
 
   const data = yield call(callSniffAgents, host, auth);
 
-  if (!_.isEmpty(data)) {
+  if (data !== undefined && data !== null) {
     yield put(
       alertsActions.addAlert(
         'Agents sniffing in progress',
@@ -185,6 +248,7 @@ export function* onSniffAgents() {
     );
     return;
   }
+
   yield put(
     alertsActions.addAlert(
       'Agent sniffing failed',

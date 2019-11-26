@@ -1,5 +1,5 @@
 // @flow
-import { all, put, take, fork } from 'redux-saga/effects';
+import { put, take, fork, race } from 'redux-saga/effects';
 import * as userActions from 'client/models/user/actions';
 import * as userActionTypes from 'client/models/user/actionTypes';
 import * as agentsSagas from 'client/models/agents/sagas';
@@ -16,11 +16,17 @@ export function* onApplicationMount(): Iterable<any> {
   yield fork(agentsSagas.subscribeOnFetchAgents);
   yield fork(agentsSagas.onFetchAlerts);
 
-  yield all([put(agentActions.fetchAgents())]);
-  yield take([agentActionTypes.LOAD_AGENTS]);
+  yield put(agentActions.fetchAgents());
+  yield race([
+    take([agentActionTypes.LOAD_AGENTS]),
+    take([agentActionTypes.FETCH_AGENTS_ERROR]),
+  ]);
 
   yield put(agentConfigActions.fetchAgentConfig());
-  yield take([agentConfigActionTypes.LOAD_AGENT_CONFIGS]);
+  yield race([
+    take([agentConfigActionTypes.LOAD_AGENT_CONFIGS]),
+    take([agentConfigActionTypes.FETCH_AGENT_CONFIGS_ERROR]),
+  ]);
 
   yield put(actions.loaded());
 }
