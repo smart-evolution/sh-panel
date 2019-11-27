@@ -257,35 +257,45 @@ export function* onSniffAgents(): Iterable<any> {
   );
 }
 
-function callAddAgent(host, auth) {
+function callAddAgent(host, auth, agentIP) {
   const headers = new Headers();
   headers.set('Authorization', `Basic ${auth}`);
 
-  const request = new Request(`${host}/api/add-agent`, {
+  const request = new Request(`${host}/api/agents/add`, {
     headers,
     method: 'POST',
     mode: 'cors',
     protocol: 'http:',
     credentials: 'include',
+    body: JSON.stringify({
+      agentIP,
+    }),
   });
 
   return fetch(request, { method: 'POST' })
     .then(response => response.json())
-    .catch(() => 'Adding agent failed');
+    .catch(() => `Adding agent ${agentIP} request failed`);
 }
 
-export function* onAddAgent(): Iterable<any> {
+export function* onAddAgent(action: { agentIP: string, ... }): Iterable<any> {
+  const { agentIP } = action;
   const host = yield select(userSelectors.getAPIServerURL);
   const username = yield select(userSelectors.getUsername);
   const password = yield select(userSelectors.getPassword);
-  const auth = userQueries.getUserAuth(username, password);
 
   if (typeof username !== 'string' || typeof password !== 'string') {
     console.error('username or password is not a string');
     return;
   }
 
-  const data = yield call(callAddAgent, host, auth);
+  const auth = userQueries.getUserAuth(username, password);
+  const data = yield call(callAddAgent, host, auth, agentIP);
+
+  if (typeof data === 'string') {
+    yield put(alertsActions.addAlert(data, alertsConstants.ALERT_TYPE_ERROR));
+    yield put(actions.fetchAgentsError(data));
+    return;
+  }
 
   if (data !== undefined && data !== null) {
     yield put(
@@ -299,7 +309,7 @@ export function* onAddAgent(): Iterable<any> {
 
   yield put(
     alertsActions.addAlert(
-      'Adding agent failed',
+      `Adding agent ${agentIP} failed`,
       alertsConstants.ALERT_TYPE_ERROR
     )
   );

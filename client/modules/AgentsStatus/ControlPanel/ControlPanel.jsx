@@ -1,5 +1,5 @@
 // @flow
-import React, { useState } from 'react';
+import React from 'react';
 import Switch from 'client/components/Switch';
 import AddAgent from './AddAgent';
 
@@ -11,7 +11,7 @@ type Props = {
 };
 
 const ControlPanel = (props: Props) => {
-  const { isAlerts, addAgent, onToggle, sendAlert, sniffAgents } = props;
+  const { isAlerts, onToggle, sendAlert, sniffAgents } = props;
 
   return (
     <div className="control-panel">

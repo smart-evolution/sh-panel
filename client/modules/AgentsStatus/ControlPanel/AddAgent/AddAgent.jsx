@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 type Props = {
-  addAgent: (number) => void,
+  addAgent: string => void,
 };
 
 const AddAgent = (props: Props) => {

@@ -6,7 +6,7 @@ import AddAgent from './AddAgent';
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
-  addAgent: (agentIP) => {
+  addAgent: agentIP => {
     dispatch(agentActions.addAgent(agentIP));
   },
 });
