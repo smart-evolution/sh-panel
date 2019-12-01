@@ -26,5 +26,5 @@ spec:
       volumes:
         - name: mongo-db
           hostPath:
-            path: /data/db-backup
+            path: /data/db-shpanel
             type: Directory
