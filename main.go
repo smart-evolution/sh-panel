@@ -70,6 +70,8 @@ func main() {
 	utils.Log("SH_HTTP_PORT = " + SHHTTPPort)
 	utils.Log("SH_API_SRV_PORT = " + SHAPIServerPort)
 
+	utils.VERSION = VERSION
+
 	p := persistence.New(
 		SHPanelMongoURI,
 		SHPanelMongoDB,

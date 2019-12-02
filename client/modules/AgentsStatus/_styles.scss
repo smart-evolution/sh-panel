@@ -13,9 +13,14 @@ $color-persimmon: #ff7157;
     border: 1px solid $color-watusi;
     padding: 10px;
   }
-}
 
-%agents-status {
+  &__section {
+    @extend .c-panel;
+    @extend .c-panel--separator;
+
+    padding-bottom: 10px;
+  }
+
   &__title {
     @extend .c-panel__title;
   }

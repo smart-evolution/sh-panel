@@ -257,7 +257,7 @@ export function* onSniffAgents(): Iterable<any> {
   );
 }
 
-function callAddAgent(host, auth, agentIP) {
+function callAddAgent(host, auth, agentID, agentIP, agentName, agentType) {
   const headers = new Headers();
   headers.set('Authorization', `Basic ${auth}`);
 
@@ -268,7 +268,10 @@ function callAddAgent(host, auth, agentIP) {
     protocol: 'http:',
     credentials: 'include',
     body: JSON.stringify({
+      agentID,
       agentIP,
+      agentName,
+      agentType,
     }),
   });
 
@@ -277,8 +280,14 @@ function callAddAgent(host, auth, agentIP) {
     .catch(() => `Adding agent ${agentIP} request failed`);
 }
 
-export function* onAddAgent(action: { agentIP: string, ... }): Iterable<any> {
-  const { agentIP } = action;
+export function* onAddAgent(action: {
+  agentID: string,
+  agentIP: string,
+  agentName: string,
+  agentType: string,
+  ...
+}): Iterable<any> {
+  const { agentID, agentIP, agentName, agentType } = action;
   const host = yield select(userSelectors.getAPIServerURL);
   const username = yield select(userSelectors.getUsername);
   const password = yield select(userSelectors.getPassword);
@@ -289,7 +298,15 @@ export function* onAddAgent(action: { agentIP: string, ... }): Iterable<any> {
   }
 
   const auth = userQueries.getUserAuth(username, password);
-  const data = yield call(callAddAgent, host, auth, agentIP);
+  const data = yield call(
+    callAddAgent,
+    host,
+    auth,
+    agentID,
+    agentIP,
+    agentName,
+    agentType
+  );
 
   if (typeof data === 'string') {
     yield put(alertsActions.addAlert(data, alertsConstants.ALERT_TYPE_ERROR));

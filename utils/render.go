@@ -35,7 +35,7 @@ func RenderTemplate(
 
 	templateModel := page.Page{
 		Version:  VERSION,
-		Title:    name,
+		Title:    "SHPANEL - " + name,
 		IsLogged: isLogged,
 	}
 

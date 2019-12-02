@@ -1,4 +1,4 @@
 package utils
 
-// VERSION - current verion of the shpanel web server
+// VERSION - current version of the shpanel web server
 var VERSION string
