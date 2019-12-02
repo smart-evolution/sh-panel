@@ -15,29 +15,41 @@ const AddAgent = (props: Props) => {
   return (
     <div className="add-agent">
       <div className="c-input">
-        <label className="c-input__label">Agent ID</label>
+        <label htmlFor="firstName" className="c-input__label">
+          Agent ID
+        </label>
         <input
+          id="add-agent-id"
           className="c-input__field"
           onChange={event => setAgentID(event.target.value)}
         />
       </div>
       <div className="c-input">
-        <label className="c-input__label">Agent IP</label>
+        <label htmlFor="add-agent-ip" className="c-input__label">
+          Agent IP
+        </label>
         <input
+          id="add-agent-ip"
           className="c-input__field"
           onChange={event => setAgentIP(event.target.value)}
         />
       </div>
       <div className="c-input">
-        <label className="c-input__label">Agent Name</label>
+        <label htmlFor="add-agent-ip" className="c-input__label">
+          Agent Name
+        </label>
         <input
-          className="c-input__field"
+          id="add-agent-name"
+          className="add-agent-name"
           onChange={event => setAgentName(event.target.value)}
         />
       </div>
       <div className="c-input">
-        <label className="c-input__label">Agent Type</label>
+        <label htmlFor="add-agent-type" className="c-input__label">
+          Agent Type
+        </label>
         <input
+          id="add-agent-type"
           className="c-input__field"
           onChange={event => setAgentType(event.target.value)}
         />
