@@ -27,7 +27,7 @@ script:
 
 after_success:
   - |
-    if [[ "$TRAVIS_BRANCH" = "master" && "$TRAVIS_TAG" != "" ]]
+    if [[ ("$TRAVIS_BRANCH" == "master") && ("$TRAVIS_TAG" != "") ]]
     then
       echo "$DOCKER_PASS" | docker login -u "$DOCKER_LOGIN" --password-stdin && \
       make image IMAGE_NAME=sh-panel ENV=prod V=$(APP_VERSION) && \
