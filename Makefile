@@ -20,8 +20,8 @@ deps:
 
 .PHONY: all
 all:
-	$(MAKE) build-frontend
-	$(MAKE) build-backend $(ENV)
+	$(MAKE) build-frontend $(ENV)
+	$(MAKE) build-backend
 
 .PHONY: build-frontend
 build-frontend:
