@@ -100,6 +100,8 @@ version:
 	./scripts/changelog.sh
 	go generate
 	$(NPM) version $(V) --no-git-tag-version
+	sed -i "" "s/APP_VERSION=.*/APP_VERSION=$(V)/g" .travis.yml
+	sed -i "" "s/oszura\/sh-panel-prod:.*/oszura\/sh-panel-prod:$(V)/g" ./kubernetes/deployment.yml
 	git add package.json
 	git add ./version.go || true
 	git add ./docs/changelogs/CHANGELOG_$(V).md
