@@ -23,7 +23,7 @@ before_script:
     fi
 
 script:
-  - make all
+  - make all ENV=prod
 
 after_success:
   - echo "$DOCKER_PASS" | docker login -u "$DOCKER_LOGIN" --password-stdin
