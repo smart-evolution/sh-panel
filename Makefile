@@ -3,8 +3,7 @@ GOLINT=golint
 GOFMT=gofmt
 MAKE=make
 NPM=npm
-IMAGE_NAME=oszura/sh-panel
-ENV=prod
+FULL_IMAGE_NAME=oszura/$(IMAGE_NAME)
 
 SH_PANEL_MONGO_URI=mongodb://localhost:27017
 SH_PANEL_MONGO_DB=shpanel
@@ -13,8 +12,8 @@ SH_API_SRV_PORT=3222
 
 .DEFAULT_GOAL := all
 
-.PHONY: install
-install:
+.PHONY: deps
+deps:
 	$(shell cd /; $(GOCMD) get -u golang.org/x/lint/golint)
 	$(GOCMD) mod vendor
 	$(NPM) install
@@ -69,7 +68,12 @@ run:
 ### Containerization
 .PHONY: image
 image:
-	docker build --tag $(IMAGE_NAME)-$(ENV):$(V) --file=./docker/sh-panel/$(ENV)/Dockerfile .
+ifdef ENV
+	docker build --tag $(FULL_IMAGE_NAME)-$(ENV):$(V) --file=./docker/$(IMAGE_NAME)/$(ENV)/Dockerfile .
+else
+	docker build --tag $(FULL_IMAGE_NAME):$(V) --file=./docker/$(IMAGE_NAME)/Dockerfile .
+endif
+
 
 .PHONY: compose-up
 compose-up:

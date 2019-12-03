@@ -11,7 +11,7 @@ install:
   - sudo apt-get install libgconf-2-4 # required by Cypress
   - . $HOME/.nvm/nvm.sh
   - nvm install
-  - make install
+  - make deps
 
 before_script:
   - make lint
@@ -21,3 +21,13 @@ before_script:
     then
       make integration-test
     fi
+
+script:
+  - make all
+
+after_success:
+  - echo "$DOCKER_PASS" | docker login -u "$DOCKER_LOGIN" --password-stdin
+  - make image IMAGE_NAME=sh-panel ENV=prod V=v1.1.0
+  - docker push oszura/sh-panel-prod
+  - make image IMAGE_NAME=sh-panel ENV=dev V=v1.1.0
+  - docker push oszura/sh-panel-dev
