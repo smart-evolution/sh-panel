@@ -8,6 +8,7 @@ env:
   - APP_VERSION=v1.1.0
 
 install:
+  - echo "TRC = $(TRAVIS_COMMIT)"
   - sudo apt-get update
   - sudo apt-get install libgconf-2-4 # required by Cypress
   - . $HOME/.nvm/nvm.sh
