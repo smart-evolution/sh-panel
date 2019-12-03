@@ -56,12 +56,7 @@ const List = (props: Props) => {
     <p>No agents available</p>
   );
 
-  return (
-    <div className="agents-list">
-      <div className="agents-list__title">Available agents</div>
-      {isLoading ? loader : content}
-    </div>
-  );
+  return <div className="agents-list">{isLoading ? loader : content}</div>;
 };
 
 export default List;

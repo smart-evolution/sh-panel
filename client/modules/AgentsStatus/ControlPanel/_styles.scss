@@ -1,13 +1,4 @@
 .control-panel {
-  @extend .c-panel;
-  @extend .c-panel--separator;
-
-  padding-bottom: 10px;
-
-  &__title {
-    @extend .c-panel__title;
-  }
-
   &__control {
     @extend .c-control;
   }
