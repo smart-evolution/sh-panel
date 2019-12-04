@@ -26,8 +26,11 @@ script:
   - make all ENV=prod
 
 after_success:
+  - echo $TRAVIS_COMMIT
+  - echo $TRAVIS_TAG
+  - echo $TRAVIS_BRANCH
   - |
-    if [[ ("$TRAVIS_BRANCH" == "HOME-238") && ("$TRAVIS_TAG" != "") ]]
+    if [[ ("${TRAVIS_BRANCH}" == "HOME-238") && ("${TRAVIS_TAG}" != "") ]]
     then
       echo "$DOCKER_PASS" | docker login -u "$DOCKER_LOGIN" --password-stdin && \
       make image IMAGE_NAME=sh-panel ENV=prod V=$(APP_VERSION) && \
