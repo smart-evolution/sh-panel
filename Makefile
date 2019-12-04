@@ -98,13 +98,15 @@ deploy:
 version:
 	git tag $(V)
 	./scripts/changelog.sh
-	go generate
-	$(NPM) version $(V) --no-git-tag-version
-	sed -i "" "s/APP_VERSION=.*/APP_VERSION=$(V)/g" .travis.yml
-	sed -i "" "s/oszura\/sh-panel-prod:.*/oszura\/sh-panel-prod:$(V)/g" ./kubernetes/deployment.yml
-	git add package.json
-	git add ./version.go || true
 	git add ./docs/changelogs/CHANGELOG_$(V).md
+	go generate
+	git add ./version.go || true
+	$(NPM) version $(V) --no-git-tag-version
+	git add package.json
+	sed -i "" "s/APP_VERSION=.*/APP_VERSION=$(V)/g" .travis.yml
+	git add .travis.yml
+	sed -i "" "s/oszura\/sh-panel-prod:.*/oszura\/sh-panel-prod:$(V)/g" ./kubernetes/deployment.yaml
+	git add ./kubernetes/deployment.yaml
 	git commit --allow-empty -m "Build $(V)"
 	git tag --delete $(V)
 	git tag $(V)
