@@ -23,12 +23,12 @@ before_script:
     fi
 
 script:
-  - make all ENV=prod
-
-after_success:
   - echo $TRAVIS_COMMIT
   - echo $TRAVIS_TAG
   - echo $TRAVIS_BRANCH
+  - make all ENV=prod
+
+after_success:
   - |
     if [[ ("${TRAVIS_BRANCH}" == "HOME-238") && ("${TRAVIS_TAG}" != "") ]]
     then
