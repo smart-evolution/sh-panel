@@ -23,6 +23,8 @@ before_script:
     fi
 
 script:
+  - echo "$TRAVIS_PULL_REQUEST"
+  - echo "$TRAVIS_COMMIT_MESSAGE"
   - make all ENV=prod
 
 after_success:
