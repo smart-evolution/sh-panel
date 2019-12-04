@@ -23,17 +23,15 @@ before_script:
     fi
 
 script:
-  - echo "$TRAVIS_PULL_REQUEST"
-  - echo "$TRAVIS_COMMIT_MESSAGE"
   - make all ENV=prod
 
 after_success:
   - |
-    if [[ ($TRAVIS_COMMIT_MESSAGE =~ ^Build.*) ]]
+    if [[ ($TRAVIS_PULL_REQUEST == "false") && ($TRAVIS_COMMIT_MESSAGE =~ ^Build.*) ]]
     then
-      echo "$DOCKER_PASS" | docker login -u "$DOCKER_LOGIN" --password-stdin && \
-      make image IMAGE_NAME=sh-panel ENV=prod V=$(APP_VERSION) && \
-      docker push oszura/sh-panel-prod && \
-      make image IMAGE_NAME=sh-panel ENV=dev V=$(APP_VERSION) && \
+      echo "$DOCKER_PASS" | docker login -u "$DOCKER_LOGIN" --password-stdin
+      make image IMAGE_NAME=sh-panel ENV=prod V=$(APP_VERSION)
+      docker push oszura/sh-panel-prod
+      make image IMAGE_NAME=sh-panel ENV=dev V=$(APP_VERSION)
       docker push oszura/sh-panel-dev
     fi
