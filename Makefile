@@ -74,7 +74,6 @@ else
 	docker build --tag $(FULL_IMAGE_NAME):$(V) --file=./docker/$(IMAGE_NAME)/Dockerfile .
 endif
 
-
 .PHONY: compose-up
 compose-up:
 	cd docker/sh-panel/dev && docker-compose --verbose up

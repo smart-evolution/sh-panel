@@ -35,3 +35,6 @@ after_success:
       make image IMAGE_NAME=sh-panel ENV=dev V=$APP_VERSION
       docker push oszura/sh-panel-dev
     fi
+
+deploy:
+  - curl -d "SHPANEL_V=$APP_VERSION" -X POST $CEAR_URL
