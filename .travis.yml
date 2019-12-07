@@ -37,4 +37,5 @@ after_success:
     fi
 
 deploy:
-  - curl -d "SHPANEL_V=$APP_VERSION" -X POST $CEAR_URL
+  provider: script
+  script: ./scripts/deploy.sh
