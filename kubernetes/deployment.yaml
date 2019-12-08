@@ -14,7 +14,7 @@ spec:
     spec:
       nodeName: debian
       containers:
-        - image: oszura/sh-panel-prod:v1.1.3
+        - image: oszura/sh-panel-prod:v1.1.4
           imagePullPolicy: IfNotPresent
           name: sh-panel
         - image: mongo:latest
