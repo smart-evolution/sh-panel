@@ -40,7 +40,7 @@ const AddAgent = (props: Props) => {
         </label>
         <input
           id="add-agent-name"
-          className="add-agent-name"
+          className="c-input__field"
           onChange={event => setAgentName(event.target.value)}
         />
       </div>

@@ -12,7 +12,6 @@ import (
 	"net/http"
 	"net/url"
 	"os"
-	"strings"
 )
 
 // Register - handle register page and register user process
@@ -59,14 +58,8 @@ func Register(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm 
 		form.Add("password", password)
 
 		registerURL := "http://" + apiServer + ":" + os.Getenv("SH_API_SRV_PORT") + "/login/register"
-		rAPI, err := http.NewRequest("POST", registerURL, strings.NewReader(form.Encode()))
+		_, err = http.PostForm(registerURL, form)
 
-		if err != nil {
-			utils.Log("Error constructing register request to '" + apiServer + "' for the user '" + username + "'")
-		}
-
-		clientAPI := http.Client{}
-		_, err = clientAPI.Do(rAPI)
 		if err != nil {
 			fmt.Println(err)
 			utils.Log("Error registering user in endpoint " + registerURL)
