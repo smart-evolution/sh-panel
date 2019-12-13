@@ -1,6 +1,6 @@
 {
   "name": "sh-panel",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "Smart Home Panel",
   "main": "index.js",
   "scripts": {
