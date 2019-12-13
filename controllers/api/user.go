@@ -7,6 +7,7 @@ import (
 	"github.com/coda-it/gowebserver/session"
 	"github.com/coda-it/gowebserver/store"
 	"github.com/smart-evolution/shpanel/models/user"
+	"github.com/smart-evolution/shpanel/utils"
 	"net/http"
 )
 
@@ -23,14 +24,26 @@ func CtrUser(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm s
 	embedded := map[string]string{}
 	sidCookie, _ := r.Cookie("sid")
 	sid := sidCookie.Value
-	session := sm.Get(sid)
-	userObj := session.Get("user")
+	sess := sm.Get(sid)
 
-	user, ok := userObj.(user.User)
-
-	if !ok {
+	usrObj := sess.Get("user")
+	if usrObj == nil {
+		utils.Log("user not found")
+		http.Error(w, "user not found", http.StatusNotFound)
 		return
 	}
 
-	json.NewEncoder(w).Encode(helpers.ServeHal(user, embedded, links))
+	usr, ok := usrObj.(user.User)
+	if !ok {
+		utils.Log("error asserting user")
+		http.Error(w, "error asserting user", http.StatusInternalServerError)
+		return
+	}
+
+	err := json.NewEncoder(w).Encode(helpers.ServeHal(usr, embedded, links))
+
+	if err != nil {
+		utils.Log("error parsing response")
+		http.Error(w, "error asserting user", http.StatusInternalServerError)
+	}
 }
