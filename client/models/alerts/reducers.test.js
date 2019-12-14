@@ -4,9 +4,9 @@ import * as constants from './constants';
 
 describe('models/alerts/reducers', () => {
   describe('ADD', () => {
-    it('should add new Alert to state', () => {
+    it('should add new Alert to state in particular order', () => {
       const alertMessage = 'Error message';
-      const infoMessage = 'Info message';
+      const infoMessage = index => `Info message ${index}`;
       const timestamp = new Date('2019-12-14T09:25:59.373Z');
       const state = {
         alerts: [],
@@ -14,7 +14,13 @@ describe('models/alerts/reducers', () => {
 
       const expectedAlerts = [
         {
-          message: infoMessage,
+          message: infoMessage(2),
+          type: constants.ALERT_TYPE_INFO,
+          timestamp,
+          isOld: false,
+        },
+        {
+          message: infoMessage(1),
           type: constants.ALERT_TYPE_INFO,
           timestamp,
           isOld: false,
@@ -39,7 +45,14 @@ describe('models/alerts/reducers', () => {
       let result = reducers(state, action);
 
       action = actions.addAlert(
-        infoMessage,
+        infoMessage(1),
+        constants.ALERT_TYPE_INFO,
+        timestamp
+      );
+      result = reducers(result, action);
+
+      action = actions.addAlert(
+        infoMessage(2),
         constants.ALERT_TYPE_INFO,
         timestamp
       );
