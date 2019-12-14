@@ -78,19 +78,7 @@ export function* onFetchAgents(): Iterable<any> {
   const data = yield call(callFetchAgentsWithTimeout, host, auth, period);
   const agents = data?._embedded?.agents;
 
-  if (agents instanceof Array && agents.length === 0) {
-    yield put(actions.fetchAgentsError('Fetched agents data is empty'));
-    yield put(
-      alertsActions.addAlert(
-        'Fetched agents data is empty',
-        alertsConstants.ALERT_TYPE_ERROR,
-        new Date()
-      )
-    );
-    return;
-  }
-
-  if (agents instanceof Array && agents.length > 0) {
+  if (agents instanceof Array && agents.length >= 0) {
     yield put(actions.loadAgents(agents));
     return;
   }
