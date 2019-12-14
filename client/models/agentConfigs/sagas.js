@@ -68,7 +68,9 @@ export function* onFetchAgentConfigs({
   }
 
   if (typeof data === 'string') {
-    yield put(alertsActions.addAlert(data, alertsConstants.ALERT_TYPE_ERROR));
+    yield put(
+      alertsActions.addAlert(data, alertsConstants.ALERT_TYPE_ERROR, new Date())
+    );
     yield put(actions.fetchAgentConfigError(data));
     return;
   }
@@ -77,7 +79,8 @@ export function* onFetchAgentConfigs({
   yield put(
     alertsActions.addAlert(
       'Fetching agent config failed',
-      alertsConstants.ALERT_TYPE_ERROR
+      alertsConstants.ALERT_TYPE_ERROR,
+      new Date()
     )
   );
 }
@@ -109,14 +112,16 @@ export function* onCommitAgentConfig({
     yield put(
       alertsActions.addAlert(
         'Updated agent config successfully',
-        alertsConstants.ALERT_TYPE_INFO
+        alertsConstants.ALERT_TYPE_INFO,
+        new Date()
       )
     );
   } else {
     yield put(
       alertsActions.addAlert(
         'Updating agent config failed',
-        alertsConstants.ALERT_TYPE_ERROR
+        alertsConstants.ALERT_TYPE_ERROR,
+        new Date()
       )
     );
   }

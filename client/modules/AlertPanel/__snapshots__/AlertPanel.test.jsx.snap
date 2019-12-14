@@ -23,7 +23,7 @@ exports[`AlertPanel/AlertPanel should render correctly 1`] = `
     className="alert-panel"
   >
     <Alert
-      key="alert-0"
+      key="alert-{\\"type\\":\\"type-class\\",\\"message\\":\\"Message 1\\"}"
       type="type-class"
     >
       <div
@@ -33,7 +33,7 @@ exports[`AlertPanel/AlertPanel should render correctly 1`] = `
       </div>
     </Alert>
     <Alert
-      key="alert-1"
+      key="alert-{\\"type\\":\\"type-class\\",\\"message\\":\\"Message 2\\"}"
       type="type-class"
     >
       <div
@@ -43,7 +43,7 @@ exports[`AlertPanel/AlertPanel should render correctly 1`] = `
       </div>
     </Alert>
     <Alert
-      key="alert-2"
+      key="alert-{\\"type\\":\\"type-class\\",\\"message\\":\\"Message 3\\"}"
       type="type-class"
     >
       <div

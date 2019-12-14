@@ -23,7 +23,8 @@ export function* onFetchUser(): Iterable<any> {
     yield put(
       alertsActions.addAlert(
         'Fetching user data failed',
-        alertsConstants.ALERT_TYPE_ERROR
+        alertsConstants.ALERT_TYPE_ERROR,
+        new Date()
       )
     );
   }
