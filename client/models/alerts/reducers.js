@@ -2,6 +2,7 @@
 import _ from 'lodash';
 import * as actionTypes from './actionTypes';
 import * as types from './types';
+import * as constants from './constants';
 
 const defaultState: types.State = {
   alerts: [],
@@ -15,7 +16,7 @@ export default function reducers(
   const alert: types.Alert = {
     message: action.message,
     type: action.alertType,
-    timestamp: new Date(),
+    timestamp: action.timestamp,
     isOld: false,
   };
 
@@ -24,7 +25,7 @@ export default function reducers(
       return Object.assign(
         {},
         {
-          alerts: _.concat(alerts, [alert]),
+          alerts: _.slice(_.concat([alert], alerts), 0, constants.ALERT_LIMIT),
         }
       );
     default:

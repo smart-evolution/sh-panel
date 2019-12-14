@@ -32,7 +32,8 @@ export function* onCreateWebSocketClient({
   if (typeof host !== 'string') {
     alertsActions.addAlert(
       'API server host is not correct ',
-      alertsConstants.ALERT_TYPE_ERROR
+      alertsConstants.ALERT_TYPE_ERROR,
+      new Date()
     );
     return;
   }
@@ -61,19 +62,31 @@ export function* onCreateWebSocketClient({
 
         if (type === 'connected') {
           yield put(
-            alertsActions.addAlert(message, alertsConstants.ALERT_TYPE_INFO)
+            alertsActions.addAlert(
+              message,
+              alertsConstants.ALERT_TYPE_INFO,
+              new Date()
+            )
           );
           yield put(actions.setDevStatus(constants.STATUS_CONNECTED));
         } else if (type === 'disconnect') {
           yield put(actions.removeWebSocketClient());
 
           yield put(
-            alertsActions.addAlert(message, alertsConstants.ALERT_TYPE_INFO)
+            alertsActions.addAlert(
+              message,
+              alertsConstants.ALERT_TYPE_INFO,
+              new Date()
+            )
           );
           yield put(actions.setDevStatus(constants.STATUS_DISCONNECTED));
         } else if (type === 'error') {
           yield put(
-            alertsActions.addAlert(message, alertsConstants.ALERT_TYPE_ERROR)
+            alertsActions.addAlert(
+              message,
+              alertsConstants.ALERT_TYPE_ERROR,
+              new Date()
+            )
           );
           yield put(actions.setDevStatus(constants.STATUS_DISCONNECTED));
         }

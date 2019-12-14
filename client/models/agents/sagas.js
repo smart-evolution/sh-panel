@@ -83,7 +83,8 @@ export function* onFetchAgents(): Iterable<any> {
     yield put(
       alertsActions.addAlert(
         'Fetched agents data is empty',
-        alertsConstants.ALERT_TYPE_ERROR
+        alertsConstants.ALERT_TYPE_ERROR,
+        new Date()
       )
     );
     return;
@@ -95,7 +96,9 @@ export function* onFetchAgents(): Iterable<any> {
   }
 
   if (typeof data === 'string') {
-    yield put(alertsActions.addAlert(data, alertsConstants.ALERT_TYPE_ERROR));
+    yield put(
+      alertsActions.addAlert(data, alertsConstants.ALERT_TYPE_ERROR, new Date())
+    );
     yield put(actions.fetchAgentsError(data));
     return;
   }
@@ -104,7 +107,8 @@ export function* onFetchAgents(): Iterable<any> {
   yield put(
     alertsActions.addAlert(
       `Fetching agents data failed`,
-      alertsConstants.ALERT_TYPE_ERROR
+      alertsConstants.ALERT_TYPE_ERROR,
+      new Date()
     )
   );
 }
@@ -180,7 +184,8 @@ export function* onFetchAlerts(): Iterable<any> {
     yield put(
       alertsActions.addAlert(
         'Alerts not fetched properly',
-        alertsConstants.ALERT_TYPE_ERROR
+        alertsConstants.ALERT_TYPE_ERROR,
+        new Date()
       )
     );
   }
@@ -243,7 +248,8 @@ export function* onSniffAgents(): Iterable<any> {
     yield put(
       alertsActions.addAlert(
         'Agents sniffing in progress',
-        alertsConstants.ALERT_TYPE_INFO
+        alertsConstants.ALERT_TYPE_INFO,
+        new Date()
       )
     );
     return;
@@ -252,7 +258,8 @@ export function* onSniffAgents(): Iterable<any> {
   yield put(
     alertsActions.addAlert(
       'Agent sniffing failed',
-      alertsConstants.ALERT_TYPE_ERROR
+      alertsConstants.ALERT_TYPE_ERROR,
+      new Date()
     )
   );
 }
@@ -309,7 +316,9 @@ export function* onAddAgent(action: {
   );
 
   if (typeof data === 'string') {
-    yield put(alertsActions.addAlert(data, alertsConstants.ALERT_TYPE_ERROR));
+    yield put(
+      alertsActions.addAlert(data, alertsConstants.ALERT_TYPE_ERROR, new Date())
+    );
     yield put(actions.fetchAgentsError(data));
     return;
   }
@@ -318,7 +327,8 @@ export function* onAddAgent(action: {
     yield put(
       alertsActions.addAlert(
         'Adding agent succeeded',
-        alertsConstants.ALERT_TYPE_INFO
+        alertsConstants.ALERT_TYPE_INFO,
+        new Date()
       )
     );
     return;
@@ -327,7 +337,8 @@ export function* onAddAgent(action: {
   yield put(
     alertsActions.addAlert(
       `Adding agent ${agentIP} failed`,
-      alertsConstants.ALERT_TYPE_ERROR
+      alertsConstants.ALERT_TYPE_ERROR,
+      new Date()
     )
   );
 }
