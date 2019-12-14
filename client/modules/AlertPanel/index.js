@@ -4,7 +4,7 @@ import * as selectors from 'client/models/alerts/selectors';
 import AlertPanel from './AlertPanel';
 
 const mapStateToProps = state => {
-  const alerts = selectors.getLimitedAlerts(state);
+  const alerts = selectors.getFreshAlerts(state);
 
   return {
     alerts,

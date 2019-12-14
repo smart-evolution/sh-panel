@@ -12,9 +12,9 @@ const AlertPanel = (props: Props) => {
 
   return (
     <div className="alert-panel">
-      {_.map(alerts, (alert, index) => {
+      {_.map(alerts, (alert) => {
         const { type, message } = alert;
-        const key = `alert-${alert}${index}`;
+        const key = `alert-${JSON.stringify(alert)}`;
 
         return (
           <Alert key={key} type={type}>
