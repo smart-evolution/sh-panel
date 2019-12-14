@@ -80,13 +80,6 @@ export function* onFetchAgents(): Iterable<any> {
 
   if (agents instanceof Array && agents.length === 0) {
     yield put(actions.fetchAgentsError('Fetched agents data is empty'));
-    yield put(
-      alertsActions.addAlert(
-        'Fetched agents data is empty',
-        alertsConstants.ALERT_TYPE_ERROR,
-        new Date()
-      )
-    );
     return;
   }
 
