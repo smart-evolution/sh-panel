@@ -22,7 +22,7 @@ before_script:
   - |
     echo "$DOCKER_PASS" | docker login -u "$DOCKER_LOGIN" --password-stdin
     docker pull oszura/sh-influxdb:v1.0.0
-    docker run --network=docker_default oszura/sh-influxdb:v1.0.0
+    docker run --network=docker_default oszura/sh-influxdb:latest
     docker pull mongo:latest
     docker run --network=docker_default mongo:latest
     docker pull oszura/sh-api-prod:v2.2.4
