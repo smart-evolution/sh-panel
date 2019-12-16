@@ -6,6 +6,9 @@ go:
 env:
   - GO111MODULE=on APP_VERSION=v1.2.2
 
+services:
+  - docker
+
 install:
   - sudo apt-get update
   - sudo apt-get install libgconf-2-4 # required by Cypress
@@ -17,10 +20,16 @@ before_script:
   - make lint
   - make test
   - |
-    if [[ $IS_INTEGRATION_TESTS == "true" ]]
-    then
-      make integration-test
-    fi
+    echo "$DOCKER_PASS" | docker login -u "$DOCKER_LOGIN" --password-stdin
+    docker pull oszura/sh-influxdb:v1.0.0
+    docker run --network=docker_default oszura/sh-influxdb:v1.0.0
+    docker pull mongo:latest
+    docker run --network=docker_default mongo:latest
+    docker pull oszura/sh-api-prod:v2.2.4
+    docker run --network=docker_default oszura/sh-api-prod:v2.2.4
+    make image IMAGE_NAME=sh-panel ENV=prod V=$APP_VERSION
+    docker run --network=docker_default -p 3223:3223 oszura/shpanel-prod:$APP_VERSION
+    make integration-test
 
 script:
   - make all ENV=prod
