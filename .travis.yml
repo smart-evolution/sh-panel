@@ -21,15 +21,11 @@ before_script:
   - make test
   - |
     echo "$DOCKER_PASS" | docker login -u "$DOCKER_LOGIN" --password-stdin
-    docker pull oszura/sh-influxdb:v1.0.0
-    docker run -p 8086:8086 oszura/sh-influxdb:latest
+    docker pull oszura/sh-influxdb:latest
     docker pull mongo:latest
-    docker run -p 27017:27017 mongo:latest
     docker pull oszura/sh-api-prod:v2.2.4
-    docker run -p 3222:3222 oszura/sh-api-prod:v2.2.4
-    make image IMAGE_NAME=sh-panel ENV=prod V=$APP_VERSION
-    docker run -p 3223:3223 oszura/shpanel-prod:$APP_VERSION
-    make integration-test
+    docker pull oszura/sh-panel-prod:v1.2.2
+    cd docker/sh-panel/test && docker-compose --verbose up
 
 script:
   - make all ENV=prod

@@ -1,0 +1,27 @@
+version: "3"
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    logging:
+      driver: none
+  influxdb:
+    image: oszura/sh-influxdb:latest
+    ports:
+      - "8086:8086"
+    logging:
+      driver: none
+  shapi:
+    image: oszura/sh-api-prod:v2.2.4
+    ports:
+      - "3222:3222"
+    depends_on:
+      - mongodb
+      - influxdb
+  shpanel:
+    image: oszura/sh-panel-prod:v1.2.2
+    ports:
+      - "3223:3223"
+    depends_on:
+      - shapi
