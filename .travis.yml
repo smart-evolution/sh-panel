@@ -35,7 +35,7 @@ before_script:
     docker pull oszura/sh-panel-dev:v1.2.2
     docker run -d --name=test --net=host -v $(pwd):/root/go/src/github.com/smart-evolution/shpanel oszura/sh-panel-dev:v1.2.2
     docker exec test "cd /root/go/src/github.com/smart-evolution/shpanel"
-    docker exec npm run cypress:run
+    docker exec test "npm run cypress:run"
 
 script:
   - make all ENV=prod
