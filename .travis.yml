@@ -21,6 +21,7 @@ before_script:
   - make test
   - |
     echo "$DOCKER_PASS" | docker login -u "$DOCKER_LOGIN" --password-stdin
+    make image IMAGE_NAME=sh-panel ENV=test V=v1.2.2
     docker pull mongo:latest
     docker run -d --net=host mongo:latest
     docker pull oszura/sh-influxdb:v1.0.0
@@ -33,10 +34,7 @@ before_script:
     docker run -d --net=host oszura/sh-panel-prod:v1.2.2
     sleep 5
     docker pull oszura/sh-panel-dev:v1.2.2
-    docker run -d -it --name=test --net=host -v $(pwd):/root/go/src/github.com/smart-evolution/shpanel oszura/sh-panel-dev:v1.2.2
-    docker exec -it test "ls -l"
-    docker exec -it test "cd /root/go/src/github.com/smart-evolution/shpanel"
-    docker exec -it test "npm run cypress:run"
+    docker run -v --net=host -v $(pwd):/root/go/src/github.com/smart-evolution/shpanel oszura/sh-panel-test:v1.2.2
 
 script:
   - make all ENV=prod
