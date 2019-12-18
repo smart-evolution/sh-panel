@@ -23,4 +23,8 @@ ENV GOPATH=/root/go \
 GO111MODULE=on \
 PATH="${PATH}:${GOPATH}/bin"
 
+RUN mkdir -p /root/scripts
 RUN mkdir -p /root/go/src/github.com/smart-evolution/shpanel
+COPY ./docker/sh-panel/test/entrypoint.sh /root/scripts/
+
+ENTRYPOINT /root/scripts/entrypoint.sh
