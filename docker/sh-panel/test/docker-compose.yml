@@ -7,7 +7,7 @@ services:
     expose:
       - "27017"
   influxdb:
-    image: oszura/sh-influxdb:latest
+    image: oszura/sh-influxdb:v1.0.0
     ports:
       - "8086:8086"
     expose:
