@@ -4,14 +4,10 @@ services:
     image: mongo:latest
     ports:
       - "27017:27017"
-    logging:
-      driver: none
   influxdb:
     image: oszura/sh-influxdb:latest
     ports:
       - "8086:8086"
-    logging:
-      driver: none
   shapi:
     image: oszura/sh-api-prod:v2.2.4
     ports:
