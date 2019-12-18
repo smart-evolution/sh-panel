@@ -17,11 +17,16 @@ services:
     depends_on:
       - mongodb
       - influxdb
+    links:
+      - mongodb
+      - influxdb
     network_mode: host
   shpanel:
     image: oszura/sh-panel-prod:v1.2.2
     ports:
       - "3223:3223"
     depends_on:
+      - shapi
+    links:
       - shapi
     network_mode: host
