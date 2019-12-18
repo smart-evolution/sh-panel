@@ -21,11 +21,15 @@ before_script:
   - make test
   - |
     echo "$DOCKER_PASS" | docker login -u "$DOCKER_LOGIN" --password-stdin
-    docker pull oszura/sh-influxdb:latest
+    #docker pull oszura/sh-influxdb:latest
     docker pull mongo:latest
-    docker pull oszura/sh-api-prod:v2.2.4
+    #docker pull oszura/sh-api-prod:v2.2.4
     docker pull oszura/sh-panel-prod:v1.2.2
-    cd docker/sh-panel/test && docker-compose --verbose up
+    docker run -d --net=host -p "27017:27017" mongo:latest
+    sleep(10)
+    docker ps
+    docker run --net=host -p "3223:3223" mongo:latest
+    #cd docker/sh-panel/test && docker-compose --verbose up
 
 script:
   - make all ENV=prod
