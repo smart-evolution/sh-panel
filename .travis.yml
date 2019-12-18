@@ -26,9 +26,10 @@ before_script:
     #docker pull oszura/sh-api-prod:v2.2.4
     docker pull oszura/sh-panel-prod:v1.2.2
     docker run -d --net=host -p "27017:27017" mongo:latest
+    docker ps
     sleep 10
     docker ps
-    docker run --net=host -p "3223:3223" mongo:latest
+    docker run --net=host -p "3223:3223" oszura/sh-panel-prod:v1.2.2
     #cd docker/sh-panel/test && docker-compose --verbose up
 
 script:
