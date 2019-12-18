@@ -4,14 +4,12 @@ services:
     image: mongo:latest
     ports:
       - "27017:27017"
-    expose:
-      - "27017"
+    network_mode: host
   influxdb:
     image: oszura/sh-influxdb:v1.0.0
     ports:
       - "8086:8086"
-    expose:
-      - "8086"
+    network_mode: host
   shapi:
     image: oszura/sh-api-prod:v2.2.4
     ports:
@@ -19,11 +17,11 @@ services:
     depends_on:
       - mongodb
       - influxdb
-    expose:
-      - "3222"
+    network_mode: host
   shpanel:
     image: oszura/sh-panel-prod:v1.2.2
     ports:
       - "3223:3223"
     depends_on:
       - shapi
+    network_mode: host
