@@ -109,3 +109,11 @@ version:
 	git commit --allow-empty -m "Build $(V)"
 	git tag --delete $(V)
 	git tag $(V)
+
+.PHONY: integration-tests
+integration-tests:
+	docker pull oszura/sh-influxdb:v1.0.0
+	docker pull mongo:latest
+	docker pull oszura/sh-api-prod:v2.2.4
+	docker pull oszura/sh-panel-prod:v1.2.2
+	cd docker/sh-panel/test && docker-compose --verbose up
