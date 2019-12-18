@@ -21,7 +21,6 @@ before_script:
   - make test
   - |
     echo "$DOCKER_PASS" | docker login -u "$DOCKER_LOGIN" --password-stdin
-    make image IMAGE_NAME=sh-panel ENV=test V=v1.2.2
     docker pull mongo:latest
     docker run -d --net=host mongo:latest
     docker pull oszura/sh-influxdb:v1.0.0
@@ -30,11 +29,10 @@ before_script:
     docker pull oszura/sh-api-prod:v2.2.4
     docker run -d --net=host oszura/sh-api-prod:v2.2.4
     sleep 5
-    docker pull oszura/sh-panel-prod:v1.2.2
-    docker run -d --net=host oszura/sh-panel-prod:v1.2.2
+    make image IMAGE_NAME=sh-panel ENV=prod V=$APP_VERSION
+    docker run -d --net=host oszura/sh-panel-prod:$APP_VERSION
     sleep 5
     npm run cypress:run
-    #docker run -v --net=host -v $(pwd):/root/go/src/github.com/smart-evolution/shpanel oszura/sh-panel-test:v1.2.2
 
 script:
   - make all ENV=prod
@@ -44,7 +42,6 @@ after_success:
     if [[ ($TRAVIS_PULL_REQUEST == "false") && ($TRAVIS_COMMIT_MESSAGE =~ ^Build.*) ]]
     then
       echo "$DOCKER_PASS" | docker login -u "$DOCKER_LOGIN" --password-stdin
-      make image IMAGE_NAME=sh-panel ENV=prod V=$APP_VERSION
       docker push oszura/sh-panel-prod
       make image IMAGE_NAME=sh-panel ENV=dev V=$APP_VERSION
       docker push oszura/sh-panel-dev
