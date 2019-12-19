@@ -24,7 +24,7 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('login', {}, (subject, options) => {
+Cypress.Commands.add('login', {}, () => {
   cy.visit('http://localhost:3223/login/register');
 
   cy.get('.tst-email').type('admin@localhost.pl');

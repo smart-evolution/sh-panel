@@ -18,7 +18,17 @@ const AddAgent = (props: Props) => {
     setAgentIP('');
     setAgentName('');
     setAgentType('');
-  }, [addAgent, agentID, agentIP, agentName, agentType, setAgentID, setAgentIP, setAgentName, setAgentType]);
+  }, [
+    addAgent,
+    agentID,
+    agentIP,
+    agentName,
+    agentType,
+    setAgentID,
+    setAgentIP,
+    setAgentName,
+    setAgentType,
+  ]);
 
   return (
     <div className="add-agent">
