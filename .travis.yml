@@ -33,6 +33,7 @@ before_script:
     docker run -d --net=host oszura/sh-panel-prod:$APP_VERSION
     sleep 5
     docker ps
+    curl http://localhost:3222
     npm run cypress:run
 
 script:
