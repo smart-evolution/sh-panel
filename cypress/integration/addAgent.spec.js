@@ -19,7 +19,7 @@ describe('add agent', () => {
     cy.get('.tst-add-agent-id').should('have.value', '');
     cy.get('.tst-add-agent-ip').should('have.value', '');
     cy.get('.tst-add-agent-name').should('have.value', '');
-    cy.get('.tst-add-agent-type').should('have.value', '');
+    cy.get('.tst-add-agent-type').should('have.value', 'hgjhg');
 
     cy.get('.agents-list').find('.agents-list__list li').should('have.length', 1);
   });
