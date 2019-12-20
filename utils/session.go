@@ -5,6 +5,11 @@ import (
 	"time"
 )
 
+const (
+	// SessionKey - shpanel session key
+	SessionKey = "shpanel-sid"
+)
+
 // CreateSessionID - creates a new session ID
 func CreateSessionID(user string, pass string, time string) string {
 	return HashString(user + pass + time)
@@ -12,7 +17,7 @@ func CreateSessionID(user string, pass string, time string) string {
 
 // GetSessionID - get user session ID
 func GetSessionID(r *http.Request) (string, error) {
-	sessionCookie, err := r.Cookie("sid")
+	sessionCookie, err := r.Cookie(SessionKey)
 
 	if err != nil {
 		return "", err
@@ -25,7 +30,7 @@ func GetSessionID(r *http.Request) (string, error) {
 func ClearSession(w http.ResponseWriter) {
 	cookie := http.Cookie{
 		Path:    "/",
-		Name:    "sid",
+		Name:    SessionKey,
 		Expires: time.Now().Add(-100 * time.Hour),
 		MaxAge:  -1}
 	http.SetCookie(w, &cookie)

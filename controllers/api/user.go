@@ -22,7 +22,15 @@ func CtrUser(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm s
 	}
 
 	embedded := map[string]string{}
-	sidCookie, _ := r.Cookie("sid")
+	sidCookie, err := r.Cookie(utils.SessionKey)
+
+	if err != nil {
+		msg := "session does not exist"
+		utils.Log(msg)
+		http.Error(w, msg, http.StatusNotFound)
+		return
+	}
+
 	sid := sidCookie.Value
 	sess := sm.Get(sid)
 
@@ -40,7 +48,7 @@ func CtrUser(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm s
 		return
 	}
 
-	err := json.NewEncoder(w).Encode(helpers.ServeHal(usr, embedded, links))
+	err = json.NewEncoder(w).Encode(helpers.ServeHal(usr, embedded, links))
 
 	if err != nil {
 		utils.Log("error parsing response")
