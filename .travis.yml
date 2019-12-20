@@ -21,8 +21,8 @@ before_script:
   - make test
 
 script:
-  - make all ENV=prod
   - |
+    make all ENV=prod
     echo "$DOCKER_PASS" | docker login -u "$DOCKER_LOGIN" --password-stdin
     docker pull mongo:latest
     docker run -d --net=host mongo:latest
