@@ -18,7 +18,8 @@
     "Cypress": true,
     "Headers": true,
     "Request": true,
-    "btoa": true
+    "btoa": true,
+    "before": true
   },
   "env": {
     "jest": true

@@ -19,6 +19,9 @@ install:
 before_script:
   - make lint
   - make test
+
+script:
+  - make all ENV=prod
   - |
     echo "$DOCKER_PASS" | docker login -u "$DOCKER_LOGIN" --password-stdin
     docker pull mongo:latest
@@ -29,21 +32,18 @@ before_script:
     docker pull oszura/sh-api-prod:v2.2.4
     docker run -d --net=host oszura/sh-api-prod:v2.2.4
     sleep 5
-    make image IMAGE_NAME=sh-panel ENV=prod V=$APP_VERSION
+  - make image IMAGE_NAME=sh-panel ENV=prod V=$APP_VERSION
+  - |
     docker run -d --net=host oszura/sh-panel-prod:$APP_VERSION
     sleep 5
     npm run cypress:run
-
-script:
-  - make all ENV=prod
 
 after_success:
   - |
     if [[ ($TRAVIS_PULL_REQUEST == "false") && ($TRAVIS_COMMIT_MESSAGE =~ ^Build.*) ]]
     then
-      echo "$DOCKER_PASS" | docker login -u "$DOCKER_LOGIN" --password-stdin
-      docker push oszura/sh-panel-prod
       make image IMAGE_NAME=sh-panel ENV=dev V=$APP_VERSION
+      docker push oszura/sh-panel-prod
       docker push oszura/sh-panel-dev
     fi
 

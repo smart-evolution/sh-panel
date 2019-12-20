@@ -17,6 +17,7 @@ export function* onApplicationMount(): Iterable<any> {
   yield fork(agentsSagas.onFetchAlerts);
 
   yield put(agentActions.fetchAgents());
+
   yield race([
     take([agentActionTypes.LOAD_AGENTS]),
     take([agentActionTypes.FETCH_AGENTS_ERROR]),

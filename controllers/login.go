@@ -54,7 +54,7 @@ func Authenticate(w http.ResponseWriter, r *http.Request, opt router.UrlOptions,
 				cookieValue := utils.CreateSessionID(user, password, timeStr)
 
 				cookie := http.Cookie{
-					Name:    "sid",
+					Name:    utils.SessionKey,
 					Value:   cookieValue,
 					Expires: expiration}
 
