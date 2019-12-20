@@ -20,6 +20,7 @@ before_script:
   - make lint
   - make test
   - |
+    exit 1
     make all ENV=prod
     echo "$DOCKER_PASS" | docker login -u "$DOCKER_LOGIN" --password-stdin
     docker pull mongo:latest
