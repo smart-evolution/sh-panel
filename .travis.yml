@@ -19,8 +19,6 @@ install:
 before_script:
   - make lint
   - make test
-
-script:
   - |
     make all ENV=prod
     echo "$DOCKER_PASS" | docker login -u "$DOCKER_LOGIN" --password-stdin
@@ -37,6 +35,9 @@ script:
     sleep 5
     npm run cypress:run
     make image IMAGE_NAME=sh-panel ENV=dev V=$APP_VERSION
+
+script:
+  - make all ENV=prod
 
 after_success:
   - |
