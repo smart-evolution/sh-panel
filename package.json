@@ -15,7 +15,7 @@
     "flow": "flow",
     "prettify": "prettier --write \"./client/**/*.{js,jsx}\"",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run --browser chrome"
   },
   "repository": {
     "type": "git",
