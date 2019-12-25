@@ -11,6 +11,7 @@ type Props = {|
   agentConfig: agentConfigTypes.AgentConfig,
   commitConfig: (agentTypes.AgentID, agentConfigTypes.AgentConfig) => void,
   updateProperty: (agentTypes.AgentID, string, string) => void,
+  removeAgent: (agentTypes.AgentID) => void,
 |};
 
 class AgentEdit extends React.Component<Props> {
@@ -39,7 +40,7 @@ class AgentEdit extends React.Component<Props> {
     updateProperty(agent.id, 'name', value);
   }
 
-  removeAgent(e) {
+  removeAgent() {
     const { agent, removeAgent } = this.props;
     removeAgent(agent.id);
   }
