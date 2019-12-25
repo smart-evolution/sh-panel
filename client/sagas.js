@@ -19,6 +19,7 @@ function* root(): Iterable<any> {
     ),
     takeEvery(agentsActionTypes.SNIFF_AGENTS, agentsSagas.onSniffAgents),
     takeEvery(agentsActionTypes.ADD_AGENT, agentsSagas.onAddAgent),
+    takeEvery(agentsActionTypes.REMOVE_AGENT, agentsSagas.onRemoveAgent),
     takeEvery(
       agentConfigsActionTypes.FETCH_AGENT_CONFIGS,
       agentConfigsSagas.onFetchAgentConfigs

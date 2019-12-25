@@ -59,3 +59,8 @@ export const changePeriod = (period: number) => ({
   type: actionTypes.CHANGE_PERIOD,
   period,
 });
+
+export const removeAgent = (agentID: string) => ({
+  type: actionTypes.REMOVE_AGENT,
+  agentID,
+});
