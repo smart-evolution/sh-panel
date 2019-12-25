@@ -344,8 +344,8 @@ function callRemoveAgent(host, auth, agentID) {
   });
 
   return fetch(request)
-    .then((request) => {
-      if (!request.ok) {
+    .then(response => {
+      if (!response.ok) {
         throw new Error(`Removing agent ${agentID} request failed`);
       }
     })

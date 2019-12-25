@@ -29,7 +29,7 @@ const mapDispatchToProps = dispatch => ({
   commitConfig: (agentID, config) => {
     dispatch(agentConfigActions.commitAgentConfig(agentID, config));
   },
-  removeAgent: (agentID) => {
+  removeAgent: agentID => {
     dispatch(agentActions.removeAgent(agentID));
   },
 });
