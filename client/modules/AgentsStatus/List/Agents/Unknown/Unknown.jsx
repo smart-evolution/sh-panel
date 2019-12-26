@@ -14,7 +14,7 @@ const Unknown = (props: Props) => {
   const onlineClass = !isOnline ? 'agent-type1--disabled' : '';
 
   return (
-    <li className={`agent-unknown ${onlineClass}`}>
+    <li className={`tst-agent-status-${id} agent-unknown ${onlineClass}`}>
       Unknown agent [ID: {id} / Name: {name} / Type: {type}]
     </li>
   );

@@ -157,7 +157,7 @@ exports[`AgentEdit should render correctly 1`] = `
               UPDATE
             </button>
             <button
-              className="c-btn c-btn--full c-btn--remove"
+              className="tst-delete c-btn c-btn--full c-btn--remove"
               onClick={[Function]}
             >
               DELETE

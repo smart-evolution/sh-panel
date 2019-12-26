@@ -11,7 +11,7 @@ type Props = {|
   agentConfig: agentConfigTypes.AgentConfig,
   commitConfig: (agentTypes.AgentID, agentConfigTypes.AgentConfig) => void,
   updateProperty: (agentTypes.AgentID, string, string) => void,
-  removeAgent: (agentTypes.AgentID) => void,
+  removeAgent: agentTypes.AgentID => void,
 |};
 
 class AgentEdit extends React.Component<Props> {
@@ -79,7 +79,7 @@ class AgentEdit extends React.Component<Props> {
           UPDATE
         </button>
         <button
-          className="c-btn c-btn--full c-btn--remove"
+          className="tst-delete c-btn c-btn--full c-btn--remove"
           onClick={this.removeAgent}
         >
           DELETE

@@ -12,7 +12,7 @@ const Jeep = (props: Props) => {
   const { id, name, isOnline, type } = props;
   const onlineClass = !isOnline ? 'agent-jeep--disabled' : '';
   return (
-    <li className={`agent-jeep ${onlineClass}`}>
+    <li className={`tst-agent-status-${id} agent-jeep ${onlineClass}`}>
       <a className="agent-jeep__link" href={`/agent/${id}`}>
         {name} [{type}]
       </a>
