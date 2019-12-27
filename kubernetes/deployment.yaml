@@ -19,7 +19,7 @@ spec:
           name: sh-panel
           env:
             - name: NOTIFIER_URL
-              value: $(NOTIFIER_URL)
+              value: "$(NOTIFIER_URL)"
           lifecycle:
             postStart:
               exec:
@@ -40,5 +40,5 @@ spec:
             type: Directory
         - name: kubernetes
           hostPath:
-            path: $(GOPATH)/src/github.com/smart-evolution/smarthome/smarthome-kubernetes
+            path: "$(GOPATH)/src/github.com/smart-evolution/smarthome/smarthome-kubernetes"
             type: Directory
