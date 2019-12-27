@@ -23,7 +23,7 @@ spec:
           lifecycle:
             postStart:
               exec:
-                command: ["/bin/sh", "-c", 'curl -X POST -H "Content-type: application/json" --data "{\"text\":\"sh-panel\"}" $(NOTIFIER_URL)']
+                command: ["/bin/sh", "-c", 'curl -X POST -H "Content-type: application/json" --data "{\"text\":\"sh-panel deployed\"}" https://hooks.slack.com/services/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']
         - image: mongo:latest
           imagePullPolicy: IfNotPresent
           name: sh-mongodb
