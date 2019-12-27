@@ -17,9 +17,6 @@ spec:
         - image: oszura/sh-panel-prod:v1.2.3
           imagePullPolicy: IfNotPresent
           name: sh-panel
-          env:
-            - name: NOTIFIER_URL
-              value: "$(NOTIFIER_URL)"
           lifecycle:
             postStart:
               exec:
