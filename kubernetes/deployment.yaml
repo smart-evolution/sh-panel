@@ -17,6 +17,10 @@ spec:
         - image: oszura/sh-panel-prod:v1.2.3
           imagePullPolicy: IfNotPresent
           name: sh-panel
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", "NOTIFIER_MSG=sh-panel $GOPATH/src/github.com/smart-evolution/smarthome-kubernetes/deployment-notifier.sh"]
         - image: mongo:latest
           imagePullPolicy: IfNotPresent
           name: sh-mongodb
