@@ -36,7 +36,6 @@ script:
   - |
     docker run -d --net=host oszura/sh-panel-prod:$APP_VERSION
     sleep 5
-    docker ps
     npm run cypress:run
 
 after_success:
