@@ -5,6 +5,7 @@ describe.only('remove agent', () => {
 
   beforeEach(function () {
     Cypress.Cookies.preserveOnce('sid', 'remember_token');
+    Cypress.Cookies.preserveOnce('shpanel-sid', 'remember_token');
   });
 
   it('should remove agent', () => {
