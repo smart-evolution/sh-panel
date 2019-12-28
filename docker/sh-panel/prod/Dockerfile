@@ -1,5 +1,9 @@
 FROM debian:buster
 
+# Install generictools
+RUN apt-get -y update && apt-get upgrade -y && apt-get install -y \
+curl
+
 # Set env variables
 ENV SH_PANEL_MONGO_URI=mongodb://localhost:27017 \
 SH_PANEL_MONGO_DB=shpanel \
