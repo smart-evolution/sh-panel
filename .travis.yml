@@ -29,7 +29,7 @@ script:
     docker pull oszura/sh-influxdb:v1.0.0
     docker run -d --net=host oszura/sh-influxdb:v1.0.0
     sleep 10
-    docker pull oszura/sh-api-prod:v2.2.4
+    docker pull oszura/sh-api-prod:v2.3.0
     docker run -d --net=host oszura/sh-api-prod:v2.3.0
     sleep 5
   - make image IMAGE_NAME=sh-panel ENV=prod V=$APP_VERSION
