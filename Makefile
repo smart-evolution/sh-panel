@@ -102,6 +102,7 @@ version:
 	git add ./version.go || true
 	$(NPM) version $(V) --no-git-tag-version
 	git add package.json
+	git add package-lock.json
 	sed -i "" "s/APP_VERSION=.*/APP_VERSION=$(V)/g" .travis.yml
 	git add .travis.yml
 	sed -i "" "s/oszura\/sh-panel-prod:.*/oszura\/sh-panel-prod:$(V)/g" ./kubernetes/deployment.yaml

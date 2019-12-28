@@ -20,7 +20,10 @@ const Type1 = (props: Props) => {
       <div className="dashboard__cell dashboard__cell--full">
         <div className="c-panel c-panel--separator">
           <div className="c-panel__content">
-            <a className="c-btn c-btn--edit" href={`${pathname}/edit`}>
+            <a
+              className="tst-edit-btn c-btn c-btn--edit"
+              href={`${pathname}/edit`}
+            >
               Edit
             </a>
           </div>

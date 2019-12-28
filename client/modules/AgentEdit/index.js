@@ -1,6 +1,7 @@
 // @flow
 import { connect } from 'react-redux';
-import * as actions from 'client/models/agentConfigs/actions';
+import * as agentActions from 'client/models/agents/actions';
+import * as agentConfigActions from 'client/models/agentConfigs/actions';
 import * as agentConfigSelectors from 'client/models/agentConfigs/selectors';
 import * as agentSelectors from 'client/models/agents/selectors';
 import AgentEdit from './AgentEdit';
@@ -23,10 +24,13 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   updateProperty: (agentID, key, value) => {
-    dispatch(actions.updateProperty(agentID, key, value));
+    dispatch(agentConfigActions.updateProperty(agentID, key, value));
   },
   commitConfig: (agentID, config) => {
-    dispatch(actions.commitAgentConfig(agentID, config));
+    dispatch(agentConfigActions.commitAgentConfig(agentID, config));
+  },
+  removeAgent: agentID => {
+    dispatch(agentActions.removeAgent(agentID));
   },
 });
 

@@ -11,6 +11,7 @@ type Props = {|
   agentConfig: agentConfigTypes.AgentConfig,
   commitConfig: (agentTypes.AgentID, agentConfigTypes.AgentConfig) => void,
   updateProperty: (agentTypes.AgentID, string, string) => void,
+  removeAgent: agentTypes.AgentID => void,
 |};
 
 class AgentEdit extends React.Component<Props> {
@@ -19,6 +20,7 @@ class AgentEdit extends React.Component<Props> {
     (this: any).updateTemperature = this.updateTemperature.bind(this);
     (this: any).updateName = this.updateName.bind(this);
     (this: any).updateConfig = this.updateConfig.bind(this);
+    (this: any).removeAgent = this.removeAgent.bind(this);
   }
 
   updateConfig() {
@@ -36,6 +38,11 @@ class AgentEdit extends React.Component<Props> {
     const value = e.target.value;
     const { agent, updateProperty } = this.props;
     updateProperty(agent.id, 'name', value);
+  }
+
+  removeAgent() {
+    const { agent, removeAgent } = this.props;
+    removeAgent(agent.id);
   }
 
   render() {
@@ -70,6 +77,12 @@ class AgentEdit extends React.Component<Props> {
           onClick={this.updateConfig}
         >
           UPDATE
+        </button>
+        <button
+          className="tst-delete c-btn c-btn--full c-btn--remove"
+          onClick={this.removeAgent}
+        >
+          DELETE
         </button>
       </div>
     );

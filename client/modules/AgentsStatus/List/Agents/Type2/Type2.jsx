@@ -14,7 +14,7 @@ const Type2 = (props: Props) => {
   const onlineClass = !isOnline ? 'agent-type2--disabled' : '';
 
   return (
-    <li className={`agent-type2 ${onlineClass}`}>
+    <li className={`tst-agent-status-${id} agent-type2 ${onlineClass}`}>
       <a className="agent-type2__link" href={`/agent/${id}`}>
         {name} [{type}]
       </a>

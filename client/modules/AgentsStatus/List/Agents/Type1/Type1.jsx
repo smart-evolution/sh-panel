@@ -25,7 +25,7 @@ const Type1 = (props: Props) => {
   const humanName = _.isEmpty(agentConfig.name) ? '' : `${agentConfig.name} - `;
 
   return (
-    <li className={`agent-type1 ${onlineClass}`}>
+    <li className={`tst-agent-status-${agent.id} agent-type1 ${onlineClass}`}>
       <a className="agent-type1__link" href={`/agent/${agent.id}`}>
         {humanName}
         {agent.name} [{agent.type}]

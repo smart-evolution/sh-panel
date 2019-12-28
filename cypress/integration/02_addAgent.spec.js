@@ -5,6 +5,7 @@ describe('add agent', () => {
 
   beforeEach(function () {
     Cypress.Cookies.preserveOnce('sid', 'remember_token');
+    Cypress.Cookies.preserveOnce('shpanel-sid', 'remember_token');
   });
 
   it('should add agent', () => {
@@ -13,8 +14,6 @@ describe('add agent', () => {
     cy.get('.tst-add-agent-name').type('Bedroom');
     cy.get('.tst-add-agent-type').type('type1-v1.0.0');
     cy.get('.tst-add-agent-submit').click();
-
-    cy.wait(3000);
 
     cy.get('.tst-add-agent-id').should('have.value', '');
     cy.get('.tst-add-agent-ip').should('have.value', '');

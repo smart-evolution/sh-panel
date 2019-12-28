@@ -270,7 +270,7 @@ function callAddAgent(host, auth, agentID, agentIP, agentName, agentType) {
     }),
   });
 
-  return fetch(request, { method: 'POST' })
+  return fetch(request)
     .then(response => response.json())
     .catch(() => `Adding agent ${agentIP} request failed`);
 }
@@ -329,4 +329,54 @@ export function* onAddAgent(action: {
       new Date()
     )
   );
+}
+
+function callRemoveAgent(host, auth, agentID) {
+  const headers = new Headers();
+  headers.set('Authorization', `Basic ${auth}`);
+
+  const request = new Request(`${host}/api/agents/${agentID}`, {
+    headers,
+    method: 'DELETE',
+    mode: 'cors',
+    protocol: 'http:',
+    credentials: 'include',
+  });
+
+  return fetch(request)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Removing agent ${agentID} request failed`);
+      }
+    })
+    .catch(() => {
+      return `Removing agent ${agentID} request failed`;
+    });
+}
+
+export function* onRemoveAgent(action: {
+  agentID: string,
+  ...
+}): Iterable<any> {
+  const { agentID } = action;
+  const host = yield select(userSelectors.getAPIServerURL);
+  const username = yield select(userSelectors.getUsername);
+  const password = yield select(userSelectors.getPassword);
+
+  if (typeof username !== 'string' || typeof password !== 'string') {
+    console.error('username or password is not a string');
+    return;
+  }
+
+  const auth = userQueries.getUserAuth(username, password);
+  const data = yield call(callRemoveAgent, host, auth, agentID);
+
+  if (typeof data === 'string') {
+    yield put(
+      alertsActions.addAlert(data, alertsConstants.ALERT_TYPE_ERROR, new Date())
+    );
+    return;
+  }
+
+  window.location.href = '/';
 }

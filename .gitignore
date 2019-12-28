@@ -6,7 +6,7 @@ npm-debug.log
 vendor/
 
 node_modules/
-
+cypress/screenshots/
 public/
 
 shpanel
