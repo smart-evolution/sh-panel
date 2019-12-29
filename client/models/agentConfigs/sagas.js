@@ -92,6 +92,9 @@ function callCommitAgentConfig(
 ) {
   return fetch(`${host}/${constants.AGENT_CONFIG_ENDPOINT}/${agentID}`, {
     method: 'POST',
+    mode: 'cors',
+    protocol: 'http:',
+    credentials: 'include',
     body: JSON.stringify(config),
   })
     .then(response => response.json())
