@@ -87,16 +87,26 @@ export function* onFetchAgentConfigs({
 
 function callCommitAgentConfig(
   host,
+  auth: string,
   agentID: agentTypes.AgentID,
   config: types.AgentConfig
 ) {
-  return fetch(`${host}/${constants.AGENT_CONFIG_ENDPOINT}/${agentID}`, {
-    method: 'POST',
-    mode: 'cors',
-    protocol: 'http:',
-    credentials: 'include',
-    body: JSON.stringify(config),
-  })
+  const headers = new Headers();
+  headers.set('Authorization', `Basic ${auth}`);
+
+  const request = new Request(
+    `${host}/${constants.AGENT_CONFIG_ENDPOINT}/${agentID}`,
+    {
+      headers,
+      method: 'POST',
+      mode: 'cors',
+      protocol: 'http:',
+      credentials: 'include',
+      body: JSON.stringify(config),
+    }
+  );
+
+  return fetch(request)
     .then(response => response.json())
     .catch(() => 'Updating agent config failed');
 }
@@ -109,7 +119,22 @@ export function* onCommitAgentConfig({
   config: types.AgentConfig,
 }): Iterable<any> {
   const host = yield select(userSelectors.getAPIServerURL);
-  const response = yield call(callCommitAgentConfig, host, agentID, config);
+  const username = yield select(userSelectors.getUsername);
+  const password = yield select(userSelectors.getPassword);
+
+  if (typeof username !== 'string' || typeof password !== 'string') {
+    console.error('username or password is not a string');
+    return;
+  }
+
+  const auth = userQueries.getUserAuth(username, password);
+  const response = yield call(
+    callCommitAgentConfig,
+    host,
+    auth,
+    agentID,
+    config
+  );
 
   if (!_.isEmpty(response)) {
     yield put(
