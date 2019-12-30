@@ -19,7 +19,7 @@ function callFetchAgentConfigs(
   headers.set('Authorization', `Basic ${auth}`);
 
   const request = new Request(
-    `${host}${constants.AGENT_CONFIG_ENDPOINT}/${agentID}`,
+    `${host}/${constants.AGENT_CONFIG_ENDPOINT}/${agentID}`,
     {
       headers,
       method: 'GET',

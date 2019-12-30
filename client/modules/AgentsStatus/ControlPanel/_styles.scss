@@ -4,6 +4,8 @@
   }
 
   &__alerts {
+    @extend .c-switch--success;
+
     margin-left: 15px;
     vertical-align: middle;
   }
