@@ -26,10 +26,12 @@ const ControlPanel = (props: Props) => {
           onToggle={onToggle}
         />
       </div>
-      <div className="control-panel__control">
-        Send alert
-        <button className="control-panel__send-alert" onClick={sendAlert} />
-      </div>
+      {false && (
+        <div className="control-panel__control">
+          Send alert
+          <button className="control-panel__send-alert" onClick={sendAlert} />
+        </div>
+      )}
     </div>
   );
 };
