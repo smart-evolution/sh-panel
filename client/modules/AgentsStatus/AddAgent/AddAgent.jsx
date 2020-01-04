@@ -42,7 +42,7 @@ const AddAgent = (props: Props) => {
           value={agentID}
           onChange={event => setAgentID(event.target.value)}
         />
-      </div>{" "}
+      </div>{' '}
       <div className="c-input">
         <label htmlFor="add-agent-ip" className="c-input__label">
           Agent IP
@@ -53,7 +53,7 @@ const AddAgent = (props: Props) => {
           value={agentIP}
           onChange={event => setAgentIP(event.target.value)}
         />
-      </div>{" "}
+      </div>{' '}
       <div className="c-input">
         <label htmlFor="add-agent-name" className="c-input__label">
           Agent Name
@@ -64,7 +64,7 @@ const AddAgent = (props: Props) => {
           value={agentName}
           onChange={event => setAgentName(event.target.value)}
         />
-      </div>{" "}
+      </div>{' '}
       <div className="c-input">
         <label htmlFor="add-agent-type" className="c-input__label">
           Agent Type
@@ -75,7 +75,7 @@ const AddAgent = (props: Props) => {
           value={agentType}
           onChange={event => setAgentType(event.target.value)}
         />
-      </div>{" "}
+      </div>{' '}
       <button
         className="tst-add-agent-submit c-btn c-btn--accept"
         onClick={submit}

@@ -13,7 +13,4 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = () => ({});
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Type1);
+export default connect(mapStateToProps, mapDispatchToProps)(Type1);

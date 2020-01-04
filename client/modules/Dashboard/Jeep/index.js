@@ -30,7 +30,4 @@ const mapDispatchToProps = (dispatch: Function, ownProps) => ({
   },
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Jeep);
+export default connect(mapStateToProps, mapDispatchToProps)(Jeep);
