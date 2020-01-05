@@ -19,7 +19,7 @@ const AgentsStatus = (props: Props) => {
         <div className="agents-status__title">Control Panel</div>
         <ControlPanel />
       </div>
-      <Accordion title="Add Agent">
+      <Accordion className="tst-add-agent" title="Add Agent">
         <AddAgent />
       </Accordion>
       <div className="agents-status__section">
