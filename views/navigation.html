@@ -1,19 +1,19 @@
 {{define "navigation"}}
 <header class="c-header c-header--default">
-    <a class="c-header__logo" href="/">
+    <a class="c-header__logo c-link" href="/">
         SH-PANEL
     </a>
     <nav class="c-header__navigation">
         <ul class="c-navigation">
             <li class="c-navigation__option">
-                <a class="c-navigation__link" href="/">
+                <a class="c-navigation__link c-link" href="/">
                     Dashboard
                 </a>
             </li>
             {{if not .IsLogged}}
             <li class="c-navigation__option"
                 role="presentation">
-                <a class="c-navigation__link" href="/login">
+                <a class="c-navigation__link c-link" href="/login">
                     Login
                 </a>
             </li>
@@ -21,7 +21,7 @@
             {{if .IsLogged}}
             <li class="c-navigation__option"
                 role="presentation">
-                <a class="c-navigation__link" href="/login/logout">
+                <a class="c-navigation__link c-link" href="/login/logout">
                     Logout
                 </a>
             </li>
