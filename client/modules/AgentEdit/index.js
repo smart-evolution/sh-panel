@@ -34,7 +34,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AgentEdit);
+export default connect(mapStateToProps, mapDispatchToProps)(AgentEdit);

@@ -7,7 +7,4 @@ const mapStateToProps = () => ({
 
 const mapDispatchToProps = () => ({});
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SoundPanel);
+export default connect(mapStateToProps, mapDispatchToProps)(SoundPanel);

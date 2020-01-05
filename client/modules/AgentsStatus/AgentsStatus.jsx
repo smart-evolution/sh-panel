@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import { Accordion } from 'graphen';
 import ControlPanel from './ControlPanel';
 import List from './List';
 import AddAgent from './AddAgent';
@@ -18,10 +19,9 @@ const AgentsStatus = (props: Props) => {
         <div className="agents-status__title">Control Panel</div>
         <ControlPanel />
       </div>
-      <div className="agents-status__section">
-        <div className="agents-status__title">Add Agent</div>
+      <Accordion className="tst-add-agent" title="Add Agent">
         <AddAgent />
-      </div>
+      </Accordion>
       <div className="agents-status__section">
         <div className="agents-status__title">Available Agents</div>
         <List />

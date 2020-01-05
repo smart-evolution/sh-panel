@@ -11,7 +11,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AddAgent);
+export default connect(mapStateToProps, mapDispatchToProps)(AddAgent);
