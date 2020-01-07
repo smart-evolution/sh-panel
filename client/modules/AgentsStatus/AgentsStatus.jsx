@@ -15,10 +15,9 @@ const AgentsStatus = (props: Props) => {
   return (
     <div className="agents-status">
       {error && <div className="agents-status__error">{error}</div>}
-      <div className="agents-status__section">
-        <div className="agents-status__title">Control Panel</div>
+      <Accordion title="Control Panel">
         <ControlPanel />
-      </div>
+      </Accordion>
       <Accordion className="tst-add-agent" title="Add Agent">
         <AddAgent />
       </Accordion>
