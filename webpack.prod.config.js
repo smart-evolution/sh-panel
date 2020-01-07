@@ -38,14 +38,11 @@ module.exports = {
         'sass-loader',
       ],
     }, {
-      test: /\.jpg|.png|.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-      use: [{
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
-          outputPath: 'fonts/',
-        },
-      }],
+      test: /\.jpg|.png/,
+      loader: 'file-loader',
+    }, {
+      test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+      use: 'url-loader',
     }],
   },
   plugins: [
