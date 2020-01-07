@@ -1,7 +1,7 @@
 // @flow
 import _ from 'lodash';
 import React from 'react';
-import Icon from 'client/components/Icon';
+import { Icon } from 'graphen';
 import * as agentTypes from 'client/models/agents/types';
 import * as agentQueries from 'client/models/agents/queries';
 import * as agentConfigsTypes from 'client/models/agentConfigs/types';
@@ -33,8 +33,8 @@ const Type1 = (props: Props) => {
       -{' '}
       <span>
         {temperature} <Icon type="thermometer" />
-        <Icon className={motionColor} type="motion" />
-        <Icon className={gasColor} type="fire" />
+        <Icon className={motionColor} type="man" />
+        <Icon className={gasColor} type="thermometer-half" />
       </span>
     </li>
   );
