@@ -29,7 +29,7 @@
   "homepage": "https://github.com/smart-evolution/sh-panel#readme",
   "dependencies": {
     "d3": "^5.15.0",
-    "graphen": "^1.3.9",
+    "graphen": "^1.3.10",
     "history": "^4.7.2",
     "lodash": "^4.17.5",
     "moment": "^2.21.0",

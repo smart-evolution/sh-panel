@@ -23,7 +23,7 @@
 
   &__icon {
     &--alert {
-      @extend .c-icon--red;
+      color: $color-roman;
     }
   }
 }

@@ -1,8 +1,7 @@
-$icon-font-url: '~graphen/src/assets/font';
+$c-icon-font-url: '~graphen/src/assets/font';
 
 @import "~graphen/src/style.scss";
 @import "components/Control/styles";
-@import "components/Icon/styles";
 @import "modules/LoginBox/styles";
 @import "modules/AgentsStatus/styles";
 @import "modules/Dashboard/styles";
