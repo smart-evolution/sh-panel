@@ -1,6 +1,12 @@
 .agent-type1 {
   @extend %agents-list__item;
 
+  &__type {
+    @include gx-phone() {
+      display: none;
+    }
+  }
+
   &__link {
     @extend %agents-list__link;
   }

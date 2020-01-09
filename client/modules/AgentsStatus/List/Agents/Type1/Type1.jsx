@@ -28,7 +28,7 @@ const Type1 = (props: Props) => {
     <li className={`tst-agent-status-${agent.id} agent-type1 ${onlineClass}`}>
       <a className="agent-type1__link" href={`/agent/${agent.id}`}>
         {humanName}
-        {agent.name} [{agent.type}]
+        {agent.name} <span className="agent-type1__type">[{agent.type}]</span>
       </a>{' '}
       -{' '}
       <span>
