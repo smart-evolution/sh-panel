@@ -22,7 +22,7 @@ $color-persimmon: #ff7157;
   &__cell {
     flex-basis: 50%;
 
-    @include phone {
+    @include gx-phone {
       flex-basis: 100%;
     }
 
