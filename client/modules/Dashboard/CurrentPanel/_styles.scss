@@ -29,14 +29,17 @@
   }
 
   &__ok {
-    @extend .c-led-green;
+    @extend .c-led;
+    @extend .c-led--green;
 
     width: 20px;
     height: 20px;
   }
 
   &__alert {
-    @extend .c-led-red;
+    @extend .c-led;
+    @extend .c-led--red;
+    @extend .c-led--blink;
 
     width: 20px;
     height: 20px;
