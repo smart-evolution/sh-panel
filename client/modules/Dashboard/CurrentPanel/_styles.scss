@@ -1,9 +1,9 @@
 .current-panel {
-  @extend .c-panel;
-  @extend .c-panel--separator;
+  @extend .gc-panel;
+  @extend .gc-panel--separator;
 
   &__title {
-    @extend .c-panel__title;
+    @extend .gc-panel__title;
   }
 
   &__annotate {
@@ -29,17 +29,17 @@
   }
 
   &__ok {
-    @extend .c-led;
-    @extend .c-led--green;
+    @extend .gc-led;
+    @extend .gc-led--green;
 
     width: 20px;
     height: 20px;
   }
 
   &__alert {
-    @extend .c-led;
-    @extend .c-led--red;
-    @extend .c-led--blink;
+    @extend .gc-led;
+    @extend .gc-led--red;
+    @extend .gc-led--blink;
 
     width: 20px;
     height: 20px;

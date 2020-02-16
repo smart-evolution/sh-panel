@@ -3,8 +3,8 @@ $color-watusi: #ffd4cc;
 $color-persimmon: #ff7157;
 
 .agents-status {
-  @extend .c-panel;
-  @extend .c-panel--separator;
+  @extend .gc-panel;
+  @extend .gc-panel--separator;
 
   &__error {
     margin-bottom: 10px;
@@ -15,14 +15,14 @@ $color-persimmon: #ff7157;
   }
 
   &__section {
-    @extend .c-panel;
-    @extend .c-panel--separator;
+    @extend .gc-panel;
+    @extend .gc-panel--separator;
 
     padding-bottom: 10px;
   }
 
   &__title {
-    @extend .c-panel__title;
+    @extend .gc-panel__title;
   }
 }
 

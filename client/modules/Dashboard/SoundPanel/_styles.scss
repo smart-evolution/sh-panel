@@ -1,11 +1,11 @@
 @import "SoundChart/styles";
 
 .sound-panel {
-  @extend .c-panel;
-  @extend .c-panel--separator;
+  @extend .gc-panel;
+  @extend .gc-panel--separator;
 
   &__title {
-    @extend .c-panel__title;
+    @extend .gc-panel__title;
   }
 
   &__current {

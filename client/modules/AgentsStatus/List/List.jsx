@@ -19,7 +19,7 @@ type Props = {
 const List = (props: Props) => {
   const { agents, agentConfigs, isLoading } = props;
 
-  const loader = <div className="c-loader" />;
+  const loader = <div className="gc-loader" />;
   const content = !_.isEmpty(agents) ? (
     <ul className="agents-list__list">
       {_.map(agents, agent => {

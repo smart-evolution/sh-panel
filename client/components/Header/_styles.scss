@@ -1,9 +1,9 @@
 .shp-header {
-  @extend .c-header;
-  @extend .c-header--default;
+  @extend .gc-header;
+  @extend .gc-header--default;
 
   &__logo {
-    @extend .c-header__logo;
+    @extend .gc-header__logo;
 
     @include gx-phone() {
       display: none;
@@ -11,6 +11,6 @@
   }
 
   &__navigation {
-    @extend .c-header__navigation;
+    @extend .gc-header__navigation;
   }
 }

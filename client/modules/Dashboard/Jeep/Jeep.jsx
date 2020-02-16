@@ -24,7 +24,7 @@ const Jeep = (props: Props) => {
   return (
     <div className="jeep-panel">
       <div className="jeep-panel__section">
-        <div className="c-control">
+        <div className="gc-control">
           Device connection
           <div className="c-control__content">
             {!isPending && (
@@ -34,7 +34,7 @@ const Jeep = (props: Props) => {
                 onToggle={_.partial(onToggle, agent, isConnected)}
               />
             )}
-            {isPending && <div className="c-loader" />}
+            {isPending && <div className="gc-loader" />}
           </div>
         </div>
       </div>

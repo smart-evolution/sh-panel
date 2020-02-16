@@ -4,15 +4,15 @@
   }
 
   &__alerts {
-    @extend .c-switch--success;
+    @extend .gc-switch--success;
 
     margin-left: 15px;
     vertical-align: middle;
   }
 
   &__send-alert {
-    @extend .c-btn;
-    @extend .c-btn--accept;
+    @extend .gc-btn;
+    @extend .gc-btn--success;
 
     margin-left: 15px;
   }
