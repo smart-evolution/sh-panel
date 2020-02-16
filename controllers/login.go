@@ -26,7 +26,7 @@ func Authenticate(w http.ResponseWriter, r *http.Request, opt router.UrlOptions,
 			params["IsError"] = true
 		}
 
-		utils.RenderTemplate(w, r, "login", sm)
+		utils.RenderTemplate(w, r, "login", sm, params)
 
 	case "POST":
 		sessionID, _ := utils.GetSessionID(r)
