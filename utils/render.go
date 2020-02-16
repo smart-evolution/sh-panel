@@ -15,6 +15,7 @@ func RenderTemplate(
 	r *http.Request,
 	name string,
 	sm session.ISessionManager,
+	params map[string]interface{},
 ) {
 	sessionID, _ := GetSessionID(r)
 	isLogged := sm.IsExist(sessionID)
@@ -37,6 +38,7 @@ func RenderTemplate(
 		Version:  VERSION,
 		Title:    "SHPANEL - " + name,
 		IsLogged: isLogged,
+		Params:   params,
 	}
 
 	tpl := template.Must(

@@ -151,13 +151,13 @@ exports[`AgentEdit should render correctly 1`] = `
               />
             </div>
             <button
-              className="gc-btn gc-btn--full gc-btn--accept"
+              className="gc-btn gc-btn--full gc-btn--success"
               onClick={[Function]}
             >
               UPDATE
             </button>
             <button
-              className="tst-delete gc-btn gc-btn--full gc-btn--remove"
+              className="tst-delete gc-btn gc-btn--full gc-btn--danger"
               onClick={[Function]}
             >
               DELETE

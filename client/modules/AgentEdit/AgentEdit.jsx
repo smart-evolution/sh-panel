@@ -73,13 +73,13 @@ class AgentEdit extends React.Component<Props> {
         </div>
         {rawType === agentsConstants.Type1 && temperatureAdjustment}
         <button
-          className="gc-btn gc-btn--full gc-btn--accept"
+          className="gc-btn gc-btn--full gc-btn--success"
           onClick={this.updateConfig}
         >
           UPDATE
         </button>
         <button
-          className="tst-delete gc-btn gc-btn--full gc-btn--remove"
+          className="tst-delete gc-btn gc-btn--full gc-btn--danger"
           onClick={this.removeAgent}
         >
           DELETE

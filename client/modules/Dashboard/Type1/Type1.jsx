@@ -21,7 +21,7 @@ const Type1 = (props: Props) => {
         <div className="gc-panel gc-panel--separator">
           <div className="gc-panel__content">
             <a
-              className="tst-edit-btn gc-btn gc-btn--edit"
+              className="tst-edit-btn gc-btn gc-btn--info"
               href={`${pathname}/edit`}
             >
               Edit
