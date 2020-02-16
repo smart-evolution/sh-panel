@@ -123,41 +123,41 @@ exports[`AgentEdit should render correctly 1`] = `
         >
           <div>
             <div
-              className="c-input c-input__full"
+              className="gc-input gc-input__full"
             >
               <div
-                className="c-input__label"
+                className="gc-input__label"
               >
                 Name
               </div>
               <input
-                className="c-input__field"
+                className="gc-input__field"
                 onChange={[Function]}
                 value="Livingroom"
               />
             </div>
             <div
-              className="c-input c-input__full"
+              className="gc-input gc-input__full"
             >
               <div
-                className="c-input__label"
+                className="gc-input__label"
               >
                 Temperature modifier
               </div>
               <input
-                className="c-input__field"
+                className="gc-input__field"
                 onChange={[Function]}
                 value=""
               />
             </div>
             <button
-              className="c-btn c-btn--full c-btn--accept"
+              className="gc-btn gc-btn--full gc-btn--accept"
               onClick={[Function]}
             >
               UPDATE
             </button>
             <button
-              className="tst-delete c-btn c-btn--full c-btn--remove"
+              className="tst-delete gc-btn gc-btn--full gc-btn--remove"
               onClick={[Function]}
             >
               DELETE

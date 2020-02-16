@@ -6,17 +6,17 @@
   }
 
   &--disabled {
-    color: $brand-component-outline-color;
+    color: $gb-color-component-dark;
 
     .agent-type2__link {
-      color: $brand-component-outline-color;
+      color: $gb-color-component-dark;
     }
   }
 
   &__toggle {
-    @extend .c-btn;
-    @extend .c-btn--accept;
-    @extend .c-btn--small;
+    @extend .gc-btn;
+    @extend .gc-btn--success;
+    @extend .gc-btn--small;
 
     margin-left: 10px;
   }

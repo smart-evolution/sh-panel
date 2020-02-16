@@ -9,7 +9,7 @@ describe('add agent', () => {
   });
 
   it('should add agent', () => {
-    cy.get('.tst-add-agent').find('.c-accordion__title').click();
+    cy.get('.tst-add-agent').find('.gc-accordion__title').click();
 
     cy.get('.tst-add-agent-id').type('654302497');
     cy.get('.tst-add-agent-ip').type('192.168.1.56');

@@ -6,10 +6,10 @@
   }
 
   &--disabled {
-    color: $brand-component-outline-color;
+    color: $gb-color-component-dark;
 
     .agent-jeep__link {
-      color: $brand-component-outline-color;
+      color: $gb-color-component-dark;
     }
   }
 }

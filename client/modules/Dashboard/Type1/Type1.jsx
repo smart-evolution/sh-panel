@@ -18,10 +18,10 @@ const Type1 = (props: Props) => {
   return (
     <>
       <div className="dashboard__cell dashboard__cell--full">
-        <div className="c-panel c-panel--separator">
-          <div className="c-panel__content">
+        <div className="gc-panel gc-panel--separator">
+          <div className="gc-panel__content">
             <a
-              className="tst-edit-btn c-btn c-btn--edit"
+              className="tst-edit-btn gc-btn gc-btn--edit"
               href={`${pathname}/edit`}
             >
               Edit
@@ -30,8 +30,8 @@ const Type1 = (props: Props) => {
         </div>
       </div>
       <div className="dashboard__cell dashboard__cell--full">
-        <div className="c-panel c-panel--separator">
-          <div className="c-panel__content">
+        <div className="gc-panel gc-panel--separator">
+          <div className="gc-panel__content">
             <Scroller onScrollChange={onScroll} min={30} max={300} />
           </div>
         </div>

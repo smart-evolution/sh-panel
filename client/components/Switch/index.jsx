@@ -14,16 +14,16 @@ const Switch = (props: Props) => {
   return (
     <button
       role="button"
-      className={`c-switch ${className}`}
+      className={`gc-switch ${className}`}
       onClick={onToggle}
     >
       <input
-        className="c-switch__input"
+        className="gc-switch__input"
         type="checkbox"
         checked={isOn}
         onChange={_.noop}
       />
-      <span className="c-switch__slider" />
+      <span className="gc-switch__slider" />
     </button>
   );
 };

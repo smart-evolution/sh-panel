@@ -51,10 +51,10 @@ class AgentEdit extends React.Component<Props> {
     const rawType = agentQueries.getNoVersionedType(agent);
 
     const temperatureAdjustment = (
-      <div className="c-input c-input__full">
-        <div className="c-input__label">Temperature modifier</div>
+      <div className="gc-input gc-input__full">
+        <div className="gc-input__label">Temperature modifier</div>
         <input
-          className="c-input__field"
+          className="gc-input__field"
           value={agentConfig.temperature || ''}
           onChange={this.updateTemperature}
         />
@@ -63,23 +63,23 @@ class AgentEdit extends React.Component<Props> {
 
     return (
       <div>
-        <div className="c-input c-input__full">
-          <div className="c-input__label">Name</div>
+        <div className="gc-input gc-input__full">
+          <div className="gc-input__label">Name</div>
           <input
-            className="c-input__field"
+            className="gc-input__field"
             value={agentConfig.name || ''}
             onChange={this.updateName}
           />
         </div>
         {rawType === agentsConstants.Type1 && temperatureAdjustment}
         <button
-          className="c-btn c-btn--full c-btn--accept"
+          className="gc-btn gc-btn--full gc-btn--accept"
           onClick={this.updateConfig}
         >
           UPDATE
         </button>
         <button
-          className="tst-delete c-btn c-btn--full c-btn--remove"
+          className="tst-delete gc-btn gc-btn--full gc-btn--remove"
           onClick={this.removeAgent}
         >
           DELETE

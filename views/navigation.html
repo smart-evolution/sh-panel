@@ -4,24 +4,24 @@
         SH-PANEL
     </a>
     <nav class="shp-header__navigation">
-        <ul class="c-navigation">
-            <li class="c-navigation__option">
-                <a class="c-navigation__link c-link" href="/">
+        <ul class="gc-navigation">
+            <li class="gc-navigation__option">
+                <a class="gc-navigation__link gc-link" href="/">
                     Dashboard
                 </a>
             </li>
             {{if not .IsLogged}}
-            <li class="c-navigation__option"
+            <li class="gc-navigation__option"
                 role="presentation">
-                <a class="c-navigation__link c-link" href="/login">
+                <a class="gc-navigation__link gc-link" href="/login">
                     Login
                 </a>
             </li>
             {{end}}
             {{if .IsLogged}}
-            <li class="c-navigation__option"
+            <li class="gc-navigation__option"
                 role="presentation">
-                <a class="c-navigation__link c-link" href="/login/logout">
+                <a class="gc-navigation__link gc-link" href="/login/logout">
                     Logout
                 </a>
             </li>
