@@ -63,6 +63,7 @@ run:
 	SH_PANEL_MONGO_DB=$(SH_PANEL_MONGO_DB) \
 	SH_API_SRV_PORT=$(SH_API_SRV_PORT) \
 	SH_HTTP_PORT=$(SH_HTTP_PORT) \
+	SH_PANEL_CONFIGCAT_KEY=$(SH_PANEL_CONFIGCAT_KEY) \
 	./shpanel
 
 ### Containerization
@@ -84,6 +85,7 @@ run-container:
 	    -e SH_PANEL_MONGO_URI=$(SH_PANEL_MONGO_URI) \
 	    -e SH_PANEL_MONGO_DB=$(SH_PANEL_MONGO_DB) \
 	    -e SH_API_SRV_PORT=$(SH_API_SRV_PORT) \
+	    -e SH_PANEL_CONFIGCAT_KEY=$(SH_PANEL_CONFIGCAT_KEY) \
 	    -e SH_HTTP_PORT=$(SH_HTTP_PORT) oszura/shpanel
 
 ### Deployment
