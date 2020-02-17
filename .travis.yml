@@ -34,7 +34,7 @@ script:
     sleep 5
   - make image IMAGE_NAME=sh-panel ENV=prod V=$APP_VERSION
   - |
-    docker run -d --net=host oszura/sh-panel-prod:$APP_VERSION
+    docker run -d --net=host -e SH_PANEL_CONFIGCAT_KEY=$SH_PANEL_CONFIGCAT_KEY oszura/sh-panel-prod:$APP_VERSION
     sleep 5
     npm run cypress:run
 

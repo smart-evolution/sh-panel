@@ -17,6 +17,9 @@ spec:
         - image: oszura/sh-panel-prod:v1.3.12
           imagePullPolicy: IfNotPresent
           name: sh-panel
+          env:
+            - name: SH_PANEL_CONFIGCAT_KEY
+              value: SH_PANEL_CONFIGCAT_VALUE
           lifecycle:
             postStart:
               exec:
