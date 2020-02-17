@@ -2,12 +2,14 @@ package api
 
 import (
 	"encoding/json"
+	"os"
 	"github.com/coda-it/gowebserver/helpers"
 	"github.com/coda-it/gowebserver/router"
 	"github.com/coda-it/gowebserver/session"
 	"github.com/coda-it/gowebserver/store"
 	"github.com/smart-evolution/shpanel/models/user"
 	"github.com/smart-evolution/shpanel/utils"
+	"gopkg.in/configcat/go-sdk.v1"
 	"net/http"
 )
 
@@ -21,7 +23,9 @@ func CtrUser(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm s
 		},
 	}
 
-	embedded := map[string]string{}
+	embedded := map[string]map[string]bool{}
+	embedded["featureFlags"] = make(map[string]bool)
+
 	sidCookie, err := r.Cookie(utils.SessionKey)
 
 	if err != nil {
@@ -47,6 +51,14 @@ func CtrUser(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm s
 		http.Error(w, "error asserting user", http.StatusInternalServerError)
 		return
 	}
+
+	client := configcat.NewClient(os.Getenv("SH_PANEL_CONFIGCAT_KEY"))
+
+	isSoundChartEnabled, _ := client.GetValue("isAwesomeFeatureEnabled", false).(bool)
+	embedded["featureFlags"]["isSoundChartEnabled"] = isSoundChartEnabled
+
+	isAdminEnabled, _ := client.GetValue("isAdminEnabled", false).(bool)
+	embedded["featureFlags"]["isAdminEnabled"] = isAdminEnabled
 
 	err = json.NewEncoder(w).Encode(helpers.ServeHal(usr, embedded, links))
 

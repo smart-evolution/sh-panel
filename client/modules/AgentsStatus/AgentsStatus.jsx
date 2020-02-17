@@ -10,14 +10,19 @@ type Props = {
 };
 
 const AgentsStatus = (props: Props) => {
-  const { error } = props;
+  const { error, user } = props;
+  const { featureFlags}  = user;
+  const { isAdminEnabled } = featureFlags;
 
   return (
     <div className="agents-status">
       {error && <div className="agents-status__error">{error}</div>}
-      <Accordion title="Control Panel">
-        <ControlPanel />
-      </Accordion>
+      {isAdminEnabled && (
+        <Accordion title="Control Panel">
+          <ControlPanel/>
+        </Accordion>
+      )
+      }
       <Accordion className="tst-add-agent" title="Add Agent">
         <AddAgent />
       </Accordion>

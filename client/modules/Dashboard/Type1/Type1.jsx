@@ -2,6 +2,7 @@
 import React from 'react';
 import { Scroller } from 'graphen';
 import * as agentsTypes from 'client/models/agents/types';
+import * as userSelectors from 'client/models/user/selectors';
 import TemperaturePanel from '../TemperaturePanel';
 import SoundPanel from '../SoundPanel';
 import CurrentPanel from '../CurrentPanel';
@@ -13,7 +14,10 @@ type Props = {
 };
 
 const Type1 = (props: Props) => {
-  const { agent, pathname, onScroll } = props;
+  const { agent, user, pathname, onScroll } = props;
+
+  const featureFlags = userSelectors.getFeatureFlags(user);
+  const { isSouncChartEnabled } = featureFlags;
 
   return (
     <>
@@ -43,7 +47,7 @@ const Type1 = (props: Props) => {
         <TemperaturePanel agent={agent} />
       </div>
       <div className="dashboard__cell dashboard__cell--full">
-        <SoundPanel agent={agent} />
+        {isSouncChartEnabled && <SoundPanel agent={agent} />}
       </div>
     </>
   );

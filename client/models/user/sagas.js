@@ -18,7 +18,15 @@ export function* onFetchUser(): Iterable<any> {
   const user = yield call(callUser);
 
   if (typeof user === 'object') {
-    yield put(actions.loadUser(user));
+    const mappedUser = {
+      id: user.id,
+      password: user.password,
+      username: user.username,
+      ["api-server"]: user["api-server"],
+      featureFlags: user._embedded.featureFlags,
+    };
+
+    yield put(actions.loadUser(mappedUser));
   } else {
     yield put(
       alertsActions.addAlert(

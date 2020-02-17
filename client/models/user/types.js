@@ -5,5 +5,6 @@ export type User = {
   username: string,
   password: string,
   'api-server': string,
+  featureFlags: any,
 };
 /* eslint-enable import/prefer-default-export */
