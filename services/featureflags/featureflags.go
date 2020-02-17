@@ -16,6 +16,7 @@ func getClient() *configcat.Client {
 	return client
 }
 
+// GetFeatureFlag - gets feature flag
 func GetFeatureFlag(name string, defaultValue bool) (bool, bool) {
 	value, ok := getClient().GetValue(name, defaultValue).(bool)
 	return value, ok
