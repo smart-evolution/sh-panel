@@ -2,6 +2,7 @@
 import React from 'react';
 import { Scroller } from 'graphen';
 import * as agentsTypes from 'client/models/agents/types';
+import * as userTypes from 'client/models/user/types';
 import * as userSelectors from 'client/models/user/selectors';
 import TemperaturePanel from '../TemperaturePanel';
 import SoundPanel from '../SoundPanel';
@@ -10,6 +11,7 @@ import CurrentPanel from '../CurrentPanel';
 type Props = {
   pathname: string,
   agent: agentsTypes.Agent,
+  user: userTypes.User,
   onScroll: () => void,
 };
 

@@ -2,7 +2,6 @@ package api
 
 import (
 	"encoding/json"
-	"os"
 	"github.com/coda-it/gowebserver/helpers"
 	"github.com/coda-it/gowebserver/router"
 	"github.com/coda-it/gowebserver/session"
@@ -11,6 +10,7 @@ import (
 	"github.com/smart-evolution/shpanel/utils"
 	"gopkg.in/configcat/go-sdk.v1"
 	"net/http"
+	"os"
 )
 
 // CtrUser - api serving user data

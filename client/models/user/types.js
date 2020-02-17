@@ -1,10 +1,13 @@
 // @flow
-/* eslint-disable import/prefer-default-export */
+export type FeatureFlags = {
+  isAdminEnabled: boolean,
+  isSoundChartEnabled: boolean,
+};
+
 export type User = {
   id: string,
   username: string,
   password: string,
   'api-server': string,
-  featureFlags: any,
+  featureFlags: FeatureFlags,
 };
-/* eslint-enable import/prefer-default-export */

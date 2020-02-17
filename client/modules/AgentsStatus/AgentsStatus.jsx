@@ -1,17 +1,19 @@
 // @flow
 import React from 'react';
 import { Accordion } from 'graphen';
+import * as userTypes from 'client/models/user/types';
 import ControlPanel from './ControlPanel';
 import List from './List';
 import AddAgent from './AddAgent';
 
 type Props = {
   error: string,
+  user: userTypes.User,
 };
 
 const AgentsStatus = (props: Props) => {
   const { error, user } = props;
-  const { featureFlags}  = user;
+  const { featureFlags } = user;
   const { isAdminEnabled } = featureFlags;
 
   return (
@@ -19,10 +21,9 @@ const AgentsStatus = (props: Props) => {
       {error && <div className="agents-status__error">{error}</div>}
       {isAdminEnabled && (
         <Accordion title="Control Panel">
-          <ControlPanel/>
+          <ControlPanel />
         </Accordion>
-      )
-      }
+      )}
       <Accordion className="tst-add-agent" title="Add Agent">
         <AddAgent />
       </Accordion>

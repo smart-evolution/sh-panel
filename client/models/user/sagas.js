@@ -22,7 +22,7 @@ export function* onFetchUser(): Iterable<any> {
       id: user.id,
       password: user.password,
       username: user.username,
-      ["api-server"]: user["api-server"],
+      'api-server': user['api-server'],
       featureFlags: user._embedded.featureFlags,
     };
 
