@@ -54,10 +54,10 @@ func CtrUser(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm s
 
 	client := configcat.NewClient(os.Getenv("SH_PANEL_CONFIGCAT_KEY"))
 
-	isSoundChartEnabled, _ := client.GetValue("isAwesomeFeatureEnabled", false).(bool)
+	isSoundChartEnabled, _ := client.GetValue("isAwesomeFeatureEnabled", true).(bool)
 	embedded["featureFlags"]["isSoundChartEnabled"] = isSoundChartEnabled
 
-	isAdminEnabled, _ := client.GetValue("isAdminEnabled", false).(bool)
+	isAdminEnabled, _ := client.GetValue("isAdminEnabled", true).(bool)
 	embedded["featureFlags"]["isAdminEnabled"] = isAdminEnabled
 
 	err = json.NewEncoder(w).Encode(helpers.ServeHal(usr, embedded, links))
