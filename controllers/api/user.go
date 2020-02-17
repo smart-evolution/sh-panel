@@ -7,10 +7,9 @@ import (
 	"github.com/coda-it/gowebserver/session"
 	"github.com/coda-it/gowebserver/store"
 	"github.com/smart-evolution/shpanel/models/user"
+	"github.com/smart-evolution/shpanel/services/featureflags"
 	"github.com/smart-evolution/shpanel/utils"
-	"gopkg.in/configcat/go-sdk.v1"
 	"net/http"
-	"os"
 )
 
 // CtrUser - api serving user data
@@ -52,12 +51,10 @@ func CtrUser(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm s
 		return
 	}
 
-	client := configcat.NewClient(os.Getenv("SH_PANEL_CONFIGCAT_KEY"))
-
-	isSoundChartEnabled, _ := client.GetValue("isAwesomeFeatureEnabled", true).(bool)
+	isSoundChartEnabled, _ := featureflags.GetFeatureFlag("isAwesomeFeatureEnabled", true)
 	embedded["featureFlags"]["isSoundChartEnabled"] = isSoundChartEnabled
 
-	isAdminEnabled, _ := client.GetValue("isAdminEnabled", true).(bool)
+	isAdminEnabled, _ := featureflags.GetFeatureFlag("isAdminEnabled", true)
 	embedded["featureFlags"]["isAdminEnabled"] = isAdminEnabled
 
 	err = json.NewEncoder(w).Encode(helpers.ServeHal(usr, embedded, links))
