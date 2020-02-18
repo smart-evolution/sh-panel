@@ -19,11 +19,15 @@
                     Dashboard
                 </a>
             </li>
+            {{end}}
+            {{if and .IsLogged .IsAdmin}}
             <li class="gc-navigation__option">
                 <a class="gc-navigation__link gc-link" href="/admin">
                     Admin
                 </a>
             </li>
+            {{end}}
+            {{if .IsLogged}}
             <li class="gc-navigation__option"
                 role="presentation">
                 <a class="gc-navigation__link gc-link" href="/login/logout">

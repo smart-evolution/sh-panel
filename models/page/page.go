@@ -5,5 +5,6 @@ type Page struct {
 	Version  string
 	Title    string
 	IsLogged bool
+	IsAdmin  bool
 	Params   map[string]interface{}
 }

@@ -3,6 +3,7 @@ package utils
 import (
 	"github.com/coda-it/gowebserver/session"
 	"github.com/smart-evolution/shpanel/models/page"
+	"github.com/smart-evolution/shpanel/services/featureflags"
 	"html/template"
 	"net/http"
 	"os"
@@ -34,10 +35,13 @@ func RenderTemplate(
 		Log(err)
 	}
 
+	isAdminEnabled, _ := featureflags.GetFeatureFlag("isAdminEnabled", true)
+
 	templateModel := page.Page{
 		Version:  VERSION,
 		Title:    "SHPANEL - " + name,
 		IsLogged: isLogged,
+		IsAdmin: isAdminEnabled,
 		Params:   params,
 	}
 
