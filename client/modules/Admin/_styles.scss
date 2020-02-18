@@ -1,0 +1,15 @@
+.admin {
+  @extend .gc-panel;
+  @extend .gc-panel--separator;
+
+  &__section {
+    @extend .gc-panel;
+    @extend .gc-panel--separator;
+
+    padding-bottom: 10px;
+  }
+
+  &__title {
+    @extend .gc-panel__title;
+  }
+}

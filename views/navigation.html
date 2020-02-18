@@ -5,11 +5,6 @@
     </a>
     <nav class="shp-header__navigation">
         <ul class="gc-navigation">
-            <li class="gc-navigation__option">
-                <a class="gc-navigation__link gc-link" href="/">
-                    Dashboard
-                </a>
-            </li>
             {{if not .IsLogged}}
             <li class="gc-navigation__option"
                 role="presentation">
@@ -19,6 +14,16 @@
             </li>
             {{end}}
             {{if .IsLogged}}
+            <li class="gc-navigation__option">
+                <a class="gc-navigation__link gc-link" href="/">
+                    Dashboard
+                </a>
+            </li>
+            <li class="gc-navigation__option">
+                <a class="gc-navigation__link gc-link" href="/admin">
+                    Admin
+                </a>
+            </li>
             <li class="gc-navigation__option"
                 role="presentation">
                 <a class="gc-navigation__link gc-link" href="/login/logout">

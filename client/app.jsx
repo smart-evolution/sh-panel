@@ -10,6 +10,7 @@ import Application from './modules/Application';
 import AgentsStatus from './modules/AgentsStatus';
 import Dashboard from './modules/Dashboard';
 import AgentEdit from './modules/AgentEdit';
+import Admin from './modules/Admin';
 import sagas from './sagas';
 import reducers from './reducers';
 
@@ -26,6 +27,7 @@ if (appContainer) {
       <Router history={createBrowserHistory({})}>
         <Application>
           <Route exact path="/" component={AgentsStatus} />
+          <Route exact path="/admin" component={Admin} />
           <Route exact path="/agent/:agent" component={Dashboard} />
           <Route path="/agent/:agent/edit" component={AgentEdit} />
         </Application>
