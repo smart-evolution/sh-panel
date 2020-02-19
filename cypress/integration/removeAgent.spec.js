@@ -1,4 +1,4 @@
-describe.only('remove agent', () => {
+describe('remove agent', () => {
   before(function () {
     cy.login();
   });
