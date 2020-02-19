@@ -29,14 +29,14 @@ script:
     docker pull oszura/sh-influxdb:v1.0.0
     docker run -d --net=host oszura/sh-influxdb:v1.0.0
     sleep 10
-    docker pull oszura/sh-api-prod:v2.3.0
-    docker run -d --net=host oszura/sh-api-prod:v2.3.2
+    docker pull oszura/sh-api-prod:v2.4.0
+    docker run -d --net=host -e SH_ENV=test oszura/sh-api-prod:v2.4.0
     sleep 5
   - make image IMAGE_NAME=sh-panel ENV=prod V=$APP_VERSION
   - |
-    # docker run -d --net=host -e SH_PANEL_CONFIGCAT_KEY=$SH_PANEL_CONFIGCAT_KEY oszura/sh-panel-prod:$APP_VERSION
-    # sleep 5
-    # npm run cypress:run
+    docker run -d --net=host -e SH_PANEL_CONFIGCAT_KEY=$SH_PANEL_CONFIGCAT_KEY oszura/sh-panel-prod:$APP_VERSION
+    sleep 5
+    npm run cypress:run
 
 after_success:
   - |
