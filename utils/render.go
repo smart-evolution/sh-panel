@@ -41,7 +41,7 @@ func RenderTemplate(
 		Version:  VERSION,
 		Title:    "SHPANEL - " + name,
 		IsLogged: isLogged,
-		IsAdmin: isAdminEnabled,
+		IsAdmin:  isAdminEnabled,
 		Params:   params,
 	}
 

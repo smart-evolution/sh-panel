@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as agentActions from 'client/models/agents/actions';
 import Sniffer from './Sniffer';
 
-const mapStateToProps = state => ({});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
   sniffAgents: () => {

@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import Switch from 'client/components/Switch';
 
 type Props = {
   sniffAgents: () => void,

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as agentActions from 'client/models/agents/actions';
 import SendAlert from './SendAlert';
 
-const mapStateToProps = state => ({});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
   sendAlert: () => {
