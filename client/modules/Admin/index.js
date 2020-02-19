@@ -1,6 +1,6 @@
 // @flow
 import { connect } from 'react-redux';
-import AgentsStatus from './AgentsStatus';
+import Admin from './Admin';
 
 const mapStateToProps = state => {
   const { error } = state;
@@ -12,4 +12,4 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = () => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(AgentsStatus);
+export default connect(mapStateToProps, mapDispatchToProps)(Admin);
