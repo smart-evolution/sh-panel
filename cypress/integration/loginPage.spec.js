@@ -1,4 +1,8 @@
 describe('Login page', () => {
+  before(function () {
+    cy.clearCookies();
+  });
+
   it('should render successfully', () => {
     cy.visit('http://localhost:3223');
     cy.screenshot();

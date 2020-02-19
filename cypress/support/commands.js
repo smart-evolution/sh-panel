@@ -11,3 +11,7 @@ Cypress.Commands.add('login', {}, () => {
   cy.get('.tst-password').type('admin');
   cy.get('.tst-login').click();
 });
+
+Cypress.Commands.add('resetDb', {}, () => {
+  cy.request('POST', 'http://localhost:3222/api/reset');
+});

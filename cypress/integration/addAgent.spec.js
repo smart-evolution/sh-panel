@@ -1,5 +1,6 @@
 describe('add agent', () => {
   before(function () {
+    cy.resetDb();
     cy.login();
   });
 
