@@ -13,9 +13,9 @@ const SendAlert = (props: Props) => {
       <div className="gc-panel__title">Send Alert</div>
       <div className="gc-panel__content">
         Broadcast alert to all devices so they can respond
-        <p>
-          <button className="control-panel__send-alert" onClick={sendAlert} />
-        </p>
+      </div>
+      <div className="gc-panel__footer">
+        <button className="control-panel__send-alert" onClick={sendAlert} />
       </div>
     </div>
   );
