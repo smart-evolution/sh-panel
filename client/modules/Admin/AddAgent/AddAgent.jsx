@@ -78,6 +78,8 @@ const AddAgent = (props: Props) => {
             onChange={event => setAgentType(event.target.value)}
           />
         </div>
+      </div>
+      <div className="gc-panel__footer">
         <button
           className="tst-add-agent-submit gc-btn gc-btn--success gc-btn--full"
           onClick={submit}
