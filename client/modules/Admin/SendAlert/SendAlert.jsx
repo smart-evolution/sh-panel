@@ -9,7 +9,7 @@ const SendAlert = (props: Props) => {
   const { sendAlert } = props;
 
   return (
-    <div className="gc-panel">
+    <div className="shp-admin__card gc-card gc-card--default gc-panel">
       <div className="gc-panel__title">Send Alert</div>
       <div className="gc-panel__content">
         Broadcast alert to all devices so they can respond
