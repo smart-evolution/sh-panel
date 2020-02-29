@@ -31,7 +31,7 @@ const AddAgent = (props: Props) => {
   ]);
 
   return (
-    <div className="gc-panel">
+    <div className="shp-admin__card gc-card gc-card--default gc-panel">
       <div className="gc-panel__title">Add agent</div>
       <div className="gc-panel__content">
         <div className="gc-input gc-input--full">

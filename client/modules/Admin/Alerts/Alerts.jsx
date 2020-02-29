@@ -11,7 +11,7 @@ const Alerts = (props: Props) => {
   const { isAlerts, onToggle } = props;
 
   return (
-    <div className="gc-panel">
+    <div className="shp-admin__card gc-card gc-card--default gc-panel">
       <div className="gc-panel__title">Set Alerts</div>
       <div className="gc-panel__content">
         When turned on, platform will notify you when something wrong will

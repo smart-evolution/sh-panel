@@ -9,7 +9,7 @@ const Sniffer = (props: Props) => {
   const { sniffAgents } = props;
 
   return (
-    <div className="gc-panel">
+    <div className="shp-admin__card gc-card gc-card--default gc-panel">
       <div className="gc-panel__title">Agent lookup</div>
       <div className="gc-panel__content">
         Agent lookup searches for compatible devices in your network.
