@@ -32,7 +32,7 @@ const Type1 = (props: Props) => {
       </a>{' '}
       -{' '}
       <span>
-        {temperature} <Icon type="thermometer-half" />
+        {temperature}&#8451; <Icon type="thermometer-half" />
         <Icon className={motionColor} type="man" />
         <Icon className={gasColor} type="fire" />
       </span>
