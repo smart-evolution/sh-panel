@@ -1,21 +1,20 @@
 // @flow
 import React from 'react';
+import * as agentTypes from 'client/models/agents/types';
 
 type Props = {
-  id: string,
-  name: string,
-  type: string,
-  isOnline: boolean,
+  agent: agentTypes.Agent,
 };
 
 const Unknown = (props: Props) => {
-  const { id, name, isOnline, type } = props;
-
-  const onlineClass = !isOnline ? 'agent-type1--disabled' : '';
+  const { agent } = props;
 
   return (
-    <li className={`tst-agent-status-${id} agent-unknown ${onlineClass}`}>
-      Unknown agent [ID: {id} / Name: {name} / Type: {type}]
+    <li className={`tst-agent-status-${agent.id} agent-unknown`}>
+      <a className="agent-unknown__link" href={`/agent/${agent.id}`}>
+        Unknown agent
+      </a>{' '}
+      [ID: {agent.id} / Name: {agent.name} / Type: {agent.type}]
     </li>
   );
 };

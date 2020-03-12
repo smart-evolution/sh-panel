@@ -1,13 +1,8 @@
+// @flow
 import { connect } from 'react-redux';
 import Unknown from './Unknown';
 
-const mapStateToProps = (state, ownProps) => {
-  const { agent } = ownProps;
-
-  return {
-    agent,
-  };
-};
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = () => ({});
 

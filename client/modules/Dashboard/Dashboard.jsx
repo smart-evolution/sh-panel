@@ -7,6 +7,7 @@ import * as agentQueries from 'client/models/agents/queries';
 import Type1 from './Type1';
 import Type2 from './Type2';
 import Jeep from './Jeep';
+import Unknown from './Unknown';
 
 type Props = {
   pathname: string,
@@ -35,7 +36,7 @@ const Dashboard = (props: Props) => {
       content = <Jeep agent={agent} />;
       break;
     default:
-      content = <div>Unknown agent type</div>;
+      content = <Unknown pathname={pathname} />;
       break;
   }
 
