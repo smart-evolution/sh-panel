@@ -10,6 +10,8 @@ import * as proxySagas from './models/proxy/sagas';
 import * as proxyActionTypes from './models/proxy/actionTypes';
 import * as userSagas from './models/user/sagas';
 import * as userActionTypes from './models/user/actionTypes';
+import * as resetSagas from './models/reset/sagas';
+import * as resetActionTypes from './models/reset/actionTypes';
 
 function* root(): Iterable<any> {
   yield [
@@ -38,6 +40,7 @@ function* root(): Iterable<any> {
     ),
     takeEvery(proxyActionTypes.PROXY_SEND_MESSAGE, proxySagas.onSendMessage),
     takeEvery(userActionTypes.FETCH_USER, userSagas.onFetchUser),
+    takeEvery(resetActionTypes.RESET, resetSagas.onReset),
   ];
 }
 
