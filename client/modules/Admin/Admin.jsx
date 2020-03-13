@@ -3,6 +3,7 @@ import React from 'react';
 import AddAgent from './AddAgent';
 import Sniffer from './Sniffer';
 import Alerts from './Alerts';
+import Reset from './Reset';
 
 const Admin = () => {
   return (
@@ -13,6 +14,7 @@ const Admin = () => {
       </div>
       <div className="gc-cards">
         <AddAgent />
+        <Reset />
       </div>
     </div>
   );
