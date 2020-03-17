@@ -80,114 +80,86 @@ const AddAgent = (props: Props) => {
     'gc-input__field--danger': idValidation === false,
     'gc-input__field--success': idValidation === true,
   });
-  const idInput = (
-    <div className="gc-input gc-input--full">
-      <label htmlFor="add-agent-id" className="gc-input__label">
-        ID
-      </label>
-      <input
-        id="add-agent-id"
-        className={idInputClasses}
-        value={agentID}
-        onChange={handleIDChange}
-      />
-    </div>
-  );
-  const idInputComponent =
-    idValidation !== false ? (
-      idInput
-    ) : (
-      <Validation type="danger" message="ID should be a number">
-        {idInput}
-      </Validation>
-    );
+  const idValidationMessage =
+    idValidation !== false ? null : 'ID should be a number';
 
   const ipInputClasses = classNames('tst-add-agent-ip gc-input__field', {
     'gc-input__field--danger': ipValidation === false,
     'gc-input__field--success': ipValidation === true,
   });
-  const ipInput = (
-    <div className="gc-input gc-input--full">
-      <label htmlFor="add-agent-ip" className="gc-input__label">
-        IP
-      </label>
-      <input
-        id="add-agent-ip"
-        className={ipInputClasses}
-        value={agentIP}
-        onChange={handleIPChange}
-      />
-    </div>
-  );
-  const ipInputComponent =
-    ipValidation !== false ? (
-      ipInput
-    ) : (
-      <Validation type="danger" message="IP should be IP formatted address">
-        {ipInput}
-      </Validation>
-    );
+  const ipValidationMessage =
+    idValidation !== false ? null : 'IP should be IP formatted address';
 
   const nameInputClasses = classNames('tst-add-agent-name gc-input__field', {
     'gc-input__field--danger': nameValidation === false,
     'gc-input__field--success': nameValidation === true,
   });
-  const nameInput = (
-    <div className="gc-input gc-input--full">
-      <label htmlFor="add-agent-name" className="gc-input__label">
-        Name
-      </label>
-      <input
-        id="add-agent-name"
-        className={nameInputClasses}
-        value={agentName}
-        onChange={handleNameChange}
-      />
-    </div>
-  );
-  const nameInputComponent =
-    nameValidation !== false ? (
-      nameInput
-    ) : (
-      <Validation type="danger" message="Name should be text">
-        {nameInput}
-      </Validation>
-    );
+  const nameValidationMessage =
+    idValidation !== false ? null : 'Name should be text';
 
   const typeInputClasses = classNames('tst-add-agent-type gc-input__field', {
     'gc-input__field--danger': typeValidation === false,
     'gc-input__field--success': typeValidation === true,
   });
-  const typeInput = (
-    <div className="gc-input gc-input--full">
-      <label htmlFor="add-agent-type" className="gc-input__label">
-        Type
-      </label>
-      <input
-        id="add-agent-type"
-        className={typeInputClasses}
-        value={agentType}
-        onChange={handleTypeChange}
-      />
-    </div>
-  );
-  const typeInputComponent =
-    typeValidation !== false ? (
-      typeInput
-    ) : (
-      <Validation type="danger" message="Type should be text">
-        {typeInput}
-      </Validation>
-    );
+  const typeValidationMessage =
+    idValidation !== false ? null : 'Type should be text';
 
   return (
     <div className="shp-admin__card gc-card gc-card--default gc-panel">
       <div className="gc-panel__title">Add agent</div>
       <div className="gc-panel__content">
-        {idInputComponent}
-        {ipInputComponent}
-        {nameInputComponent}
-        {typeInputComponent}
+        <Validation type="danger" message={idValidationMessage}>
+          <div className="gc-input gc-input--full">
+            <label htmlFor="add-agent-id" className="gc-input__label">
+              ID
+            </label>
+            <input
+              id="add-agent-id"
+              className={idInputClasses}
+              value={agentID}
+              onChange={handleIDChange}
+            />
+          </div>
+        </Validation>
+        <Validation type="danger" message={ipValidationMessage}>
+          <div className="gc-input gc-input--full">
+            <label htmlFor="add-agent-ip" className="gc-input__label">
+              IP
+            </label>
+            <input
+              id="add-agent-ip"
+              className={ipInputClasses}
+              value={agentIP}
+              onChange={handleIPChange}
+            />
+          </div>
+        </Validation>
+        <Validation type="danger" message={nameValidationMessage}>
+          <div className="gc-input gc-input--full">
+            <label htmlFor="add-agent-name" className="gc-input__label">
+              Name
+            </label>
+            <input
+              id="add-agent-name"
+              className={nameInputClasses}
+              value={agentName}
+              onChange={handleNameChange}
+            />
+          </div>
+        </Validation>
+        <Validation type="danger" message={typeValidationMessage}>
+          <div className="gc-input gc-input--full">
+            <label htmlFor="add-agent-type" className="gc-input__label">
+              Type
+            </label>
+            <input
+              id="add-agent-type"
+              className={typeInputClasses}
+              value={agentType}
+              onChange={handleTypeChange}
+            />
+          </div>
+        </Validation>
       </div>
       <div className="gc-panel__footer">
         <button
