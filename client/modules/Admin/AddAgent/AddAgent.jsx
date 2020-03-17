@@ -1,6 +1,6 @@
 // @flow
 import React, { useState, useCallback } from 'react';
-import { Input, Validation } from 'graphen';
+import { Validation } from 'graphen';
 import classNames from 'classnames';
 import * as queries from './queries';
 
