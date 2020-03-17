@@ -88,21 +88,21 @@ const AddAgent = (props: Props) => {
     'gc-input__field--success': ipValidation === true,
   });
   const ipValidationMessage =
-    idValidation !== false ? null : 'IP should be IP formatted address';
+    ipValidation !== false ? null : 'IP should be IP formatted address';
 
   const nameInputClasses = classNames('tst-add-agent-name gc-input__field', {
     'gc-input__field--danger': nameValidation === false,
     'gc-input__field--success': nameValidation === true,
   });
   const nameValidationMessage =
-    idValidation !== false ? null : 'Name should be text';
+    nameValidation !== false ? null : 'Name should be text';
 
   const typeInputClasses = classNames('tst-add-agent-type gc-input__field', {
     'gc-input__field--danger': typeValidation === false,
     'gc-input__field--success': typeValidation === true,
   });
   const typeValidationMessage =
-    idValidation !== false ? null : 'Type should be text';
+    typeValidation !== false ? null : 'Type should be text';
 
   return (
     <div className="shp-admin__card gc-card gc-card--default gc-panel">
