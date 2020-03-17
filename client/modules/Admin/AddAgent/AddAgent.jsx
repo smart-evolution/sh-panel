@@ -97,7 +97,7 @@ const AddAgent = (props: Props) => {
     idValidation !== false ? (
       idInput
     ) : (
-      <Validation type="danger" message="ID should be text">
+      <Validation type="danger" message="ID should be a number">
         {idInput}
       </Validation>
     );
@@ -123,7 +123,7 @@ const AddAgent = (props: Props) => {
     ipValidation !== false ? (
       ipInput
     ) : (
-      <Validation type="danger" message="IP should be text">
+      <Validation type="danger" message="IP should be IP formatted address">
         {ipInput}
       </Validation>
     );
