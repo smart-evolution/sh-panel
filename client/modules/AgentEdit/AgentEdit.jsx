@@ -5,7 +5,6 @@ import * as agentsConstants from 'client/models/agents/constants';
 import * as agentTypes from 'client/models/agents/types';
 import * as agentQueries from 'client/models/agents/queries';
 import * as agentConfigTypes from 'client/models/agentConfigs/types';
-import Switch from '../Admin/Alerts/Alerts';
 
 type Props = {|
   agent: agentTypes.Agent,
