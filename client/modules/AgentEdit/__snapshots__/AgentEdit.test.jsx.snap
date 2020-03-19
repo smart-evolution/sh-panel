@@ -121,47 +121,91 @@ exports[`AgentEdit should render correctly 1`] = `
             }
           }
         >
-          <div>
+          <div
+            className="gc-panel gc-panel--separator"
+          >
             <div
-              className="gc-input gc-input__full"
+              className="gc-cards"
             >
               <div
-                className="gc-input__label"
+                className="gc-card gc-card--default gc-panel"
               >
-                Name
+                <div
+                  className="gc-panel__title"
+                >
+                  Adjustments
+                </div>
+                <div
+                  className="gc-panel__content"
+                >
+                  <p>
+                    Adjust agent with custom settings.
+                  </p>
+                  <div
+                    className="gc-input gc-input--full"
+                  >
+                    <div
+                      className="gc-input__label"
+                    >
+                      Name
+                    </div>
+                    <input
+                      className="gc-input__field"
+                      onChange={[Function]}
+                      value="Livingroom"
+                    />
+                  </div>
+                  <div
+                    className="gc-input gc-input--full"
+                  >
+                    <div
+                      className="gc-input__label"
+                    >
+                      Temperature modifier
+                    </div>
+                    <input
+                      className="gc-input__field"
+                      onChange={[Function]}
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  className="gc-panel__footer"
+                >
+                  <button
+                    className="gc-btn gc-btn--full gc-btn--success"
+                    onClick={[Function]}
+                  >
+                    UPDATE
+                  </button>
+                </div>
               </div>
-              <input
-                className="gc-input__field"
-                onChange={[Function]}
-                value="Livingroom"
-              />
-            </div>
-            <div
-              className="gc-input gc-input__full"
-            >
               <div
-                className="gc-input__label"
+                className="gc-card gc-card--default gc-panel"
               >
-                Temperature modifier
+                <div
+                  className="gc-panel__title"
+                >
+                  Remove agent
+                </div>
+                <div
+                  className="gc-panel__content"
+                >
+                  Remove agent permanently.
+                </div>
+                <div
+                  className="gc-panel__footer"
+                >
+                  <button
+                    className="tst-delete gc-btn gc-btn--full gc-btn--danger"
+                    onClick={[Function]}
+                  >
+                    DELETE
+                  </button>
+                </div>
               </div>
-              <input
-                className="gc-input__field"
-                onChange={[Function]}
-                value=""
-              />
             </div>
-            <button
-              className="gc-btn gc-btn--full gc-btn--success"
-              onClick={[Function]}
-            >
-              UPDATE
-            </button>
-            <button
-              className="tst-delete gc-btn gc-btn--full gc-btn--danger"
-              onClick={[Function]}
-            >
-              DELETE
-            </button>
           </div>
         </AgentEdit>
       </Route>
