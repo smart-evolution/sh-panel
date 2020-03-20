@@ -51,7 +51,7 @@ class AgentEdit extends React.Component<Props> {
     const rawType = agentQueries.getNoVersionedType(agent);
 
     const temperatureAdjustment = (
-      <div className="gc-input gc-input__full">
+      <div className="gc-input gc-input--full">
         <div className="gc-input__label">Temperature modifier</div>
         <input
           className="gc-input__field"
@@ -62,28 +62,44 @@ class AgentEdit extends React.Component<Props> {
     );
 
     return (
-      <div>
-        <div className="gc-input gc-input__full">
-          <div className="gc-input__label">Name</div>
-          <input
-            className="gc-input__field"
-            value={agentConfig.name || ''}
-            onChange={this.updateName}
-          />
+      <div className="gc-panel gc-panel--separator">
+        <div className="gc-cards">
+          <div className="gc-card gc-card--default gc-panel">
+            <div className="gc-panel__title">Adjustments</div>
+            <div className="gc-panel__content">
+              <p>Adjust agent with custom settings.</p>
+              <div className="gc-input gc-input--full">
+                <div className="gc-input__label">Name</div>
+                <input
+                  className="gc-input__field"
+                  value={agentConfig.name || ''}
+                  onChange={this.updateName}
+                />
+              </div>
+              {rawType === agentsConstants.Type1 && temperatureAdjustment}
+            </div>
+            <div className="gc-panel__footer">
+              <button
+                className="gc-btn gc-btn--full gc-btn--success"
+                onClick={this.updateConfig}
+              >
+                UPDATE
+              </button>
+            </div>
+          </div>
+          <div className="gc-card gc-card--default gc-panel">
+            <div className="gc-panel__title">Remove agent</div>
+            <div className="gc-panel__content">Remove agent permanently.</div>
+            <div className="gc-panel__footer">
+              <button
+                className="tst-delete gc-btn gc-btn--full gc-btn--danger"
+                onClick={this.removeAgent}
+              >
+                DELETE
+              </button>
+            </div>
+          </div>
         </div>
-        {rawType === agentsConstants.Type1 && temperatureAdjustment}
-        <button
-          className="gc-btn gc-btn--full gc-btn--success"
-          onClick={this.updateConfig}
-        >
-          UPDATE
-        </button>
-        <button
-          className="tst-delete gc-btn gc-btn--full gc-btn--danger"
-          onClick={this.removeAgent}
-        >
-          DELETE
-        </button>
       </div>
     );
   }
