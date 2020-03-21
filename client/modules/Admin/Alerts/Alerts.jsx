@@ -19,7 +19,7 @@ const Alerts = (props: Props) => {
       </div>
       <div className="gc-panel__footer">
         <Switch
-          className="control-panel__alerts"
+          className="gc-switch--info"
           isOn={isAlerts}
           onToggle={onToggle}
         />

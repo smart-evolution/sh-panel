@@ -163,7 +163,7 @@ const AddAgent = (props: Props) => {
       </div>
       <div className="gc-panel__footer">
         <button
-          className="tst-add-agent-submit gc-btn gc-btn--success gc-btn--full"
+          className="tst-add-agent-submit gc-btn gc-btn--primary gc-btn--full"
           onClick={submit}
         >
           Add

@@ -18,7 +18,7 @@ const Reset = (props: Props) => {
       </div>
       <div className="gc-panel__footer">
         <Button
-          className="gc-btn gc-btn--danger"
+          className="gc-btn gc-btn--primary"
           onClick={() => setIsDialogShown(true)}
         >
           Reset
@@ -37,7 +37,7 @@ const Reset = (props: Props) => {
               </Button>{' '}
               <Button
                 onClick={() => setIsDialogShown(false)}
-                className="gc-btn--info"
+                className="gc-btn--secondary"
               >
                 Cancel
               </Button>

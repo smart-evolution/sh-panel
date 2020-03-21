@@ -174,7 +174,7 @@ exports[`AgentEdit should render correctly 1`] = `
                   className="gc-panel__footer"
                 >
                   <button
-                    className="gc-btn gc-btn--full gc-btn--success"
+                    className="gc-btn gc-btn--full gc-btn--primary"
                     onClick={[Function]}
                   >
                     UPDATE

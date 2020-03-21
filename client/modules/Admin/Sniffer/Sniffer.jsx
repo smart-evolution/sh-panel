@@ -15,7 +15,7 @@ const Sniffer = (props: Props) => {
         Agent lookup searches for compatible devices in your network.
       </div>
       <div className="gc-panel__footer">
-        <button className="gc-btn gc-btn--success" onClick={sniffAgents}>
+        <button className="gc-btn gc-btn--primary" onClick={sniffAgents}>
           Search for agents
         </button>
       </div>

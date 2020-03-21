@@ -80,7 +80,7 @@ class AgentEdit extends React.Component<Props> {
             </div>
             <div className="gc-panel__footer">
               <button
-                className="gc-btn gc-btn--full gc-btn--success"
+                className="gc-btn gc-btn--full gc-btn--primary"
                 onClick={this.updateConfig}
               >
                 UPDATE
