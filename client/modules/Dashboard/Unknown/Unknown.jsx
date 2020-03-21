@@ -14,7 +14,7 @@ const Unknown = (props: Props) => {
         <div className="gc-panel gc-panel--separator">
           <div className="gc-panel__content">
             <a
-              className="tst-edit-btn gc-btn gc-btn--info"
+              className="tst-edit-btn gc-btn gc-btn--primary"
               href={`${pathname}/edit`}
             >
               Edit
