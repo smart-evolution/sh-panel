@@ -1,4 +1,4 @@
 package main
 
 // VERSION - current shpanel webserver version
-var VERSION = "v1.5.3"
+var VERSION = "v1.5.4"
