@@ -11,21 +11,25 @@ type Props = {
 const Switch = (props: Props) => {
   const { isOn, onToggle, className } = props;
 
+  /* eslint-disable jsx-a11y/no-static-element-interactions */
   return (
-    <button
+    <label
+      htmlFor="send-alert-switch"
       role="button"
       className={`gc-switch ${className}`}
       onClick={onToggle}
     >
       <input
+        id="send-alert-switch"
         className="gc-switch__input"
         type="checkbox"
         checked={isOn}
         onChange={_.noop}
       />
       <span className="gc-switch__slider" />
-    </button>
+    </label>
   );
+  /* eslint-enable jsx-a11y/no-static-element-interactions */
 };
 
 Switch.defaultProps = {
