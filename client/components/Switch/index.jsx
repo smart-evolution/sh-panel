@@ -12,8 +12,7 @@ const Switch = (props: Props) => {
   const { isOn, onToggle, className } = props;
 
   return (
-    <button
-      role="button"
+    <label
       className={`gc-switch ${className}`}
       onClick={onToggle}
     >
@@ -24,7 +23,7 @@ const Switch = (props: Props) => {
         onChange={_.noop}
       />
       <span className="gc-switch__slider" />
-    </button>
+    </label>
   );
 };
 
