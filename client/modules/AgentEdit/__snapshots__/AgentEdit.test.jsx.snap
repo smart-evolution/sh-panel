@@ -177,7 +177,7 @@ exports[`AgentEdit should render correctly 1`] = `
                     className="gc-btn gc-btn--full gc-btn--primary"
                     onClick={[Function]}
                   >
-                    UPDATE
+                    Update
                   </button>
                 </div>
               </div>
@@ -198,10 +198,10 @@ exports[`AgentEdit should render correctly 1`] = `
                   className="gc-panel__footer"
                 >
                   <button
-                    className="tst-delete gc-btn gc-btn--full gc-btn--danger"
+                    className="tst-delete gc-btn gc-btn--full gc-btn--primary"
                     onClick={[Function]}
                   >
-                    DELETE
+                    Delete
                   </button>
                 </div>
               </div>
