@@ -24,6 +24,9 @@ describe('remove agent', () => {
     cy.get('.tst-edit-btn').click();
     cy.get('.tst-delete').click();
 
+
+    cy.get('.tst-delete-confirm').click();
+
     cy.get('.agents-list').find('.agents-list__list li').should('have.length', 0);
   });
 })

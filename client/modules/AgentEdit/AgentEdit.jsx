@@ -5,6 +5,7 @@ import * as agentsConstants from 'client/models/agents/constants';
 import * as agentTypes from 'client/models/agents/types';
 import * as agentQueries from 'client/models/agents/queries';
 import * as agentConfigTypes from 'client/models/agentConfigs/types';
+import { Dialog, Button } from 'graphen';
 
 type Props = {|
   agent: agentTypes.Agent,
@@ -14,13 +15,28 @@ type Props = {|
   removeAgent: agentTypes.AgentID => void,
 |};
 
-class AgentEdit extends React.Component<Props> {
+type State = {|
+  isDialogShown: boolean,
+|};
+
+class AgentEdit extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     (this: any).updateTemperature = this.updateTemperature.bind(this);
     (this: any).updateName = this.updateName.bind(this);
     (this: any).updateConfig = this.updateConfig.bind(this);
     (this: any).removeAgent = this.removeAgent.bind(this);
+    (this: any).handleDialogToggle = this.handleDialogToggle.bind(this);
+  }
+
+  state = {
+    isDialogShown: false,
+  };
+
+  handleDialogToggle(isDialogShown: boolean) {
+    this.setState({
+      isDialogShown,
+    });
   }
 
   updateConfig() {
@@ -46,6 +62,7 @@ class AgentEdit extends React.Component<Props> {
   }
 
   render() {
+    const { isDialogShown } = this.state;
     const { agentConfig, agent } = this.props;
 
     const rawType = agentQueries.getNoVersionedType(agent);
@@ -83,7 +100,7 @@ class AgentEdit extends React.Component<Props> {
                 className="gc-btn gc-btn--full gc-btn--primary"
                 onClick={this.updateConfig}
               >
-                UPDATE
+                Update
               </button>
             </div>
           </div>
@@ -92,14 +109,38 @@ class AgentEdit extends React.Component<Props> {
             <div className="gc-panel__content">Remove agent permanently.</div>
             <div className="gc-panel__footer">
               <button
-                className="tst-delete gc-btn gc-btn--full gc-btn--danger"
-                onClick={this.removeAgent}
+                className="tst-delete gc-btn gc-btn--full gc-btn--primary"
+                onClick={() => this.handleDialogToggle(true)}
               >
-                DELETE
+                Delete
               </button>
             </div>
           </div>
         </div>
+        {isDialogShown && (
+          <Dialog>
+            <article className="gc-panel">
+              <header className="gc-panel__title">Remove confirmation</header>
+              <div className="gc-panel__content">
+                Are you sure you want to remove this agent?
+              </div>
+              <div className="gc-panel__footer">
+                <Button
+                  onClick={() => this.removeAgent()}
+                  className="tst-delete-confirm gc-btn--danger"
+                >
+                  Delete
+                </Button>{' '}
+                <Button
+                  onClick={() => this.handleDialogToggle(false)}
+                  className="gc-btn--secondary"
+                >
+                  Cancel
+                </Button>
+              </div>
+            </article>
+          </Dialog>
+        )}
       </div>
     );
   }
