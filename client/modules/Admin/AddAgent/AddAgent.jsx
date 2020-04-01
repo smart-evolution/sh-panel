@@ -5,11 +5,12 @@ import classNames from 'classnames';
 import * as queries from './queries';
 
 type Props = {
+  className?: string,
   addAgent: (string, string, string, string) => void,
 };
 
 const AddAgent = (props: Props) => {
-  const { addAgent } = props;
+  const { addAgent, className } = props;
   const [agentID, setAgentID] = useState('');
   const [agentIP, setAgentIP] = useState('');
   const [agentName, setAgentName] = useState('');
@@ -104,8 +105,13 @@ const AddAgent = (props: Props) => {
   const typeValidationMessage =
     typeValidation !== false ? null : 'Type should be text';
 
+  const classes = classNames(
+    'shp-admin__card gc-card gc-card--gradient gc-panel',
+    className
+  );
+
   return (
-    <div className="shp-admin__card gc-card gc-card--default gc-panel">
+    <div className={classes}>
       <div className="gc-panel__title">Add agent</div>
       <div className="gc-panel__content">
         <Validation type="danger" message={idValidationMessage}>
@@ -161,6 +167,7 @@ const AddAgent = (props: Props) => {
           </div>
         </Validation>
       </div>
+      <div className="gc-separator" />
       <div className="gc-panel__footer">
         <button
           className="tst-add-agent-submit gc-btn gc-btn--primary gc-btn--full"

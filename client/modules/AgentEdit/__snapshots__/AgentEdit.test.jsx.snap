@@ -125,10 +125,10 @@ exports[`AgentEdit should render correctly 1`] = `
             className="gc-panel gc-panel--separator"
           >
             <div
-              className="gc-cards"
+              className="gc-flex"
             >
               <div
-                className="gc-card gc-card--default gc-panel"
+                className="gc-flex__item gm-spacing-rl gc-card gc-card--gradient gc-panel"
               >
                 <div
                   className="gc-panel__title"
@@ -182,7 +182,7 @@ exports[`AgentEdit should render correctly 1`] = `
                 </div>
               </div>
               <div
-                className="gc-card gc-card--default gc-panel"
+                className="gc-flex__item gc-card gc-card--gradient gc-panel"
               >
                 <div
                   className="gc-panel__title"

@@ -1,17 +1,23 @@
 // @flow
+import classNames from 'classnames';
 import React, { useState } from 'react';
 import { Dialog, Button } from 'graphen';
 
 type Props = {
+  className?: string,
   reset: () => void,
 };
 
 const Reset = (props: Props) => {
-  const { reset } = props;
+  const { reset, className } = props;
   const [isDialogShown, setIsDialogShown] = useState(false);
+  const classes = classNames(
+    'shp-admin__card gc-card gc-card--gradient gc-panel',
+    className
+  );
 
   return (
-    <div className="shp-admin__card gc-card gc-card--default gc-panel">
+    <div className={classes}>
       <div className="gc-panel__title">Reset platform</div>
       <div className="gc-panel__content">
         Restore whole platform to default.
@@ -31,6 +37,7 @@ const Reset = (props: Props) => {
             <div className="gc-panel__content">
               Are you sure you want to restore default settings?
             </div>
+            <div className="gc-separator" />
             <div className="gc-panel__footer">
               <Button onClick={() => reset()} className="gc-btn--danger">
                 Restore
