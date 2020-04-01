@@ -80,8 +80,8 @@ class AgentEdit extends React.Component<Props, State> {
 
     return (
       <div className="gc-panel gc-panel--separator">
-        <div className="gc-cards">
-          <div className="gc-card gc-card--default gc-panel">
+        <div className="gc-flex">
+          <div className="gc-flex__item gm-spacing-rl gc-card gc-card--gradient gc-panel">
             <div className="gc-panel__title">Adjustments</div>
             <div className="gc-panel__content">
               <p>Adjust agent with custom settings.</p>
@@ -104,7 +104,7 @@ class AgentEdit extends React.Component<Props, State> {
               </button>
             </div>
           </div>
-          <div className="gc-card gc-card--default gc-panel">
+          <div className="gc-flex__item gc-card gc-card--gradient gc-panel">
             <div className="gc-panel__title">Remove agent</div>
             <div className="gc-panel__content">Remove agent permanently.</div>
             <div className="gc-panel__footer">
