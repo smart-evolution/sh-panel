@@ -1,3 +1,30 @@
+{{define "nav-login"}}
+<li {{if eq .Name "login"}}class="gc-navigation__option gc-navigation__option--active"{{else}}class="gc-navigation__option"{{end}}
+    role="presentation">
+    <a class="gc-navigation__link gc-link" href="/login">
+        Login
+    </a>
+</li>
+{{end}}
+
+{{define "nav-dashboard"}}
+    <li {{if eq .Name "dashboard"}}class="gc-navigation__option gc-navigation__option--active"{{else}}class="gc-navigation__option"{{end}}
+        role="presentation">
+        <a class="tst-nav-dashboard gc-navigation__link gc-link" href="/">
+            Dashboard
+        </a>
+    </li>
+{{end}}
+
+{{define "nav-admin"}}
+    <li {{if eq .Name "admin"}}class="gc-navigation__option gc-navigation__option--active"{{else}}class="gc-navigation__option"{{end}}
+        role="presentation">
+        <a class="tst-nav-admin gc-navigation__link gc-link" href="/admin">
+            Admin
+        </a>
+    </li>
+{{end}}
+
 {{define "navigation"}}
 <header class="shp-header">
     <a class="shp-header__logo" href="/">
@@ -6,26 +33,13 @@
     <nav class="shp-header__navigation">
         <ul class="gc-navigation">
             {{if not .IsLogged}}
-            <li class="gc-navigation__option"
-                role="presentation">
-                <a class="gc-navigation__link gc-link" href="/login">
-                    Login
-                </a>
-            </li>
+            {{template "nav-login" .}}
             {{end}}
             {{if .IsLogged}}
-            <li class="gc-navigation__option">
-                <a class="tst-nav-dashboard gc-navigation__link gc-link" href="/">
-                    Dashboard
-                </a>
-            </li>
+            {{template "nav-dashboard" .}}
             {{end}}
             {{if and .IsLogged .IsAdmin}}
-            <li class="gc-navigation__option">
-                <a class="tst-nav-admin gc-navigation__link gc-link" href="/admin">
-                    Admin
-                </a>
-            </li>
+            {{template "nav-admin" .}}
             {{end}}
             {{if .IsLogged}}
             <li class="gc-navigation__option"

@@ -43,6 +43,7 @@ func RenderTemplate(
 		IsLogged: isLogged,
 		IsAdmin:  isAdminEnabled,
 		Params:   params,
+		Name:     name,
 	}
 
 	tpl := template.Must(
