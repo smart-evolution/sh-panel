@@ -7,4 +7,5 @@ type Page struct {
 	IsLogged bool
 	IsAdmin  bool
 	Params   map[string]interface{}
+	Name     string
 }
