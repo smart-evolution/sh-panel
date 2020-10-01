@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"github.com/coda-it/goutils/logger"
 	"github.com/coda-it/gowebserver"
 	"github.com/smart-evolution/shpanel/controllers"
 	"github.com/smart-evolution/shpanel/controllers/api"
@@ -29,7 +30,7 @@ func New(port string, p *persistence.Persistance) *WebServer {
 	addr, err := getServerAddress(port)
 
 	if err != nil {
-		utils.Log(err)
+		logger.Log(err)
 	}
 
 	serverOptions := gowebserver.WebServerOptions{
@@ -65,11 +66,11 @@ func main() {
 	SHHTTPPort := os.Getenv("SH_HTTP_PORT")
 	SHAPIServerPort := os.Getenv("SH_API_SRV_PORT")
 
-	utils.Log("Staring sh-panel with the following ENV variables")
-	utils.Log("SH_PANEL_MONGO_URI = " + SHPanelMongoURI)
-	utils.Log("SH_PANEL_MONGO_DB = " + SHPanelMongoDB)
-	utils.Log("SH_HTTP_PORT = " + SHHTTPPort)
-	utils.Log("SH_API_SRV_PORT = " + SHAPIServerPort)
+	logger.Log("Staring sh-panel with the following ENV variables")
+	logger.Log("SH_PANEL_MONGO_URI = " + SHPanelMongoURI)
+	logger.Log("SH_PANEL_MONGO_DB = " + SHPanelMongoDB)
+	logger.Log("SH_HTTP_PORT = " + SHHTTPPort)
+	logger.Log("SH_API_SRV_PORT = " + SHAPIServerPort)
 
 	utils.VERSION = VERSION
 

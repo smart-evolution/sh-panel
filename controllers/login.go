@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"errors"
+	"github.com/coda-it/goutils/logger"
 	"github.com/coda-it/gowebserver/router"
 	"github.com/coda-it/gowebserver/session"
 	"github.com/coda-it/gowebserver/store"
@@ -41,14 +42,14 @@ func Authenticate(w http.ResponseWriter, r *http.Request, opt router.UrlOptions,
 
 			p, ok := dfc.(persistence.IPersistance)
 			if !ok {
-				utils.Log("Invalid store")
+				logger.Log("Invalid store")
 				return
 			}
 
 			authenticatedUser, err := authenticateUser(user, password, p)
 
 			if err == nil {
-				utils.Log("Logged in as user", user)
+				logger.Log("Logged in as user", user)
 				t := time.Now()
 				timeStr := t.Format(time.RFC850)
 				cookieValue := utils.CreateSessionID(user, password, timeStr)
@@ -64,7 +65,7 @@ func Authenticate(w http.ResponseWriter, r *http.Request, opt router.UrlOptions,
 				http.SetCookie(w, &cookie)
 				http.Redirect(w, r, "/", http.StatusSeeOther)
 			} else {
-				utils.Log(err)
+				logger.Log(err)
 				http.Redirect(w, r, "/login?err", http.StatusSeeOther)
 			}
 		}

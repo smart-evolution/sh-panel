@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"github.com/coda-it/goutils/logger"
 	"github.com/coda-it/gowebserver/session"
 	"github.com/smart-evolution/shpanel/models/page"
 	"github.com/smart-evolution/shpanel/services/featureflags"
@@ -32,7 +33,7 @@ func RenderTemplate(
 	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
 
 	if err != nil {
-		Log(err)
+		logger.Log(err)
 	}
 
 	isAdminEnabled, _ := featureflags.GetFeatureFlag("isAdminEnabled", true)

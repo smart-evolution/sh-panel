@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"fmt"
+	"github.com/coda-it/goutils/logger"
 	"github.com/coda-it/gowebserver/router"
 	"github.com/coda-it/gowebserver/session"
 	"github.com/coda-it/gowebserver/store"
@@ -27,7 +28,7 @@ func Register(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm 
 
 		p, ok := dfc.(persistence.IPersistance)
 		if !ok {
-			utils.Log("Invalid store")
+			logger.Log("Invalid store")
 			return
 		}
 
@@ -47,12 +48,12 @@ func Register(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm 
 		err := c.Insert(newUser)
 		if err != nil {
 			fmt.Println(err)
-			utils.Log("Error registering user '" + username + "'")
+			logger.Log("Error registering user '" + username + "'")
 			return
 		}
-		utils.Log("Registered user '" + username + "'")
+		logger.Log("Registered user '" + username + "'")
 
-		utils.Log("Registering user in API server " + apiServer)
+		logger.Log("Registering user in API server " + apiServer)
 		form := url.Values{}
 		form.Add("username", username)
 		form.Add("password", password)
@@ -62,7 +63,7 @@ func Register(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm 
 
 		if err != nil {
 			fmt.Println(err)
-			utils.Log("Error registering user in endpoint " + registerURL)
+			logger.Log("Error registering user in endpoint " + registerURL)
 		}
 
 		http.Redirect(w, r, "/", http.StatusSeeOther)
