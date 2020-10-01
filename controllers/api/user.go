@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"github.com/coda-it/goutils/logger"
 	"github.com/coda-it/gowebserver/helpers"
 	"github.com/coda-it/gowebserver/router"
 	"github.com/coda-it/gowebserver/session"
@@ -29,7 +30,7 @@ func CtrUser(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm s
 
 	if err != nil {
 		msg := "session does not exist"
-		utils.Log(msg)
+		logger.Log(msg)
 		http.Error(w, msg, http.StatusNotFound)
 		return
 	}
@@ -39,14 +40,14 @@ func CtrUser(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm s
 
 	usrObj := sess.Get("user")
 	if usrObj == nil {
-		utils.Log("user not found")
+		logger.Log("user not found")
 		http.Error(w, "user not found", http.StatusNotFound)
 		return
 	}
 
 	usr, ok := usrObj.(user.User)
 	if !ok {
-		utils.Log("error asserting user")
+		logger.Log("error asserting user")
 		http.Error(w, "error asserting user", http.StatusInternalServerError)
 		return
 	}
@@ -60,7 +61,7 @@ func CtrUser(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm s
 	err = json.NewEncoder(w).Encode(helpers.ServeHal(usr, embedded, links))
 
 	if err != nil {
-		utils.Log("error parsing response")
+		logger.Log("error parsing response")
 		http.Error(w, "error asserting user", http.StatusInternalServerError)
 	}
 }
