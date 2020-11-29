@@ -7,9 +7,9 @@ import (
 	"github.com/coda-it/gowebserver/router"
 	"github.com/coda-it/gowebserver/session"
 	"github.com/coda-it/gowebserver/store"
+	"github.com/smart-evolution/shpanel/constants"
 	"github.com/smart-evolution/shpanel/models/user"
 	"github.com/smart-evolution/shpanel/services/featureflags"
-	"github.com/smart-evolution/shpanel/utils"
 	"net/http"
 )
 
@@ -26,7 +26,7 @@ func CtrUser(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm s
 	embedded := map[string]map[string]bool{}
 	embedded["featureFlags"] = make(map[string]bool)
 
-	sidCookie, err := r.Cookie(utils.SessionKey)
+	sidCookie, err := r.Cookie(constants.SessionKey)
 
 	if err != nil {
 		msg := "session does not exist"
