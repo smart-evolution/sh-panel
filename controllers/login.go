@@ -2,10 +2,13 @@ package controllers
 
 import (
 	"errors"
+	"github.com/coda-it/goutils/hash"
 	"github.com/coda-it/goutils/logger"
+	goutilsSession "github.com/coda-it/goutils/session"
 	"github.com/coda-it/gowebserver/router"
 	"github.com/coda-it/gowebserver/session"
 	"github.com/coda-it/gowebserver/store"
+	"github.com/smart-evolution/shpanel/constants"
 	"github.com/smart-evolution/shpanel/datasources/persistence"
 	"github.com/smart-evolution/shpanel/models/user"
 	"github.com/smart-evolution/shpanel/utils"
@@ -30,12 +33,12 @@ func Authenticate(w http.ResponseWriter, r *http.Request, opt router.UrlOptions,
 		utils.RenderTemplate(w, r, "login", sm, params)
 
 	case "POST":
-		sessionID, _ := utils.GetSessionID(r)
+		sessionID, _ := goutilsSession.GetSessionID(r, constants.SessionKey)
 		isLogged := sm.IsExist(sessionID)
 
 		if !isLogged {
 			user := r.PostFormValue("username")
-			password := utils.HashString(r.PostFormValue("password"))
+			password := hash.EncryptString(r.PostFormValue("password"))
 			expiration := time.Now().Add(365 * 24 * time.Hour)
 
 			dfc := s.GetDataSource("persistence")
@@ -52,10 +55,10 @@ func Authenticate(w http.ResponseWriter, r *http.Request, opt router.UrlOptions,
 				logger.Log("Logged in as user", user)
 				t := time.Now()
 				timeStr := t.Format(time.RFC850)
-				cookieValue := utils.CreateSessionID(user, password, timeStr)
+				cookieValue := goutilsSession.CreateSessionID(user, password, timeStr)
 
 				cookie := http.Cookie{
-					Name:    utils.SessionKey,
+					Name:    constants.SessionKey,
 					Value:   cookieValue,
 					Expires: expiration}
 

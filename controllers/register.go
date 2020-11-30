@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"fmt"
+	"github.com/coda-it/goutils/hash"
 	"github.com/coda-it/goutils/logger"
 	"github.com/coda-it/gowebserver/router"
 	"github.com/coda-it/gowebserver/session"
@@ -36,7 +37,7 @@ func Register(w http.ResponseWriter, r *http.Request, opt router.UrlOptions, sm 
 
 		apiServer := r.PostFormValue("api-server")
 		username := r.PostFormValue("username")
-		password := utils.HashString(r.PostFormValue("password"))
+		password := hash.EncryptString(r.PostFormValue("password"))
 
 		newUser = &user.User{
 			ID:          bson.NewObjectId(),

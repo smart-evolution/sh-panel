@@ -2,7 +2,9 @@ package utils
 
 import (
 	"github.com/coda-it/goutils/logger"
+	goutilsSession "github.com/coda-it/goutils/session"
 	"github.com/coda-it/gowebserver/session"
+	"github.com/smart-evolution/shpanel/constants"
 	"github.com/smart-evolution/shpanel/models/page"
 	"github.com/smart-evolution/shpanel/services/featureflags"
 	"html/template"
@@ -19,11 +21,11 @@ func RenderTemplate(
 	sm session.ISessionManager,
 	params map[string]interface{},
 ) {
-	sessionID, _ := GetSessionID(r)
+	sessionID, _ := goutilsSession.GetSessionID(r, constants.SessionKey)
 	isLogged := sm.IsExist(sessionID)
 
 	if !isLogged {
-		ClearSession(w)
+		goutilsSession.ClearSession(w, constants.SessionKey)
 
 		if r.URL.Path != "/login" && r.URL.Path != "/login/register" {
 			http.Redirect(w, r, "/login", http.StatusSeeOther)
