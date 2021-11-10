@@ -30,7 +30,7 @@ function callFetchAgentConfigs(
   );
 
   return fetch(request)
-    .then(response => {
+    .then((response) => {
       if (!response.ok) {
         throw new Error(`Fetching data error: ${response.statusText}`);
       }
@@ -41,7 +41,7 @@ function callFetchAgentConfigs(
 
       return response.json();
     })
-    .catch(e => e);
+    .catch((e) => e);
 }
 
 export function* onFetchAgentConfigs({
@@ -107,7 +107,7 @@ function callCommitAgentConfig(
   );
 
   return fetch(request)
-    .then(response => response.json())
+    .then((response) => response.json())
     .catch(() => 'Updating agent config failed');
 }
 

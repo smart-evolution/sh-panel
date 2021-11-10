@@ -23,7 +23,7 @@ export function callFetchAgents(host: string, auth: string, period: string) {
   });
 
   return fetch(request)
-    .then(response => {
+    .then((response) => {
       if (!response.ok) {
         throw new Error(`Fetching data error: ${response.statusText}`);
       }
@@ -38,7 +38,7 @@ export function callFetchAgents(host: string, auth: string, period: string) {
 
       return response.json();
     })
-    .catch(e => e);
+    .catch((e) => e);
 }
 
 export function callFetchAgentsWithTimeout(
@@ -51,7 +51,7 @@ export function callFetchAgentsWithTimeout(
       () => reject('Fetching agents data timed out'),
       constants.FETCH_TIMEOUT
     )
-  ).catch(e => e);
+  ).catch((e) => e);
   const agentFetch = callFetchAgents(host, auth, period);
 
   return Promise.race([agentFetch, timer]);
@@ -110,7 +110,7 @@ export function* subscribeOnFetchAgents(): Iterable<any> {
 
 function callSendAlert() {
   return fetch('/api/sendalert', { method: 'POST' })
-    .then(response => response.json())
+    .then((response) => response.json())
     .catch(() => 'Send alert failed');
 }
 
@@ -120,7 +120,7 @@ export function* onSendAlert(): Iterable<any> {
 
 function callToggleAlerts(host) {
   return fetch(`${host}/api/alerts`, { method: 'POST' })
-    .then(response => response.json())
+    .then((response) => response.json())
     .catch(() => 'Toggling alerts failed');
 }
 
@@ -147,7 +147,7 @@ function callAlerts(host: string, auth: string) {
   });
 
   return fetch(request)
-    .then(response => response.json())
+    .then((response) => response.json())
     .catch(() => 'Toggling alerts failed');
 }
 
@@ -181,7 +181,7 @@ export function* onFetchAlerts(): Iterable<any> {
 
 function callToggleType2(host, agentID) {
   return fetch(`${host}/api/agents/${agentID}`, { method: 'POST' })
-    .then(response => response.json())
+    .then((response) => response.json())
     .catch(() => 'Toggling Type2 failed');
 }
 
@@ -213,7 +213,7 @@ function callSniffAgents(host, auth) {
   });
 
   return fetch(request, { method: 'POST' })
-    .then(response => response.json())
+    .then((response) => response.json())
     .catch(() => 'Toggling alerts failed');
 }
 
@@ -271,7 +271,7 @@ function callAddAgent(host, auth, agentID, agentIP, agentName, agentType) {
   });
 
   return fetch(request)
-    .then(response => response.json())
+    .then((response) => response.json())
     .catch(() => `Adding agent ${agentIP} request failed`);
 }
 
@@ -344,7 +344,7 @@ function callRemoveAgent(host, auth, agentID) {
   });
 
   return fetch(request)
-    .then(response => {
+    .then((response) => {
       if (!response.ok) {
         throw new Error(`Removing agent ${agentID} request failed`);
       }

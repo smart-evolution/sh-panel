@@ -26,7 +26,7 @@ function updateProperty(state: types.State, action: Object) {
   } else {
     agentConfig[key] = value;
     newAgentConfigs = _.concat(
-      _.filter(agentConfigs, c => c.agentId !== agentID),
+      _.filter(agentConfigs, (c) => c.agentId !== agentID),
       [agentConfig]
     );
   }

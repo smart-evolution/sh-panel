@@ -14,8 +14,8 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  toggle: agentID => () => {
+const mapDispatchToProps = (dispatch) => ({
+  toggle: (agentID) => () => {
     dispatch(agentActions.toggleType2(agentID));
   },
 });

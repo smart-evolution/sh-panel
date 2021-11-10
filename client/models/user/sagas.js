@@ -9,7 +9,7 @@ function callUser() {
   return fetch(constants.USER_ENDPOINT, {
     method: 'GET',
   })
-    .then(response => response.json())
+    .then((response) => response.json())
     .catch(() => 'Fetching user data failed');
 }
 

@@ -4,7 +4,7 @@ import React from 'react';
 type Props = {
   id: string,
   name: string,
-  toggle: string => void,
+  toggle: (string) => void,
   isOnline: boolean,
   type: string,
 };

@@ -51,12 +51,12 @@ export const getTicks = (times: Array<number>, values: number) =>
     value,
   }));
 
-export const isMotion = (agent: types.Agent) => {
+export const isMotion = (agent: types.Agent): boolean => {
   const presence = getMotion(agent);
   return _.reduce(presence, (acc, val) => acc || Number(val), 0);
 };
 
-export const isGas = (agent: types.Agent) => {
+export const isGas = (agent: types.Agent): boolean => {
   const gas = getGas(agent);
   return _.reduce(gas, (acc, val) => acc || Number(val), 0);
 };

@@ -6,7 +6,7 @@ describe('models/alerts/reducers', () => {
   describe('ADD', () => {
     it('should add new Alert to state in particular order', () => {
       const alertMessage = 'Error message';
-      const infoMessage = index => `Info message ${index}`;
+      const infoMessage = (index) => `Info message ${index}`;
       const timestamp = new Date('2019-12-14T09:25:59.373Z');
       const state = {
         alerts: [],

@@ -22,7 +22,7 @@ const List = (props: Props) => {
   const loader = <div className="gc-loader" />;
   const content = !_.isEmpty(agents) ? (
     <ul className="agents-list__list">
-      {_.map(agents, agent => {
+      {_.map(agents, (agent) => {
         const noVersionedType = agentsQueries.getNoVersionedType(agent);
         const agentConfig = agentConfigQueries.getAgentConfigByAgentId(
           agentConfigs,

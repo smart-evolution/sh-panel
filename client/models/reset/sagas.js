@@ -7,7 +7,7 @@ function callReset(host: string) {
   return fetch(`${host}${constants.RESET_ENDPOINT}`, {
     method: 'POST',
   })
-    .then(response => response.json())
+    .then((response) => response.json())
     .catch(() => 'Restoring settings failed');
 }
 

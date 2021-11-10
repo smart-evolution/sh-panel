@@ -12,8 +12,8 @@ import * as types from './types';
 
 /* eslint-disable require-yield */
 function* createChannel(client: WebSocket) {
-  return eventChannel(emit => {
-    client.onmessage = message => emit(message.data);
+  return eventChannel((emit) => {
+    client.onmessage = (message) => emit(message.data);
     client.onopen = () => emit('opened');
     return () => {
       client.close();
