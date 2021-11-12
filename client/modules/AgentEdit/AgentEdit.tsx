@@ -26,11 +26,11 @@ class AgentEdit extends React.Component<Props, State> {
     this.updateConfig = this.updateConfig.bind(this);
     this.removeAgent = this.removeAgent.bind(this);
     this.handleDialogToggle = this.handleDialogToggle.bind(this);
-  }
 
-  state = {
-    isDialogShown: false,
-  };
+    this.state = {
+      isDialogShown: false,
+    };
+  }
 
   handleDialogToggle(isDialogShown: boolean) {
     this.setState({
@@ -96,6 +96,7 @@ class AgentEdit extends React.Component<Props, State> {
             </div>
             <div className="gc-panel__footer">
               <button
+                  type="button"
                 className="gc-btn gc-btn--full gc-btn--primary"
                 onClick={this.updateConfig}
               >
@@ -108,6 +109,7 @@ class AgentEdit extends React.Component<Props, State> {
             <div className="gc-panel__content">Remove agent permanently.</div>
             <div className="gc-panel__footer">
               <button
+                  type="button"
                 className="tst-delete gc-btn gc-btn--full gc-btn--primary"
                 onClick={() => this.handleDialogToggle(true)}
               >

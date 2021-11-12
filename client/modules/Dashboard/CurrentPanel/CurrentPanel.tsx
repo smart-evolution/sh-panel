@@ -34,9 +34,4 @@ const CurrentPanel = (props: Props) => {
   );
 };
 
-CurrentPanel.defaultProps = {
-  isGas: false,
-  isMotion: false,
-};
-
 export default CurrentPanel;

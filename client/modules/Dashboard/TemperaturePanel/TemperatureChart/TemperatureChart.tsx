@@ -7,9 +7,12 @@ type Props = {
 };
 
 class TemperatureChart extends React.PureComponent<Props> {
+  // eslint-disable-next-line react/static-property-placement
   static defaultProps = {
     temperatures: [],
   };
+
+  chart: HTMLDivElement | null;
 
   componentDidMount() {
     const { temperatures } = this.props;
@@ -19,15 +22,13 @@ class TemperatureChart extends React.PureComponent<Props> {
     }
   }
 
-  componentWillReceiveProps() {
+  UNSAFE_componentWillReceiveProps() {
     const { temperatures } = this.props;
 
     if (this.chart !== null) {
       drawChart(this.chart, temperatures);
     }
   }
-
-  chart: HTMLDivElement | null;
 
   render() {
     return (

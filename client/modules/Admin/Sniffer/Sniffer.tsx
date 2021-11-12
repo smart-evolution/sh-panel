@@ -21,12 +21,16 @@ const Sniffer = (props: Props) => {
       </div>
       <div className="gc-separator" />
       <div className="gc-panel__footer">
-        <button className="gc-btn gc-btn--primary" onClick={sniffAgents}>
+        <button type="button" className="gc-btn gc-btn--primary" onClick={sniffAgents}>
           Search for agents
         </button>
       </div>
     </div>
   );
+};
+
+Sniffer.defaultProps = {
+    className: '',
 };
 
 export default Sniffer;

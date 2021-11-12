@@ -10,10 +10,6 @@ type State = {
   hide: boolean;
 };
 
-type Component = {
-  showTimeout: () => void;
-};
-
 class Alert extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);

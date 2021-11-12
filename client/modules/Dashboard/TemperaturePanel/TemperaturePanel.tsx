@@ -29,8 +29,4 @@ const TemperaturePanel = (props: Props) => {
   );
 };
 
-TemperaturePanel.defaultProps = {
-  temperatures: [],
-};
-
 export default TemperaturePanel;

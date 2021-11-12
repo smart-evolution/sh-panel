@@ -55,4 +55,8 @@ const Reset = (props: Props) => {
   );
 };
 
+Reset.defaultProps = {
+    className: '',
+};
+
 export default Reset;

@@ -19,8 +19,4 @@ const AgentsStatus = (props: Props) => {
   );
 };
 
-AgentsStatus.defaultProps = {
-  error: '',
-};
-
 export default AgentsStatus;

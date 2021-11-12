@@ -8,7 +8,7 @@ type Props = {
   onToggle: () => void,
 };
 
-const Alerts = (props: Props) => {
+const Alerts = (props: Props = { className: '', isAlerts: false, onToggle: () => {}}) => {
   const { isAlerts, onToggle, className } = props;
   const classes = classNames(
     'shp-admin__card gc-card gc-card--gradient gc-panel',
@@ -32,6 +32,10 @@ const Alerts = (props: Props) => {
       </div>
     </div>
   );
+};
+
+Alerts.defaultProps = {
+    className: '',
 };
 
 export default Alerts;

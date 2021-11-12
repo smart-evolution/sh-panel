@@ -48,8 +48,4 @@ const Dashboard = (props: Props) => {
   );
 };
 
-Dashboard.defaultProps = {
-  error: '',
-};
-
 export default withRouter(Dashboard);
