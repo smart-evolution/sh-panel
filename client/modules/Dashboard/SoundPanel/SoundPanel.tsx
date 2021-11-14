@@ -5,7 +5,7 @@ import SoundChart from './SoundChart/SoundChart';
 
 const NODATA_SIGN = '-';
 
-const SoundPanel = props => {
+const SoundPanel = (props) => {
   const { sounds } = props;
   const nowSnd = _.head(sounds);
   const value = _.isUndefined(nowSnd) ? NODATA_SIGN : nowSnd.value;

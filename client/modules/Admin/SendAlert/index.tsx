@@ -4,7 +4,7 @@ import SendAlert from './SendAlert';
 
 const mapStateToProps = () => ({});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   sendAlert: () => {
     dispatch(agentActions.sendAlert());
   },

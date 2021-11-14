@@ -2,8 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 
 type Props = {
-  className?: string,
-  sniffAgents: () => void,
+  className?: string;
+  sniffAgents: () => void;
 };
 
 const Sniffer = (props: Props) => {
@@ -21,7 +21,11 @@ const Sniffer = (props: Props) => {
       </div>
       <div className="gc-separator" />
       <div className="gc-panel__footer">
-        <button type="button" className="gc-btn gc-btn--primary" onClick={sniffAgents}>
+        <button
+          type="button"
+          className="gc-btn gc-btn--primary"
+          onClick={sniffAgents}
+        >
           Search for agents
         </button>
       </div>
@@ -30,7 +34,7 @@ const Sniffer = (props: Props) => {
 };
 
 Sniffer.defaultProps = {
-    className: '',
+  className: '',
 };
 
 export default Sniffer;

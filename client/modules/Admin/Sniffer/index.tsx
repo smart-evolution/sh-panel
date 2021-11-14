@@ -4,7 +4,7 @@ import Sniffer from './Sniffer';
 
 const mapStateToProps = () => ({});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   sniffAgents: () => {
     dispatch(agentActions.sniffAgents());
   },

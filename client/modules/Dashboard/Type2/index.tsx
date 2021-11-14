@@ -2,7 +2,7 @@ import React from 'react';
 import * as agentsTypes from 'client/models/agents/types';
 
 type Props = {
-  agent: agentsTypes.Agent,
+  agent: agentsTypes.Agent;
 };
 
 const Type2 = (props: Props) => {

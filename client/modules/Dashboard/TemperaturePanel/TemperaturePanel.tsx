@@ -4,7 +4,7 @@ import TemperatureChart from './TemperatureChart/TemperatureChart';
 import * as types from './types';
 
 type Props = {
-  temperatures: ReadonlyArray<types.Temperature>,
+  temperatures: ReadonlyArray<types.Temperature>;
 };
 
 const NODATA_SIGN = '-';

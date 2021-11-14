@@ -25,7 +25,7 @@ class Alert extends React.Component<Props, State> {
     this.showTimeout = setTimeout(() => {
       this.setState({ show: true });
     }, 2000);
-// @ts-ignore - to be fixed
+    // @ts-ignore - to be fixed
     this.hideTimeout = setTimeout(() => {
       this.setState({ hide: true });
     }, 4000);

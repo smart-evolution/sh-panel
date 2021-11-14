@@ -4,8 +4,8 @@ import classNames from 'classnames';
 import * as queries from './queries';
 
 type Props = {
-  className: string,
-  addAgent: (arg0: string, arg1: string, arg2: string, arg3: string) => void,
+  className: string;
+  addAgent: (arg0: string, arg1: string, arg2: string, arg3: string) => void;
 };
 
 const AddAgent = (props: Props) => {
@@ -21,7 +21,7 @@ const AddAgent = (props: Props) => {
   const [typeValidation, setTypeValidation] = useState(null);
 
   const handleIDChange = useCallback(
-    event => {
+    (event) => {
       const id = event.target.value;
       setAgentID(id);
       setIDValidation(queries.validateID(id));
@@ -29,7 +29,7 @@ const AddAgent = (props: Props) => {
     [agentID, setAgentID]
   );
   const handleIPChange = useCallback(
-    event => {
+    (event) => {
       const ip = event.target.value;
       setAgentIP(ip);
       setIPValidation(queries.validateIP(ip));
@@ -37,7 +37,7 @@ const AddAgent = (props: Props) => {
     [agentIP, setAgentIP]
   );
   const handleNameChange = useCallback(
-    event => {
+    (event) => {
       const name = event.target.value;
       setAgentName(name);
       setNameValidation(queries.validateName(name));
@@ -45,7 +45,7 @@ const AddAgent = (props: Props) => {
     [agentName, setAgentName]
   );
   const handleTypeChange = useCallback(
-    event => {
+    (event) => {
       const type = event.target.value;
       setAgentType(type);
       setTypeValidation(queries.validateType(type));

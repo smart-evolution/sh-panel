@@ -4,7 +4,7 @@ import Reset from './Reset';
 
 const mapStateToProps = () => ({});
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   reset: () => {
     dispatch(resetActions.reset());
   },

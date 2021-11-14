@@ -6,7 +6,7 @@ import * as proxySelectors from 'client/models/proxy/selectors';
 import * as agentsTypes from 'client/models/agents/types';
 import Jeep from './Jeep';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   status: proxySelectors.getStatus(state),
 });
 

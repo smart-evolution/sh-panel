@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { Dialog, Button } from 'graphen';
 
 type Props = {
-  className?: string,
-  reset: () => void,
+  className?: string;
+  reset: () => void;
 };
 
 const Reset = (props: Props) => {
@@ -56,7 +56,7 @@ const Reset = (props: Props) => {
 };
 
 Reset.defaultProps = {
-    className: '',
+  className: '',
 };
 
 export default Reset;

@@ -8,10 +8,10 @@ import SoundPanel from '../SoundPanel';
 import CurrentPanel from '../CurrentPanel';
 
 type Props = {
-  pathname: string,
-  agent: agentsTypes.Agent,
-  user: userTypes.User,
-  onScroll: () => void,
+  pathname: string;
+  agent: agentsTypes.Agent;
+  user: userTypes.User;
+  onScroll: () => void;
 };
 
 const Type1 = (props: Props) => {

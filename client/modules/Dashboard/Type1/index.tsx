@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as agentsActions from 'client/models/agents/actions';
 import Type1 from './Type1';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { user } = state;
 
   return {
@@ -11,8 +11,8 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  onScroll: period => {
+const mapDispatchToProps = (dispatch) => ({
+  onScroll: (period) => {
     dispatch(agentsActions.changePeriod(_.round(period)));
   },
 });

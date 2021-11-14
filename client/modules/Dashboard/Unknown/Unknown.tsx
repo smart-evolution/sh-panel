@@ -1,7 +1,7 @@
 import React from 'react';
 
 type Props = {
-  pathname: string,
+  pathname: string;
 };
 
 const Unknown = (props: Props) => {

@@ -10,9 +10,9 @@ import Jeep from './Jeep';
 import Unknown from './Unknown';
 
 type Props = {
-  pathname: string,
-  error: string,
-  agent: agentTypes.Agent,
+  pathname: string;
+  error: string;
+  agent: agentTypes.Agent;
 };
 
 const Dashboard = (props: Props) => {

@@ -9,7 +9,10 @@ import * as proxyConstants from 'client/models/proxy/constants';
 
 type Props = {
   agent: agentsTypes.Agent;
-  onPositionChange: (arg0: agentsTypes.Agent, arg1: { left: number, top: number, flag: null }) => void;
+  onPositionChange: (
+    arg0: agentsTypes.Agent,
+    arg1: { left: number; top: number; flag: null }
+  ) => void;
   onToggle: () => void;
   status: proxyTypes.Status;
 };

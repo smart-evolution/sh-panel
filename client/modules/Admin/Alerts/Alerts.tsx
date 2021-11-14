@@ -3,12 +3,14 @@ import classNames from 'classnames';
 import Switch from 'client/components/Switch';
 
 type Props = {
-  className?: string,
-  isAlerts: boolean,
-  onToggle: () => void,
+  className?: string;
+  isAlerts: boolean;
+  onToggle: () => void;
 };
 
-const Alerts = (props: Props = { className: '', isAlerts: false, onToggle: () => {}}) => {
+const Alerts = (
+  props: Props = { className: '', isAlerts: false, onToggle: () => {} }
+) => {
   const { isAlerts, onToggle, className } = props;
   const classes = classNames(
     'shp-admin__card gc-card gc-card--gradient gc-panel',
@@ -35,7 +37,7 @@ const Alerts = (props: Props = { className: '', isAlerts: false, onToggle: () =>
 };
 
 Alerts.defaultProps = {
-    className: '',
+  className: '',
 };
 
 export default Alerts;

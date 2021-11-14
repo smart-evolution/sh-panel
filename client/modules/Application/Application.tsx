@@ -2,9 +2,9 @@ import React from 'react';
 import AlertPanel from 'client/modules/AlertPanel';
 
 type Props = {
-  isLoaded: boolean,
-  children: React.ReactNode,
-  mount: () => void,
+  isLoaded: boolean;
+  children: React.ReactNode;
+  mount: () => void;
 };
 
 class Application extends React.PureComponent<Props> {

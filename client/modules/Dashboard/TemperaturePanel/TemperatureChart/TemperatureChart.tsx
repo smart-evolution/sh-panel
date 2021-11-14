@@ -3,7 +3,7 @@ import * as types from '../types';
 import drawChart from './drawChart';
 
 type Props = {
-  temperatures: ReadonlyArray<types.Temperature>,
+  temperatures: ReadonlyArray<types.Temperature>;
 };
 
 class TemperatureChart extends React.PureComponent<Props> {
@@ -34,7 +34,7 @@ class TemperatureChart extends React.PureComponent<Props> {
     return (
       <div
         className="temperature-chart"
-        ref={ref => {
+        ref={(ref) => {
           this.chart = ref;
         }}
       />

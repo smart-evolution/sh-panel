@@ -9,9 +9,16 @@ import { Dialog, Button } from 'graphen';
 type Props = {
   agent: agentTypes.Agent;
   agentConfig: agentConfigTypes.AgentConfig;
-  commitConfig: (arg0: agentTypes.AgentID, arg1: agentConfigTypes.AgentConfig) => void;
-  updateProperty: (arg0: agentTypes.AgentID, arg1: string, arg2: string) => void;
-  removeAgent:(arg0: agentTypes.AgentID) => void;
+  commitConfig: (
+    arg0: agentTypes.AgentID,
+    arg1: agentConfigTypes.AgentConfig
+  ) => void;
+  updateProperty: (
+    arg0: agentTypes.AgentID,
+    arg1: string,
+    arg2: string
+  ) => void;
+  removeAgent: (arg0: agentTypes.AgentID) => void;
 };
 
 type State = {
@@ -44,13 +51,13 @@ class AgentEdit extends React.Component<Props, State> {
   }
 
   updateTemperature(e) {
-    const {value} = e.target;
+    const { value } = e.target;
     const { agent, updateProperty } = this.props;
     updateProperty(agent.id, 'temperature', value);
   }
 
   updateName(e) {
-    const {value} = e.target;
+    const { value } = e.target;
     const { agent, updateProperty } = this.props;
     updateProperty(agent.id, 'name', value);
   }
@@ -96,7 +103,7 @@ class AgentEdit extends React.Component<Props, State> {
             </div>
             <div className="gc-panel__footer">
               <button
-                  type="button"
+                type="button"
                 className="gc-btn gc-btn--full gc-btn--primary"
                 onClick={this.updateConfig}
               >
@@ -109,7 +116,7 @@ class AgentEdit extends React.Component<Props, State> {
             <div className="gc-panel__content">Remove agent permanently.</div>
             <div className="gc-panel__footer">
               <button
-                  type="button"
+                type="button"
                 className="tst-delete gc-btn gc-btn--full gc-btn--primary"
                 onClick={() => this.handleDialogToggle(true)}
               >

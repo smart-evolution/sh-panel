@@ -1,8 +1,8 @@
 import React from 'react';
 
 type Props = {
-  isGas: boolean,
-  isMotion: boolean,
+  isGas: boolean;
+  isMotion: boolean;
 };
 
 const CurrentPanel = (props: Props) => {

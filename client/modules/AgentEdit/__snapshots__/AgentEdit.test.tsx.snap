@@ -176,6 +176,7 @@ exports[`AgentEdit should render correctly 1`] = `
                   <button
                     className="gc-btn gc-btn--full gc-btn--primary"
                     onClick={[Function]}
+                    type="button"
                   >
                     Update
                   </button>
@@ -200,6 +201,7 @@ exports[`AgentEdit should render correctly 1`] = `
                   <button
                     className="tst-delete gc-btn gc-btn--full gc-btn--primary"
                     onClick={[Function]}
+                    type="button"
                   >
                     Delete
                   </button>

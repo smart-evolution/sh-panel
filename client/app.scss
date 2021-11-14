@@ -1,10 +1,10 @@
 $gc-icon-font-url: '~graphen/src/assets/font';
 $gc-font-url: '~graphen/src/assets/font';
 
-@import "~graphen/src/style.scss";
-@import "components/Control/styles";
-@import "components/Header/styles";
-@import "modules/LoginBox/styles";
-@import "modules/AgentsStatus/styles";
-@import "modules/Dashboard/styles";
-@import "modules/AlertPanel/styles";
+@import '~graphen/src/style.scss';
+@import 'components/Control/styles';
+@import 'components/Header/styles';
+@import 'modules/LoginBox/styles';
+@import 'modules/AgentsStatus/styles';
+@import 'modules/Dashboard/styles';
+@import 'modules/AlertPanel/styles';

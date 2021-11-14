@@ -40,15 +40,15 @@ const drawChart = (
 
   const line = d3
     .line()
-    .x(d => xScale(d.time))
-    .y(d => yScale(Number(d.value)))
+    .x((d) => xScale(d.time))
+    .y((d) => yScale(Number(d.value)))
     .curve(d3.curveMonotoneX);
 
   const area = d3
     .area()
-    .x(d => xScale(d.time))
+    .x((d) => xScale(d.time))
     .y0(chartHeight)
-    .y1(d => yScale(Number(d.value)))
+    .y1((d) => yScale(Number(d.value)))
     .curve(d3.curveMonotoneX);
 
   const svg = d3Chart
@@ -69,12 +69,7 @@ const drawChart = (
   svg
     .append('g')
     .attr('class', 'temperature-chart__y-axis')
-    .call(
-      d3
-        .axisLeft(yScale)
-        .ticks(6)
-        .tickFormat(d3.format('d'))
-    );
+    .call(d3.axisLeft(yScale).ticks(6).tickFormat(d3.format('d')));
 
   svg
     .append('path')
@@ -95,7 +90,7 @@ const drawChart = (
     .append('circle')
     .attr('class', 'temperature-chart__dot')
     .attr('cx', (d, i) => xScale(i))
-    .attr('cy', d => yScale(d.value))
+    .attr('cy', (d) => yScale(d.value))
     .attr('r', 5);
 };
 

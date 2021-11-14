@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import React from 'react';
 import { mount } from 'enzyme';
 import { MemoryRouter as Router } from 'react-router';

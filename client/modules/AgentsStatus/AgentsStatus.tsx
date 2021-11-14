@@ -2,7 +2,7 @@ import React from 'react';
 import List from './List';
 
 type Props = {
-  error: string,
+  error: string;
 };
 
 const AgentsStatus = (props: Props) => {

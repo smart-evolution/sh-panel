@@ -1,9 +1,9 @@
 export type State = {
-    application: {
-        isLoaded?: boolean;
-    };
+  application: {
+    isLoaded?: boolean;
+  };
 };
 
 export type Action = {
-    type: string;
+  type: string;
 };
