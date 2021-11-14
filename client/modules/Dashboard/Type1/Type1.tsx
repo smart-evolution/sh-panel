@@ -16,8 +16,9 @@ type Props = {
 
 const Type1 = (props: Props) => {
   const { agent, user, pathname, onScroll } = props;
-
+  // @ts-ignore - to be fixed
   const featureFlags = userSelectors.getFeatureFlags(user);
+  // @ts-ignore - to be fixed
   const { isSouncChartEnabled } = featureFlags;
 
   return (

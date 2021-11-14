@@ -6,6 +6,7 @@ const mapStateToProps = (state, ownProps) => {
   const { agent } = ownProps;
   const tmpArr = queries.getTemperatures(agent);
   const timeArr = queries.getTimes(agent);
+  // @ts-ignore - to be dixed
   const temperatures = queries.getTicks(timeArr, tmpArr);
 
   return {

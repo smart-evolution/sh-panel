@@ -19,12 +19,16 @@ function* root() {
       applicationSagas.onApplicationMount
     ),
     takeEvery(agentsActionTypes.SNIFF_AGENTS, agentsSagas.onSniffAgents),
+    // @ts-ignore - to be fixed
     takeEvery(agentsActionTypes.ADD_AGENT, agentsSagas.onAddAgent),
+    // @ts-ignore - to be fixed
     takeEvery(agentsActionTypes.REMOVE_AGENT, agentsSagas.onRemoveAgent),
+    // @ts-ignore - to be fixed
     takeEvery(
       agentConfigsActionTypes.FETCH_AGENT_CONFIGS,
       agentConfigsSagas.onFetchAgentConfigs
     ),
+    // @ts-ignore - to be fixed
     takeEvery(
       agentConfigsActionTypes.COMMIT_AGENT_CONFIG,
       agentConfigsSagas.onCommitAgentConfig
@@ -32,11 +36,14 @@ function* root() {
     takeEvery(agentsActionTypes.TOGGLE_ALERTS, agentsSagas.onToggleAlerts),
     takeEvery(agentsActionTypes.FETCH_ALERTS, agentsSagas.onFetchAlerts),
     takeEvery(agentsActionTypes.SEND_ALERT, agentsSagas.onSendAlert),
+    // @ts-ignore - to be fixed
     takeEvery(agentsActionTypes.TOGGLE_TYPE2, agentsSagas.onToggleType2),
+    // @ts-ignore - to be fixed
     takeEvery(
       proxyActionTypes.PROXY_CREATE_WS_CLIENT,
       proxySagas.onCreateWebSocketClient
     ),
+    // @ts-ignore - to be fixed
     takeEvery(proxyActionTypes.PROXY_SEND_MESSAGE, proxySagas.onSendMessage),
     takeEvery(userActionTypes.FETCH_USER, userSagas.onFetchUser),
     takeEvery(resetActionTypes.RESET, resetSagas.onReset),
