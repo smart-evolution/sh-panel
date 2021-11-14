@@ -24,7 +24,8 @@ describe('add agent', () => {
     cy.get('.tst-add-agent-type').should('have.value', '');
 
     cy.get('.tst-nav-dashboard').click();
-    cy.get('.agents-list').find('.agents-list__list li').should('have.length', 1);
+    cy.get('.agents-list')
+      .find('.agents-list__list li')
+      .should('have.length', 1);
   });
 });
-

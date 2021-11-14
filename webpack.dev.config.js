@@ -5,6 +5,7 @@ module.exports = {
   resolve: {
     modules: [
       path.resolve(__dirname, './node_modules'),
+      path.resolve(__dirname, './node_modules/graphen'),
       path.resolve(__dirname, '.'),
     ],
   },
@@ -14,15 +15,14 @@ module.exports = {
     filename: '[name].js',
   },
   entry: {
-    scripts: ['regenerator-runtime/runtime', './app.jsx'],
+    scripts: ['regenerator-runtime/runtime', './app.tsx'],
     css: './app.scss',
   },
   module: {
     rules: [{
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
+      test: /\.(j|t)sx?$/,
       resolve: {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
       use: {
         loader: 'babel-loader',
