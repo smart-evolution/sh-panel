@@ -1,7 +1,7 @@
 {{define "nav-login"}}
 <li {{if eq .Name "login"}}class="gc-navigation__option gc-navigation__option--active"{{else}}class="gc-navigation__option"{{end}}
     role="presentation">
-    <a class="gc-navigation__link gc-link" href="/login">
+    <a class="gc-navigation__link gc-link gc-link--primary" href="/login">
         Login
     </a>
 </li>
@@ -10,7 +10,7 @@
 {{define "nav-dashboard"}}
     <li {{if eq .Name "dashboard"}}class="gc-navigation__option gc-navigation__option--active"{{else}}class="gc-navigation__option"{{end}}
         role="presentation">
-        <a class="tst-nav-dashboard gc-navigation__link gc-link" href="/">
+        <a class="tst-nav-dashboard gc-navigation__link gc-link gc-link--primary" href="/">
             Dashboard
         </a>
     </li>
@@ -19,7 +19,7 @@
 {{define "nav-admin"}}
     <li {{if eq .Name "admin"}}class="gc-navigation__option gc-navigation__option--active"{{else}}class="gc-navigation__option"{{end}}
         role="presentation">
-        <a class="tst-nav-admin gc-navigation__link gc-link" href="/admin">
+        <a class="tst-nav-admin gc-navigation__link gc-link gc-link--primary" href="/admin">
             Admin
         </a>
     </li>
@@ -44,7 +44,7 @@
             {{if .IsLogged}}
             <li class="gc-navigation__option"
                 role="presentation">
-                <a class="gc-navigation__link gc-link" href="/login/logout">
+                <a class="gc-navigation__link gc-link gc-link--primary" href="/login/logout">
                     Logout
                 </a>
             </li>
