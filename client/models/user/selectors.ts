@@ -16,4 +16,4 @@ export const getAPIServerURL = (state: types.GlobalState): string =>
   `http://${getAPIServerIP(state)}:3222` || '';
 
 export const getFeatureFlags = (state: types.GlobalState): Object =>
-  getUser(state).featureFlags || {};
+  getUser(state)?.featureFlags || {};

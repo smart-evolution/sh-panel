@@ -17,7 +17,7 @@ describe('remove agent', () => {
     Cypress.Cookies.preserveOnce('shpanel-sid', 'remember_token');
   });
 
-  it.skip('should remove agent', () => {
+  it('should remove agent', () => {
     cy.get('.tst-nav-dashboard').click();
 
     cy.get('.tst-agent-status-654302497').find('.agent-type1__link').click();
